@@ -9,6 +9,7 @@ import 'package:innovise/dashboard/bar_chart.dart';
 import 'package:innovise/dashboard/pie_chart.dart';
 import 'package:innovise/dashboard/score_gauge_widget.dart';
 import 'package:innovise/formpage/form_main.dart';
+import 'package:innovise/investor_matching/investor_matching.dart';
 import 'package:innovise/market_gap/market_gap.dart';
 import 'package:innovise/profile/profile.dart';
 import 'package:intl/intl.dart';
@@ -393,7 +394,9 @@ class _DashboardState extends State<Dashboard> {
                         ),
                         Expanded(
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Get.to(() => const InvestorMatching());
+                            },
                             child: Container(
                               margin: EdgeInsets.only(left: 8),
                               padding: const EdgeInsets.fromLTRB(6, 10, 6, 10),
@@ -851,50 +854,16 @@ class _DashboardState extends State<Dashboard> {
                                       mainAxisSpacing: 8,
                                       crossAxisSpacing: 8),
                               children: [
-                                SWOTCard(
-                                    "Strengths",
-                                    "Strengths of the idea",
-                                    data['swot']['strengths']
-                                        .toString()
-                                        .substring(
-                                            1,
-                                            data['swot']['strengths']
-                                                    .toString()
-                                                    .length -
-                                                1)),
-                                SWOTCard(
-                                    "Weakness",
-                                    "Weakness of the idea",
-                                    data['swot']['weaknesses']
-                                        .toString()
-                                        .substring(
-                                            1,
-                                            data['swot']['weaknesses']
-                                                    .toString()
-                                                    .length -
-                                                1)),
+                                SWOTCard("Strengths", "Strengths of the idea",
+                                    data['swot']['strengths']),
+                                SWOTCard("Weakness", "Weakness of the idea",
+                                    data['swot']['weaknesses']),
                                 SWOTCard(
                                     "Opportunities",
                                     "Opportunities for the idea",
-                                    data['swot']['opportunities']
-                                        .toString()
-                                        .substring(
-                                            1,
-                                            data['swot']['opportunities']
-                                                    .toString()
-                                                    .length -
-                                                1)),
-                                SWOTCard(
-                                    "Threats",
-                                    "Threats to the idea",
-                                    data['swot']['threats']
-                                        .toString()
-                                        .substring(
-                                            1,
-                                            data['swot']['threats']
-                                                    .toString()
-                                                    .length -
-                                                1)),
+                                    data['swot']['opportunities']),
+                                SWOTCard("Threats", "Threats to the idea",
+                                    data['swot']['threats']),
                               ],
                             ),
                           )
@@ -1007,7 +976,7 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 
-  Widget SWOTCard(String title, String subtitle, String data) {
+  Widget SWOTCard(String title, String subtitle, List data) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
@@ -1033,16 +1002,22 @@ class _DashboardState extends State<Dashboard> {
           ),
           Expanded(
             child: Container(
+              width: double.infinity,
               decoration: BoxDecoration(
                   color: AppColors.white,
                   borderRadius: BorderRadius.circular(10)),
               padding: const EdgeInsets.fromLTRB(8, 10, 8, 10),
               child: SingleChildScrollView(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(data,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400, fontSize: 12)),
+                    for (var d in data)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 5),
+                        child: Text("•" + d,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400, fontSize: 12)),
+                      ),
                   ],
                 ),
               ),

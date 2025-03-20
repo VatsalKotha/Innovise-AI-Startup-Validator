@@ -57,8 +57,23 @@ class _MyProfileState extends State<MyProfile> {
     return Scaffold(
       backgroundColor: AppColors.white,
       body: data == null
-          ? const Center(
-              child: CircularProgressIndicator(),
+          ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Center(
+                  child: Container(
+                    height: 100,
+                    width: 100,
+                    decoration: BoxDecoration(
+                        color: Colors.grey.shade100,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  ),
+                ),
+              ],
             )
           : SingleChildScrollView(
               child: Column(
