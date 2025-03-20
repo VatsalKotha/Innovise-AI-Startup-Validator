@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+pandas
+python-dotenv
+langchain_groq
+langdetect
+fuzzywuzzy
+deep-translator
+httpx
+googletrans
+asyncio
