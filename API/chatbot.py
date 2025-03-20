@@ -55,7 +55,7 @@ class StartupChatbot:
         )
 
         # Load dataset
-        self.funding_data = self.load_funding_data("..\\Data\\crunchbase_last.csv")
+        self.funding_data = os.getenv("FUNDING_DATA_PATH")
         
         logger.info("Startup Chatbot initialization complete")
 
