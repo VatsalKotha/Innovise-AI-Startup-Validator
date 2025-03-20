@@ -15,8 +15,8 @@ export default function Sidebar() {
   const sidebarItems = [
     { label: "Dashboard", icon: <Home size={22} />, path: "/dashboard" },
     { label: "Profile", icon: <User size={22} />, path: "/profile" },
-    { label: "Messages", icon: <MessageCircle size={22} />, path: "/chatbot" },
-    { label: "Settings", icon: <Settings size={22} />, path: "/settings" },
+    { label: "Chatbot", icon: <MessageCircle size={22} />, path: "/chatbot" },
+    { label: "Market Analysis", icon: <Settings size={22} />, path: "/market-gap-analysis" },
     { label: "Logout", icon: <LogOut size={22} />, path: "/login" },
   ];
 
