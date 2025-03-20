@@ -4,10 +4,13 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:innovise/common/home.dart';
 import 'package:innovise/dashboard/bar_chart.dart';
 import 'package:innovise/dashboard/pie_chart.dart';
 import 'package:innovise/dashboard/score_gauge_widget.dart';
 import 'package:innovise/formpage/form_main.dart';
+import 'package:innovise/market_gap/market_gap.dart';
+import 'package:innovise/profile/profile.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -357,7 +360,9 @@ class _DashboardState extends State<Dashboard> {
                         ),
                         Expanded(
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Get.to(() => const MarketGap());
+                            },
                             child: Container(
                               margin: EdgeInsets.only(left: 8),
                               padding: const EdgeInsets.fromLTRB(6, 10, 6, 10),
@@ -549,7 +554,11 @@ class _DashboardState extends State<Dashboard> {
                         ),
                         Expanded(
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Get.offAll(() => Home(
+                                    selectedIndex: 1,
+                                  ));
+                            },
                             child: Container(
                               margin: EdgeInsets.only(left: 8),
                               padding: const EdgeInsets.fromLTRB(6, 10, 6, 10),

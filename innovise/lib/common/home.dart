@@ -6,20 +6,19 @@ import 'package:innovise/profile/profile.dart';
 import 'colors.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  int selectedIndex = 0;
+  Home({Key? key, this.selectedIndex = 0}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  int _selectedIndex = 0;
-
   List<Widget> _widgetOptions = <Widget>[Dashboard(), MyProfile()];
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      widget.selectedIndex = index;
     });
   }
 
@@ -33,15 +32,15 @@ class _HomeState extends State<Home> {
             Icons.chat_bubble_outline,
           )),
       backgroundColor: AppColors.white,
-      appBar: Appbar(_getTitleForIndex(_selectedIndex)),
+      appBar: Appbar(_getTitleForIndex(widget.selectedIndex)),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: _widgetOptions.elementAt(widget.selectedIndex),
       ),
       bottomNavigationBar: NavigationBar(
         backgroundColor: AppColors.primaryVariant,
         indicatorColor: AppColors.secondary,
-        selectedIndex: _selectedIndex,
+        selectedIndex: widget.selectedIndex,
         onDestinationSelected: _onItemTapped,
         destinations: const <NavigationDestination>[
           NavigationDestination(

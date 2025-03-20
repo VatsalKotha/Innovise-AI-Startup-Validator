@@ -274,7 +274,7 @@ class _FormMainState extends State<FormMain> {
 
         if (response.statusCode == 200) {
           Get.snackbar('Success', 'User data updated successfully');
-          Get.offAll(() => const Home());
+          Get.offAll(() => Home());
         } else {
           Get.back();
           throw Exception('Update failed');

@@ -160,7 +160,7 @@ class _OnboardingState extends State<Onboarding> {
                 ),
                 InkWell(
                   onTap: () {
-                    Get.offAll(() => const Home());
+                    Get.offAll(() => Home());
                   },
                   child: Text("I will do it later",
                       style: TextStyle(
