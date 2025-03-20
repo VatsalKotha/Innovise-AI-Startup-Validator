@@ -190,6 +190,9 @@ class _MyProfileState extends State<MyProfile> {
                       Expanded(
                         child: InkWell(
                           onTap: () async {
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.remove('uid');
                             Get.offAll(() => Login());
                             // await FirebaseAuth.instance
                             //     .signOut()
