@@ -238,8 +238,8 @@ export default function Dashboard() {
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
-        <div className="text-center">
-          <h1 className="text-3xl font-bold">Idea Validation Dashboard</h1>
+        <div className="text-left">
+          <h1 className="text-5xl font-bold">Idea Validation Dashboard</h1>
           <p className="text-gray-600">Detailed analysis and metrics for your startup idea</p>
         </div>
 
