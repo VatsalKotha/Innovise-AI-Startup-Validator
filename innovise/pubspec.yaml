@@ -1,0 +1,53 @@
+name: innovise
+description: "FutureFounders - Meet Chavan, Vatsal Kotha, Jeel Doshi."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  get: ^4.6.6
+  shared_preferences: ^2.5.2
+  flutter_svg: ^2.0.17
+  url_launcher: ^6.3.1
+  geolocator: ^13.0.3
+  geocoding: ^3.0.0
+  intl: ^0.20.2
+  auto_size_text_field: ^2.2.4
+  choice: ^2.3.2
+  syncfusion_flutter_gauges: ^28.2.12 
+  dio: ^5.8.0+1
+  fl_chart: ^0.70.2
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+
+  uses-material-design: true
+  assets:
+      - assets/images/
+      - assets/svg/
+
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/inter/Inter-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/inter/Inter-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/inter/Inter-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/inter/Inter-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/inter/Inter-Black.ttf
+          weight: 900
+
