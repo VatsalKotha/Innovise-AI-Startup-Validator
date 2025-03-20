@@ -53,7 +53,7 @@ class _SplashScreenState extends State<SplashScreen> {
     String token = prefs.getString('uid') ?? '';
     Future.delayed(const Duration(seconds: 3), () {
       if (token.isNotEmpty) {
-        Get.offAll(() => Login());
+        Get.offAll(() => const Home());
       } else {
         Get.offAll(() => const Login());
       }

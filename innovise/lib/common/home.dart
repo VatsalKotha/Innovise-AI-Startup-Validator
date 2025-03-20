@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:innovise/common/appbar.dart';
 import 'package:innovise/dashboard/dashboard.dart';
+import 'package:innovise/profile/profile.dart';
 
 import 'colors.dart';
 
@@ -14,7 +15,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
 
-  List<Widget> _widgetOptions = <Widget>[Dashboard(), Dashboard()];
+  List<Widget> _widgetOptions = <Widget>[Dashboard(), MyProfile()];
 
   void _onItemTapped(int index) {
     setState(() {
