@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:innovise/chat/chat.dart';
 import 'package:innovise/common/appbar.dart';
 import 'package:innovise/dashboard/dashboard.dart';
 import 'package:innovise/profile/profile.dart';
@@ -26,7 +28,9 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.to(() => Chat());
+          },
           backgroundColor: AppColors.secondary,
           child: const Icon(
             Icons.chat_bubble_outline,

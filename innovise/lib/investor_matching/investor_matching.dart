@@ -25,7 +25,7 @@ class _InvestorMatchingState extends State<InvestorMatching> {
 
   @override
   void initState() {
-    fetchData();
+    fetchData(null);
     _getUserLocation();
     super.initState();
   }
@@ -48,9 +48,21 @@ class _InvestorMatchingState extends State<InvestorMatching> {
     } else {}
   }
 
+  Future setLocation(double latitude, double longitude) async {
+    setState(() {
+      _currentLocation = LatLng(latitude, longitude);
+    });
+
+    _mapController?.animateCamera(
+      CameraUpdate.newLatLng(
+        _currentLocation!,
+      ),
+    );
+  }
+
   Set<Marker> markers = {};
 
-  Future fetchData() async {
+  Future fetchData(int? funding_needed) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? uid = prefs.getString('uid');
@@ -60,9 +72,14 @@ class _InvestorMatchingState extends State<InvestorMatching> {
       }
       var response = await Dio().post(
         '${ConstantData.server_url}/match_investors',
-        data: {
-          'uid': uid,
-        },
+        data: funding_needed == null
+            ? {
+                'uid': uid,
+              }
+            : {
+                'uid': uid,
+                'funding_needed': funding_needed,
+              },
       );
 
       if (response.statusCode == 200) {
@@ -94,6 +111,8 @@ class _InvestorMatchingState extends State<InvestorMatching> {
       return null;
     }
   }
+
+  TextEditingController fundingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -171,6 +190,59 @@ class _InvestorMatchingState extends State<InvestorMatching> {
               SizedBox(
                 height: 10,
               ),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                decoration: BoxDecoration(
+                    color: AppColors.primaryVariant,
+                    borderRadius: const BorderRadius.all(Radius.circular(15))),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        controller: fundingController,
+                        style: const TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.w500),
+                        textAlign: TextAlign.left,
+                        keyboardType: TextInputType.number,
+                        decoration: const InputDecoration(
+                          hintText: "Funding Amount",
+                          border: InputBorder.none,
+                          prefixIconColor: Colors.black,
+                          prefixIcon: Icon(
+                            Icons.attach_money_outlined,
+                            size: 23,
+                          ),
+                          contentPadding: EdgeInsets.symmetric(vertical: 12),
+                          isDense: true,
+                        ),
+                        onChanged: ((value) {}),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        fetchData(fundingController.text.isEmpty
+                            ? null
+                            : int.parse(fundingController.text));
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                        decoration: BoxDecoration(
+                            color: AppColors.primary,
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Icon(
+                          Icons.chevron_right_outlined,
+                          color: AppColors.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               data == null
                   ? Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -215,188 +287,200 @@ class _InvestorMatchingState extends State<InvestorMatching> {
                           itemCount: data['matched_investors'].length,
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
-                            return Container(
-                              decoration: BoxDecoration(
-                                  color: AppColors.primaryVariant,
-                                  borderRadius: BorderRadius.circular(15)),
-                              margin: const EdgeInsets.only(top: 10),
-                              padding:
-                                  const EdgeInsets.fromLTRB(10, 10, 10, 10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
+                            return InkWell(
+                              onTap: () {
+                                setLocation(
                                     data['matched_investors'][index]
-                                        ['investor_name'],
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16),
-                                  ),
-                                  Divider(
-                                    color: AppColors.grey,
-                                    thickness: 0.8,
-                                    height: 5,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Container(
-                                        margin: const EdgeInsets.only(
-                                            top: 5, bottom: 2, right: 5),
-                                        padding:
-                                            EdgeInsets.fromLTRB(5, 2, 5, 2),
-                                        decoration: BoxDecoration(
-                                            color: AppColors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(15)),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Icon(
-                                              Icons.business_center_outlined,
-                                              size: 14,
-                                              color: AppColors.primary,
-                                            ),
-                                            SizedBox(
-                                              width: 5,
-                                            ),
-                                            Text(
-                                              "Focus: ",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w700,
-                                                  color: AppColors.primary,
-                                                  fontSize: 12),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Text(
-                                          data['matched_investors'][index]
-                                              ['focus_industry'],
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 12),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Container(
-                                        margin: const EdgeInsets.only(
-                                            top: 5, bottom: 2, right: 5),
-                                        padding:
-                                            EdgeInsets.fromLTRB(5, 2, 5, 2),
-                                        decoration: BoxDecoration(
-                                            color: AppColors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(15)),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Icon(
-                                              Icons.location_on_outlined,
-                                              size: 14,
-                                              color: AppColors.primary,
-                                            ),
-                                            SizedBox(
-                                              width: 5,
-                                            ),
-                                            Text(
-                                              "Location: ",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w700,
-                                                  color: AppColors.primary,
-                                                  fontSize: 12),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Text(
-                                          data['matched_investors'][index]
-                                              ['location'],
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 12),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: Container(
+                                        ['latitude'],
+                                    data['matched_investors'][index]
+                                        ['longitude']);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: AppColors.primaryVariant,
+                                    borderRadius: BorderRadius.circular(15)),
+                                margin: const EdgeInsets.only(top: 10),
+                                padding:
+                                    const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      data['matched_investors'][index]
+                                          ['investor_name'],
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16),
+                                    ),
+                                    Divider(
+                                      color: AppColors.grey,
+                                      thickness: 0.8,
+                                      height: 5,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Container(
+                                          margin: const EdgeInsets.only(
+                                              top: 5, bottom: 2, right: 5),
+                                          padding:
+                                              EdgeInsets.fromLTRB(5, 2, 5, 2),
                                           decoration: BoxDecoration(
                                               color: AppColors.white,
                                               borderRadius:
                                                   BorderRadius.circular(15)),
-                                          padding: const EdgeInsets.fromLTRB(
-                                              10, 5, 10, 5),
-                                          child: Column(
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
                                             children: [
-                                              Text(
-                                                "Max Investment",
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    color: AppColors.primary,
-                                                    fontWeight:
-                                                        FontWeight.w600),
+                                              Icon(
+                                                Icons.business_center_outlined,
+                                                size: 14,
+                                                color: AppColors.primary,
+                                              ),
+                                              SizedBox(
+                                                width: 5,
                                               ),
                                               Text(
-                                                NumberFormat.simpleCurrency()
-                                                    .format(
-                                                        data['matched_investors']
-                                                                [index]
-                                                            ['max_investment']),
+                                                "Focus: ",
                                                 style: TextStyle(
-                                                    fontWeight: FontWeight.w600,
+                                                    fontWeight: FontWeight.w700,
+                                                    color: AppColors.primary,
                                                     fontSize: 12),
                                               ),
                                             ],
                                           ),
                                         ),
-                                      ),
-                                      Expanded(
-                                        child: Container(
-                                          margin:
-                                              const EdgeInsets.only(left: 8),
+                                        Expanded(
+                                          child: Text(
+                                            data['matched_investors'][index]
+                                                ['focus_industry'],
+                                            textAlign: TextAlign.left,
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 12),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Container(
+                                          margin: const EdgeInsets.only(
+                                              top: 5, bottom: 2, right: 5),
+                                          padding:
+                                              EdgeInsets.fromLTRB(5, 2, 5, 2),
                                           decoration: BoxDecoration(
                                               color: AppColors.white,
                                               borderRadius:
                                                   BorderRadius.circular(15)),
-                                          padding: const EdgeInsets.fromLTRB(
-                                              10, 5, 10, 5),
-                                          child: Column(
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
                                             children: [
-                                              Text(
-                                                "Confidence",
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    color: AppColors.primary,
-                                                    fontWeight:
-                                                        FontWeight.w600),
+                                              Icon(
+                                                Icons.location_on_outlined,
+                                                size: 14,
+                                                color: AppColors.primary,
+                                              ),
+                                              SizedBox(
+                                                width: 5,
                                               ),
                                               Text(
-                                                data['matched_investors'][index]
-                                                        ['confidence_score']
-                                                    .toString(),
+                                                "Location: ",
                                                 style: TextStyle(
-                                                    fontWeight: FontWeight.w600,
+                                                    fontWeight: FontWeight.w700,
+                                                    color: AppColors.primary,
                                                     fontSize: 12),
                                               ),
                                             ],
                                           ),
                                         ),
-                                      )
-                                    ],
-                                  )
-                                ],
+                                        Expanded(
+                                          child: Text(
+                                            data['matched_investors'][index]
+                                                ['location'],
+                                            textAlign: TextAlign.left,
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 12),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                color: AppColors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(15)),
+                                            padding: const EdgeInsets.fromLTRB(
+                                                10, 5, 10, 5),
+                                            child: Column(
+                                              children: [
+                                                Text(
+                                                  "Max Investment",
+                                                  style: TextStyle(
+                                                      fontSize: 12,
+                                                      color: AppColors.primary,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
+                                                Text(
+                                                  NumberFormat.simpleCurrency()
+                                                      .format(
+                                                          data['matched_investors']
+                                                                  [index][
+                                                              'max_investment']),
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 12),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Container(
+                                            margin:
+                                                const EdgeInsets.only(left: 8),
+                                            decoration: BoxDecoration(
+                                                color: AppColors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(15)),
+                                            padding: const EdgeInsets.fromLTRB(
+                                                10, 5, 10, 5),
+                                            child: Column(
+                                              children: [
+                                                Text(
+                                                  "Confidence",
+                                                  style: TextStyle(
+                                                      fontSize: 12,
+                                                      color: AppColors.primary,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
+                                                Text(
+                                                  data['matched_investors']
+                                                              [index]
+                                                          ['confidence_score']
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 12),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
                               ),
                             );
                           },
