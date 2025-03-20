@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:innovise/auth/login.dart';
+import 'package:innovise/common/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'common/colors.dart';
@@ -52,7 +53,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 3), () {
       if (token.isNotEmpty) {
       } else {
-        Get.offAll(() => const Login());
+        Get.offAll(() => const Home());
       }
     });
   }

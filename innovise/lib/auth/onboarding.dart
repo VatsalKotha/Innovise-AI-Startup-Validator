@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:innovise/common/appbar.dart';
 import 'package:innovise/common/colors.dart';
+import 'package:innovise/common/home.dart';
 
 class Onboarding extends StatefulWidget {
   const Onboarding({Key? key}) : super(key: key);
@@ -154,7 +155,9 @@ class _OnboardingState extends State<Onboarding> {
                   height: 20,
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Get.offAll(() => const Home());
+                  },
                   child: Text("I will do it later",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
