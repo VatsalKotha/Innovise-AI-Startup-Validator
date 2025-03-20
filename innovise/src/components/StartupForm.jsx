@@ -7,16 +7,16 @@
 // import { Button } from '@/components/ui/button';
 // import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 // import { Label } from '@/components/ui/label';
-// import {
-//   Building2,
-//   Lightbulb,
-//   Star,
-//   Users,
-//   Briefcase,
-//   MapPin,
-//   UserPlus,
-//   GraduationCap,
-//   BarChart3,
+// import { 
+//   Building2, 
+//   Lightbulb, 
+//   Star, 
+//   Users, 
+//   Briefcase, 
+//   MapPin, 
+//   UserPlus, 
+//   GraduationCap, 
+//   BarChart3, 
 //   DollarSign,
 //   ChevronLeft,
 //   ChevronRight,
@@ -30,7 +30,7 @@
 // // Constants from your data
 // const ConstantData = {
 //   total_pages: 10,
-
+  
 //   appbar_titles: [
 //     'Startup Name',
 //     'Problem/Need',
@@ -43,7 +43,7 @@
 //     'Stage',
 //     'Revenue Model'
 //   ],
-
+  
 //   questions: [
 //     'What\'s your startup name?',
 //     'What problem or need does your startup address?',
@@ -56,7 +56,7 @@
 //     'What stage are you currently in?',
 //     'What revenue model does your startup use?'
 //   ],
-
+  
 //   problems_addressed_choices: [
 //     'Inefficient Processes',
 //     'High Costs',
@@ -65,7 +65,7 @@
 //     'Health Issues',
 //     'Environmental Concerns'
 //   ],
-
+  
 //   startup_unique_reasons_choices: [
 //     'Innovative Technology',
 //     'Sustainability',
@@ -74,7 +74,7 @@
 //     'Niche Market Focus',
 //     'Exceptional Customer Service',
 //   ],
-
+  
 //   target_audience_choices: [
 //     'B2B - Business to Business',
 //     'B2C - Business to Consumer',
@@ -83,7 +83,7 @@
 //     'Millennials',
 //     'Gen Z',
 //   ],
-
+  
 //   industry_operated_choices: [
 //     'Technology',
 //     'Healthcare',
@@ -95,7 +95,7 @@
 //     'E-Commerce',
 //     'Others'
 //   ],
-
+  
 //   team_size_choices: [
 //     '1-5',
 //     '6-10',
@@ -104,21 +104,21 @@
 //     '51-100',
 //     '100+'
 //   ],
-
+  
 //   team_background_choices: [
 //     'Technical Expertise',
 //     'Business/Entrepreneurial Experience',
 //     'Industry-Specific Knowledge',
 //     'Marketing and Sales',
 //   ],
-
+  
 //   stage_choices: [
 //     'Idea Stage - Conceptualization',
 //     'Early Stage - MVP Development',
 //     'Growth Stage - Scaling Operations',
 //     'Established - Market Expansion'
 //   ],
-
+  
 //   revenue_model_choices: [
 //     'Subscription Fees',
 //     'Direct Sales',
@@ -126,7 +126,7 @@
 //     'Transaction Fees',
 //     'Freemium',
 //   ],
-
+  
 //   tips: [
 //     'A catchy and memorable name helps boosts brand recognition.',
 //     'Clearly defining the problem helps in attracting the right customers.',
@@ -169,18 +169,18 @@
 //     stage: '',
 //     revenueModel: []
 //   });
-
+  
 //   const handleInputChange = (e) => {
 //     const { name, value } = e.target;
 //     setFormData(prev => ({ ...prev, [name]: value }));
 //   };
-
+  
 //   const handleArrayChange = (name, value) => {
 //     // Toggle selection for multi-select items
 //     setFormData(prev => {
 //       const currentValues = prev[name] || [];
 //       const exists = currentValues.includes(value);
-
+      
 //       if (exists) {
 //         return { ...prev, [name]: currentValues.filter(v => v !== value) };
 //       } else {
@@ -188,29 +188,29 @@
 //       }
 //     });
 //   };
-
+  
 //   const handleSingleSelection = (name, value) => {
 //     setFormData(prev => ({ ...prev, [name]: value }));
 //   };
-
+  
 //   const nextPage = () => {
 //     if (currentPage < ConstantData.total_pages - 1) {
 //       setCurrentPage(currentPage + 1);
 //     }
 //   };
-
+  
 //   const prevPage = () => {
 //     if (currentPage > 0) {
 //       setCurrentPage(currentPage - 1);
 //     }
 //   };
-
+  
 //   const submitForm = () => {
 //     // Here you would typically submit the form data to your backend
 //     console.log('Form submitted:', formData);
 //     alert('Form submitted successfully!');
 //   };
-
+  
 //   // Helper function to render the appropriate form fields based on the current page
 //   const renderFormFields = () => {
 //     switch (currentPage) {
@@ -230,25 +230,25 @@
 //             </div>
 //           </div>
 //         );
-
+        
 //       case 1: // Problem/Need
 //         return (
 //           <div className="space-y-4">
 //             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
 //               {ConstantData.problems_addressed_choices.map((problem, index) => (
-//                 <div
+//                 <div 
 //                   key={index}
 //                   className={`p-4 rounded-lg cursor-pointer border-2 transition-all ${
-//                     formData.problemNeed.includes(problem)
-//                       ? 'border-[#9A9285] bg-[#F3F0E7]'
+//                     formData.problemNeed.includes(problem) 
+//                       ? 'border-[#9A9285] bg-[#F3F0E7]' 
 //                       : 'border-[#E0E0E0] hover:border-[#D6CBBE]'
 //                   }`}
 //                   onClick={() => handleArrayChange('problemNeed', problem)}
 //                 >
 //                   <div className="flex items-center space-x-2">
 //                     <div className={`w-5 h-5 rounded flex items-center justify-center ${
-//                       formData.problemNeed.includes(problem)
-//                         ? 'bg-[#9A9285] text-white'
+//                       formData.problemNeed.includes(problem) 
+//                         ? 'bg-[#9A9285] text-white' 
 //                         : 'border border-[#E0E0E0]'
 //                     }`}>
 //                       {formData.problemNeed.includes(problem) && <Check size={16} />}
@@ -260,25 +260,25 @@
 //             </div>
 //           </div>
 //         );
-
+        
 //       case 2: // Unique Selling Proposition
 //         return (
 //           <div className="space-y-4">
 //             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
 //               {ConstantData.startup_unique_reasons_choices.map((reason, index) => (
-//                 <div
+//                 <div 
 //                   key={index}
 //                   className={`p-4 rounded-lg cursor-pointer border-2 transition-all ${
-//                     formData.uniqueReason.includes(reason)
-//                       ? 'border-[#9A9285] bg-[#F3F0E7]'
+//                     formData.uniqueReason.includes(reason) 
+//                       ? 'border-[#9A9285] bg-[#F3F0E7]' 
 //                       : 'border-[#E0E0E0] hover:border-[#D6CBBE]'
 //                   }`}
 //                   onClick={() => handleArrayChange('uniqueReason', reason)}
 //                 >
 //                   <div className="flex items-center space-x-2">
 //                     <div className={`w-5 h-5 rounded flex items-center justify-center ${
-//                       formData.uniqueReason.includes(reason)
-//                         ? 'bg-[#9A9285] text-white'
+//                       formData.uniqueReason.includes(reason) 
+//                         ? 'bg-[#9A9285] text-white' 
 //                         : 'border border-[#E0E0E0]'
 //                     }`}>
 //                       {formData.uniqueReason.includes(reason) && <Check size={16} />}
@@ -290,25 +290,25 @@
 //             </div>
 //           </div>
 //         );
-
+        
 //       case 3: // Target Segment
 //         return (
 //           <div className="space-y-4">
 //             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
 //               {ConstantData.target_audience_choices.map((audience, index) => (
-//                 <div
+//                 <div 
 //                   key={index}
 //                   className={`p-4 rounded-lg cursor-pointer border-2 transition-all ${
-//                     formData.targetAudience.includes(audience)
-//                       ? 'border-[#9A9285] bg-[#F3F0E7]'
+//                     formData.targetAudience.includes(audience) 
+//                       ? 'border-[#9A9285] bg-[#F3F0E7]' 
 //                       : 'border-[#E0E0E0] hover:border-[#D6CBBE]'
 //                   }`}
 //                   onClick={() => handleArrayChange('targetAudience', audience)}
 //                 >
 //                   <div className="flex items-center space-x-2">
 //                     <div className={`w-5 h-5 rounded flex items-center justify-center ${
-//                       formData.targetAudience.includes(audience)
-//                         ? 'bg-[#9A9285] text-white'
+//                       formData.targetAudience.includes(audience) 
+//                         ? 'bg-[#9A9285] text-white' 
 //                         : 'border border-[#E0E0E0]'
 //                     }`}>
 //                       {formData.targetAudience.includes(audience) && <Check size={16} />}
@@ -320,25 +320,25 @@
 //             </div>
 //           </div>
 //         );
-
+        
 //       case 4: // Industry
 //         return (
 //           <div className="space-y-4">
 //             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
 //               {ConstantData.industry_operated_choices.map((industry, index) => (
-//                 <div
+//                 <div 
 //                   key={index}
 //                   className={`p-4 rounded-lg cursor-pointer border-2 transition-all ${
-//                     formData.industry.includes(industry)
-//                       ? 'border-[#9A9285] bg-[#F3F0E7]'
+//                     formData.industry.includes(industry) 
+//                       ? 'border-[#9A9285] bg-[#F3F0E7]' 
 //                       : 'border-[#E0E0E0] hover:border-[#D6CBBE]'
 //                   }`}
 //                   onClick={() => handleArrayChange('industry', industry)}
 //                 >
 //                   <div className="flex items-center space-x-2">
 //                     <div className={`w-5 h-5 rounded flex items-center justify-center ${
-//                       formData.industry.includes(industry)
-//                         ? 'bg-[#9A9285] text-white'
+//                       formData.industry.includes(industry) 
+//                         ? 'bg-[#9A9285] text-white' 
 //                         : 'border border-[#E0E0E0]'
 //                     }`}>
 //                       {formData.industry.includes(industry) && <Check size={16} />}
@@ -350,7 +350,7 @@
 //             </div>
 //           </div>
 //         );
-
+        
 //       case 5: // Location
 //         return (
 //           <div className="space-y-4">
@@ -367,26 +367,26 @@
 //             </div>
 //           </div>
 //         );
-
+        
 //       case 6: // Team Size
 //         return (
 //           <div className="space-y-4">
 //             <RadioGroup value={formData.teamSize} onValueChange={(value) => handleSingleSelection('teamSize', value)}>
 //               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
 //                 {ConstantData.team_size_choices.map((size, index) => (
-//                   <div
+//                   <div 
 //                     key={index}
 //                     className={`p-4 rounded-lg cursor-pointer border-2 transition-all ${
-//                       formData.teamSize === size
-//                         ? 'border-[#9A9285] bg-[#F3F0E7]'
+//                       formData.teamSize === size 
+//                         ? 'border-[#9A9285] bg-[#F3F0E7]' 
 //                         : 'border-[#E0E0E0] hover:border-[#D6CBBE]'
 //                     }`}
 //                     onClick={() => handleSingleSelection('teamSize', size)}
 //                   >
 //                     <div className="flex items-center space-x-2">
 //                       <div className={`w-5 h-5 rounded-full flex items-center justify-center ${
-//                         formData.teamSize === size
-//                           ? 'bg-[#9A9285] border-2 border-white outline outline-2 outline-[#9A9285]'
+//                         formData.teamSize === size 
+//                           ? 'bg-[#9A9285] border-2 border-white outline outline-2 outline-[#9A9285]' 
 //                           : 'border-2 border-[#E0E0E0]'
 //                       }`} />
 //                       <span className="font-medium">{size}</span>
@@ -397,25 +397,25 @@
 //             </RadioGroup>
 //           </div>
 //         );
-
+        
 //       case 7: // Team Background
 //         return (
 //           <div className="space-y-4">
 //             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
 //               {ConstantData.team_background_choices.map((background, index) => (
-//                 <div
+//                 <div 
 //                   key={index}
 //                   className={`p-4 rounded-lg cursor-pointer border-2 transition-all ${
-//                     formData.teamBackground.includes(background)
-//                       ? 'border-[#9A9285] bg-[#F3F0E7]'
+//                     formData.teamBackground.includes(background) 
+//                       ? 'border-[#9A9285] bg-[#F3F0E7]' 
 //                       : 'border-[#E0E0E0] hover:border-[#D6CBBE]'
 //                   }`}
 //                   onClick={() => handleArrayChange('teamBackground', background)}
 //                 >
 //                   <div className="flex items-center space-x-2">
 //                     <div className={`w-5 h-5 rounded flex items-center justify-center ${
-//                       formData.teamBackground.includes(background)
-//                         ? 'bg-[#9A9285] text-white'
+//                       formData.teamBackground.includes(background) 
+//                         ? 'bg-[#9A9285] text-white' 
 //                         : 'border border-[#E0E0E0]'
 //                     }`}>
 //                       {formData.teamBackground.includes(background) && <Check size={16} />}
@@ -427,26 +427,26 @@
 //             </div>
 //           </div>
 //         );
-
+        
 //       case 8: // Stage
 //         return (
 //           <div className="space-y-4">
 //             <RadioGroup value={formData.stage} onValueChange={(value) => handleSingleSelection('stage', value)}>
 //               <div className="grid grid-cols-1 gap-3">
 //                 {ConstantData.stage_choices.map((stage, index) => (
-//                   <div
+//                   <div 
 //                     key={index}
 //                     className={`p-4 rounded-lg cursor-pointer border-2 transition-all ${
-//                       formData.stage === stage
-//                         ? 'border-[#9A9285] bg-[#F3F0E7]'
+//                       formData.stage === stage 
+//                         ? 'border-[#9A9285] bg-[#F3F0E7]' 
 //                         : 'border-[#E0E0E0] hover:border-[#D6CBBE]'
 //                     }`}
 //                     onClick={() => handleSingleSelection('stage', stage)}
 //                   >
 //                     <div className="flex items-center space-x-2">
 //                       <div className={`w-5 h-5 rounded-full flex items-center justify-center ${
-//                         formData.stage === stage
-//                           ? 'bg-[#9A9285] border-2 border-white outline outline-2 outline-[#9A9285]'
+//                         formData.stage === stage 
+//                           ? 'bg-[#9A9285] border-2 border-white outline outline-2 outline-[#9A9285]' 
 //                           : 'border-2 border-[#E0E0E0]'
 //                       }`} />
 //                       <span className="font-medium">{stage}</span>
@@ -457,25 +457,25 @@
 //             </RadioGroup>
 //           </div>
 //         );
-
+        
 //       case 9: // Revenue Model
 //         return (
 //           <div className="space-y-4">
 //             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
 //               {ConstantData.revenue_model_choices.map((model, index) => (
-//                 <div
+//                 <div 
 //                   key={index}
 //                   className={`p-4 rounded-lg cursor-pointer border-2 transition-all ${
-//                     formData.revenueModel.includes(model)
-//                       ? 'border-[#9A9285] bg-[#F3F0E7]'
+//                     formData.revenueModel.includes(model) 
+//                       ? 'border-[#9A9285] bg-[#F3F0E7]' 
 //                       : 'border-[#E0E0E0] hover:border-[#D6CBBE]'
 //                   }`}
 //                   onClick={() => handleArrayChange('revenueModel', model)}
 //                 >
 //                   <div className="flex items-center space-x-2">
 //                     <div className={`w-5 h-5 rounded flex items-center justify-center ${
-//                       formData.revenueModel.includes(model)
-//                         ? 'bg-[#9A9285] text-white'
+//                       formData.revenueModel.includes(model) 
+//                         ? 'bg-[#9A9285] text-white' 
 //                         : 'border border-[#E0E0E0]'
 //                     }`}>
 //                       {formData.revenueModel.includes(model) && <Check size={16} />}
@@ -487,12 +487,12 @@
 //             </div>
 //           </div>
 //         );
-
+        
 //       default:
 //         return null;
 //     }
 //   };
-
+  
 //   return (
 //     <div className="min-h-screen bg-[#F3F0E7] p-4 md:p-8">
 //       <div className="max-w-4xl mx-auto">
@@ -507,7 +507,7 @@
 //             <div className="h-full bg-[#9A9285] rounded-full" />
 //           </Progress>
 //         </div>
-
+        
 //         <Card className="border-[#D6CBBE] shadow-md">
 //           <CardHeader className="bg-[#9A9285] text-white rounded-t-lg flex flex-row items-center gap-3">
 //             <div className="w-10 h-10 flex items-center justify-center bg-white/20 rounded-full">
@@ -520,7 +520,7 @@
 //               </CardDescription>
 //             </div>
 //           </CardHeader>
-
+          
 //           <CardContent className="p-6">
 //             <div className="mb-6">
 //               <TooltipProvider>
@@ -537,10 +537,10 @@
 //                 </Tooltip>
 //               </TooltipProvider>
 //             </div>
-
+            
 //             {renderFormFields()}
 //           </CardContent>
-
+          
 //           <CardFooter className="p-6 pt-0 flex justify-between">
 //             <Button
 //               onClick={prevPage}
@@ -551,18 +551,18 @@
 //               <ChevronLeft className="mr-2 h-4 w-4" />
 //               Previous
 //             </Button>
-
+            
 //             {currentPage === ConstantData.total_pages - 1 ? (
-//               <Button
-//                 onClick={submitForm}
+//               <Button 
+//                 onClick={submitForm} 
 //                 className="bg-[#9A9285] hover:bg-[#8a8376] text-white"
 //               >
 //                 Submit
 //                 <Check className="ml-2 h-4 w-4" />
 //               </Button>
 //             ) : (
-//               <Button
-//                 onClick={nextPage}
+//               <Button 
+//                 onClick={nextPage} 
 //                 className="bg-[#9A9285] hover:bg-[#8a8376] text-white"
 //               >
 //                 Next
@@ -578,30 +578,23 @@
 
 "use client"; // Add this if you're using Next.js App Router
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
-import {
-  Building2,
-  Lightbulb,
-  Star,
-  Users,
-  Briefcase,
-  MapPin,
-  UserPlus,
-  GraduationCap,
-  BarChart3,
+import { useState } from 'react';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
+import { 
+  Building2, 
+  Lightbulb, 
+  Star, 
+  Users, 
+  Briefcase, 
+  MapPin, 
+  UserPlus, 
+  GraduationCap, 
+  BarChart3, 
   DollarSign,
   ChevronLeft,
   ChevronRight,
@@ -661,143 +654,123 @@ import {
   ShoppingCart as Sales,
   Megaphone,
   DollarSign as TransactionFees,
-  Gift,
-} from "lucide-react";
-import { Progress } from "@/components/ui/progress";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+  Gift
+} from 'lucide-react';
+import { Progress } from '@/components/ui/progress';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 // Enhanced Constants with icons
 const ConstantData = {
   total_pages: 10,
-
+  
   appbar_titles: [
-    "Startup Name",
-    "Problem/Need",
-    "Unique Selling Proposition",
-    "Target Segment",
-    "Industry",
-    "Location",
-    "Team Size",
-    "Team Background",
-    "Stage",
-    "Revenue Model",
+    'Startup Name',
+    'Problem/Need',
+    'Unique Selling Proposition',
+    'Target Segment',
+    'Industry',
+    'Location',
+    'Team Size',
+    'Team Background',
+    'Stage',
+    'Revenue Model'
   ],
-
+  
   questions: [
-    "What's your startup name?",
-    "What problem or need does your startup address?",
-    "What makes your startup unique?",
-    "Who is your target audience?",
-    "What industry do you operate in?",
-    "Where is your startup based?",
-    "How many people are on your team?",
-    "What is your founding team's background?",
-    "What stage are you currently in?",
-    "What revenue model does your startup use?",
+    'What\'s your startup name?',
+    'What problem or need does your startup address?',
+    'What makes your startup unique?',
+    'Who is your target audience?',
+    'What industry do you operate in?',
+    'Where is your startup based?',
+    'How many people are on your team?',
+    'What is your founding team\'s background?',
+    'What stage are you currently in?',
+    'What revenue model does your startup use?'
   ],
-
+  
   problems_addressed_choices: [
-    { label: "Inefficient Processes", icon: <Zap size={18} /> },
-    { label: "High Costs", icon: <CircleDollarSign size={18} /> },
-    { label: "Lack of Access to Information", icon: <BookOpen size={18} /> },
-    { label: "Poor User Experience", icon: <Frown size={18} /> },
-    { label: "Health Issues", icon: <Heart size={18} /> },
-    { label: "Environmental Concerns", icon: <Leaf size={18} /> },
-    { label: "Others", icon: <AlertCircle size={18} /> },
+    { label: 'Inefficient Processes', icon: <Zap size={18} /> },
+    { label: 'High Costs', icon: <CircleDollarSign size={18} /> },
+    { label: 'Lack of Access to Information', icon: <BookOpen size={18} /> },
+    { label: 'Poor User Experience', icon: <Frown size={18} /> },
+    { label: 'Health Issues', icon: <Heart size={18} /> },
+    { label: 'Environmental Concerns', icon: <Leaf size={18} /> }
   ],
-
+  
   startup_unique_reasons_choices: [
-    { label: "Innovative Technology", icon: <Cpu size={18} /> },
-    { label: "Sustainability", icon: <Recycle size={18} /> },
-    { label: "Cost-Effective Solution", icon: <PiggyBank size={18} /> },
-    { label: "Superior Quality", icon: <Award size={18} /> },
-    { label: "Niche Market Focus", icon: <Target size={18} /> },
-    { label: "Exceptional Customer Service", icon: <HandHelping size={18} /> },
-    { label: "Others", icon: <AlertCircle size={18} /> },
+    { label: 'Innovative Technology', icon: <Cpu size={18} /> },
+    { label: 'Sustainability', icon: <Recycle size={18} /> },
+    { label: 'Cost-Effective Solution', icon: <PiggyBank size={18} /> },
+    { label: 'Superior Quality', icon: <Award size={18} /> },
+    { label: 'Niche Market Focus', icon: <Target size={18} /> },
+    { label: 'Exceptional Customer Service', icon: <HandHelping size={18} /> }
   ],
-
+  
   target_audience_choices: [
-    { label: "B2B - Business to Business", icon: <Building size={18} /> },
-    { label: "B2C - Business to Consumer", icon: <ShoppingBag size={18} /> },
-    {
-      label: "SMEs - Small & Medium Enterprises",
-      icon: <SmallBusiness size={18} />,
-    },
-    { label: "Enterprises", icon: <Layers size={18} /> },
-    { label: "Millennials", icon: <User size={18} /> },
-    { label: "Gen Z", icon: <GenZ size={18} /> },
-    { label: "Others", icon: <AlertCircle size={18} /> },
+    { label: 'B2B - Business to Business', icon: <Building size={18} /> },
+    { label: 'B2C - Business to Consumer', icon: <ShoppingBag size={18} /> },
+    { label: 'SMEs - Small & Medium Enterprises', icon: <SmallBusiness size={18} /> },
+    { label: 'Enterprises', icon: <Layers size={18} /> },
+    { label: 'Millennials', icon: <User size={18} /> },
+    { label: 'Gen Z', icon: <GenZ size={18} /> }
   ],
-
+  
   industry_operated_choices: [
-    { label: "Technology", icon: <Monitor size={18} /> },
-    { label: "Healthcare", icon: <Stethoscope size={18} /> },
-    { label: "Finance", icon: <Landmark size={18} /> },
-    { label: "Education", icon: <Education size={18} /> },
-    { label: "Retail", icon: <ShoppingCart size={18} /> },
-    { label: "Agriculture", icon: <Wheat size={18} /> },
-    { label: "Entertainment", icon: <Film size={18} /> },
-    { label: "E-Commerce", icon: <Store size={18} /> },
-    { label: "Others", icon: <Smartphone size={18} /> },
+    { label: 'Technology', icon: <Monitor size={18} /> },
+    { label: 'Healthcare', icon: <Stethoscope size={18} /> },
+    { label: 'Finance', icon: <Landmark size={18} /> },
+    { label: 'Education', icon: <Education size={18} /> },
+    { label: 'Retail', icon: <ShoppingCart size={18} /> },
+    { label: 'Agriculture', icon: <Wheat size={18} /> },
+    { label: 'Entertainment', icon: <Film size={18} /> },
+    { label: 'E-Commerce', icon: <Store size={18} /> },
+    { label: 'Others', icon: <Smartphone size={18} /> }
   ],
-
+  
   team_size_choices: [
-    { label: "1-5", icon: <SingleUser size={18} /> },
-    { label: "6-10", icon: <SmallTeam size={18} /> },
-    { label: "11-20", icon: <UsersRound size={18} /> },
-    { label: "21-50", icon: <UserRound size={18} /> },
-    { label: "51-100", icon: <MediumTeam size={18} /> },
-    { label: "100+", icon: <UserCheck size={18} /> },
+    { label: '1-5', icon: <SingleUser size={18} /> },
+    { label: '6-10', icon: <SmallTeam size={18} /> },
+    { label: '11-20', icon: <UsersRound size={18} /> },
+    { label: '21-50', icon: <UserRound size={18} /> },
+    { label: '51-100', icon: <MediumTeam size={18} /> },
+    { label: '100+', icon: <UserCheck size={18} /> }
   ],
-
+  
   team_background_choices: [
-    { label: "Technical Expertise", icon: <Code size={18} /> },
-    {
-      label: "Business/Entrepreneurial Experience",
-      icon: <BusinessExp size={18} />,
-    },
-    { label: "Industry-Specific Knowledge", icon: <Industry size={18} /> },
-    { label: "Marketing and Sales", icon: <BarChart size={18} /> },
-    { label: "Others", icon: <AlertCircle size={18} /> },
+    { label: 'Technical Expertise', icon: <Code size={18} /> },
+    { label: 'Business/Entrepreneurial Experience', icon: <BusinessExp size={18} /> },
+    { label: 'Industry-Specific Knowledge', icon: <Industry size={18} /> },
+    { label: 'Marketing and Sales', icon: <BarChart size={18} /> }
   ],
-
+  
   stage_choices: [
-    { label: "Idea Stage - Conceptualization", icon: <IdeaStage size={18} /> },
-    { label: "Early Stage - MVP Development", icon: <EarlyStage size={18} /> },
-    {
-      label: "Growth Stage - Scaling Operations",
-      icon: <TrendingUp size={18} />,
-    },
-    { label: "Established - Market Expansion", icon: <Globe size={18} /> },
-    { label: "Others", icon: <AlertCircle size={18} /> },
+    { label: 'Idea Stage - Conceptualization', icon: <IdeaStage size={18} /> },
+    { label: 'Early Stage - MVP Development', icon: <EarlyStage size={18} /> },
+    { label: 'Growth Stage - Scaling Operations', icon: <TrendingUp size={18} /> },
+    { label: 'Established - Market Expansion', icon: <Globe size={18} /> }
   ],
-
+  
   revenue_model_choices: [
-    { label: "Subscription Fees", icon: <CreditCard size={18} /> },
-    { label: "Direct Sales", icon: <Sales size={18} /> },
-    { label: "Advertising", icon: <Megaphone size={18} /> },
-    { label: "Transaction Fees", icon: <TransactionFees size={18} /> },
-    { label: "Freemium", icon: <Gift size={18} /> },
-    { label: "Others", icon: <AlertCircle size={18} /> },
+    { label: 'Subscription Fees', icon: <CreditCard size={18} /> },
+    { label: 'Direct Sales', icon: <Sales size={18} /> },
+    { label: 'Advertising', icon: <Megaphone size={18} /> },
+    { label: 'Transaction Fees', icon: <TransactionFees size={18} /> },
+    { label: 'Freemium', icon: <Gift size={18} /> }
   ],
-
+  
   tips: [
-    "A catchy and memorable name helps boosts brand recognition.",
-    "Clearly defining the problem helps in attracting the right customers.",
-    "Highlighting your USP helps in standing out from the competition.",
-    "Understanding your target segment ensures better product-market fit.",
-    "Knowing your industry helps in understanding market trends.",
-    "Location influences market access and operational costs.",
-    "A well-sized team indicates the capacity to handle growth.",
-    "A strong founding team attracts investors and partners.",
-    "Identifying your stage helps in setting the right strategic goals.",
-    "A clear revenue model is essential for financial sustainability.",
-  ],
+    'A catchy and memorable name helps boosts brand recognition.',
+    'Clearly defining the problem helps in attracting the right customers.',
+    'Highlighting your USP helps in standing out from the competition.',
+    'Understanding your target segment ensures better product-market fit.',
+    'Knowing your industry helps in understanding market trends.',
+    'Location influences market access and operational costs.',
+    'A well-sized team indicates the capacity to handle growth.',
+    'A strong founding team attracts investors and partners.',
+    'Identifying your stage helps in setting the right strategic goals.',
+    'A clear revenue model is essential for financial sustainability.'
+  ]
 };
 
 // Icons for each page
@@ -811,103 +784,65 @@ const pageIcons = [
   <UserPlus key="userplus" />,
   <GraduationCap key="graduation" />,
   <BarChart3 key="barchart" />,
-  <DollarSign key="dollar" />,
+  <DollarSign key="dollar" />
 ];
 
 export default function StartupForm() {
   const [currentPage, setCurrentPage] = useState(0);
   const [formData, setFormData] = useState({
-    startupName: "",
+    startupName: '',
     problemNeed: [],
-    problemNeedOther: "",
     uniqueReason: [],
-    uniqueReasonOther: "",
     targetAudience: [],
-    targetAudienceOther: "",
     industry: [],
-    industryOther: "",
-    location: "",
-    teamSize: "",
+    location: '',
+    teamSize: '',
     teamBackground: [],
-    teamBackgroundOther: "",
-    stage: "",
-    stageOther: "",
-    revenueModel: [],
-    revenueModelOther: "",
+    stage: '',
+    revenueModel: []
   });
-
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
-
+  
   const handleArrayChange = (name, value) => {
     // Toggle selection for multi-select items
-    setFormData((prev) => {
+    setFormData(prev => {
       const currentValues = prev[name] || [];
       const exists = currentValues.includes(value);
-
+      
       if (exists) {
-        return { ...prev, [name]: currentValues.filter((v) => v !== value) };
+        return { ...prev, [name]: currentValues.filter(v => v !== value) };
       } else {
         return { ...prev, [name]: [...currentValues, value] };
       }
     });
   };
-
+  
   const handleSingleSelection = (name, value) => {
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
-
+  
   const nextPage = () => {
-    // Check if "Others" is selected and the corresponding input is filled
-    const validation = {
-      1: formData.problemNeed.includes("Others") && !formData.problemNeedOther,
-      2:
-        formData.uniqueReason.includes("Others") && !formData.uniqueReasonOther,
-      3:
-        formData.targetAudience.includes("Others") &&
-        !formData.targetAudienceOther,
-      4: formData.industry.includes("Others") && !formData.industryOther,
-      7:
-        formData.teamBackground.includes("Others") &&
-        !formData.teamBackgroundOther,
-      8: formData.stage === "Others" && !formData.stageOther,
-      9:
-        formData.revenueModel.includes("Others") && !formData.revenueModelOther,
-    };
-
-    if (validation[currentPage]) {
-      alert('Please specify the "Others" option before proceeding.');
-      return;
-    }
-
     if (currentPage < ConstantData.total_pages - 1) {
       setCurrentPage(currentPage + 1);
     }
   };
-
+  
   const prevPage = () => {
     if (currentPage > 0) {
       setCurrentPage(currentPage - 1);
     }
   };
-
+  
   const submitForm = () => {
-    // Validate the final page if needed
-    if (
-      formData.revenueModel.includes("Others") &&
-      !formData.revenueModelOther
-    ) {
-      alert('Please specify the "Others" option before submitting.');
-      return;
-    }
-
     // Here you would typically submit the form data to your backend
-    console.log("Form submitted:", formData);
-    alert("Form submitted successfully!");
+    console.log('Form submitted:', formData);
+    alert('Form submitted successfully!');
   };
-
+  
   // Helper function to render the appropriate form fields based on the current page
   const renderFormFields = () => {
     switch (currentPage) {
@@ -927,34 +862,28 @@ export default function StartupForm() {
             </div>
           </div>
         );
-
+        
       case 1: // Problem/Need
         return (
           <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {ConstantData.problems_addressed_choices.map((problem, index) => (
-                <div
+                <div 
                   key={index}
                   className={`p-4 rounded-lg cursor-pointer border-2 transition-all ${
-                    formData.problemNeed.includes(problem.label)
-                      ? "border-[#9A9285] bg-[#F3F0E7]"
-                      : "border-[#E0E0E0] hover:border-[#D6CBBE]"
+                    formData.problemNeed.includes(problem.label) 
+                      ? 'border-[#9A9285] bg-[#F3F0E7]' 
+                      : 'border-[#E0E0E0] hover:border-[#D6CBBE]'
                   }`}
-                  onClick={() =>
-                    handleArrayChange("problemNeed", problem.label)
-                  }
+                  onClick={() => handleArrayChange('problemNeed', problem.label)}
                 >
                   <div className="flex items-center space-x-2">
-                    <div
-                      className={`w-5 h-5 rounded flex items-center justify-center ${
-                        formData.problemNeed.includes(problem.label)
-                          ? "bg-[#9A9285] text-white"
-                          : "border border-[#E0E0E0]"
-                      }`}
-                    >
-                      {formData.problemNeed.includes(problem.label) && (
-                        <Check size={16} />
-                      )}
+                    <div className={`w-5 h-5 rounded flex items-center justify-center ${
+                      formData.problemNeed.includes(problem.label) 
+                        ? 'bg-[#9A9285] text-white' 
+                        : 'border border-[#E0E0E0]'
+                    }`}>
+                      {formData.problemNeed.includes(problem.label) && <Check size={16} />}
                     </div>
                     <div className="flex items-center space-x-2">
                       <span className="text-[#9A9285]">{problem.icon}</span>
@@ -964,119 +893,63 @@ export default function StartupForm() {
                 </div>
               ))}
             </div>
-
-            {formData.problemNeed.includes("Others") && (
-              <div className="mt-4 space-y-2">
-                <Label
-                  htmlFor="problemNeedOther"
-                  className="flex items-center text-[#9A9285]"
-                >
-                  <AlertCircle size={16} className="mr-2" /> Please specify
-                  other problem/need
-                </Label>
-                <Input
-                  id="problemNeedOther"
-                  name="problemNeedOther"
-                  value={formData.problemNeedOther}
-                  onChange={handleInputChange}
-                  placeholder="Please specify the other problem or need"
-                  className="border-[#D6CBBE] focus:border-[#9A9285]"
-                  required
-                />
-              </div>
-            )}
           </div>
         );
-
+        
       case 2: // Unique Selling Proposition
         return (
           <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {ConstantData.startup_unique_reasons_choices.map(
-                (reason, index) => (
-                  <div
-                    key={index}
-                    className={`p-4 rounded-lg cursor-pointer border-2 transition-all ${
-                      formData.uniqueReason.includes(reason.label)
-                        ? "border-[#9A9285] bg-[#F3F0E7]"
-                        : "border-[#E0E0E0] hover:border-[#D6CBBE]"
-                    }`}
-                    onClick={() =>
-                      handleArrayChange("uniqueReason", reason.label)
-                    }
-                  >
+              {ConstantData.startup_unique_reasons_choices.map((reason, index) => (
+                <div 
+                  key={index}
+                  className={`p-4 rounded-lg cursor-pointer border-2 transition-all ${
+                    formData.uniqueReason.includes(reason.label) 
+                      ? 'border-[#9A9285] bg-[#F3F0E7]' 
+                      : 'border-[#E0E0E0] hover:border-[#D6CBBE]'
+                  }`}
+                  onClick={() => handleArrayChange('uniqueReason', reason.label)}
+                >
+                  <div className="flex items-center space-x-2">
+                    <div className={`w-5 h-5 rounded flex items-center justify-center ${
+                      formData.uniqueReason.includes(reason.label) 
+                        ? 'bg-[#9A9285] text-white' 
+                        : 'border border-[#E0E0E0]'
+                    }`}>
+                      {formData.uniqueReason.includes(reason.label) && <Check size={16} />}
+                    </div>
                     <div className="flex items-center space-x-2">
-                      <div
-                        className={`w-5 h-5 rounded flex items-center justify-center ${
-                          formData.uniqueReason.includes(reason.label)
-                            ? "bg-[#9A9285] text-white"
-                            : "border border-[#E0E0E0]"
-                        }`}
-                      >
-                        {formData.uniqueReason.includes(reason.label) && (
-                          <Check size={16} />
-                        )}
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <span className="text-[#9A9285]">{reason.icon}</span>
-                        <span className="font-medium">{reason.label}</span>
-                      </div>
+                      <span className="text-[#9A9285]">{reason.icon}</span>
+                      <span className="font-medium">{reason.label}</span>
                     </div>
                   </div>
-                )
-              )}
+                </div>
+              ))}
             </div>
-
-            {formData.uniqueReason.includes("Others") && (
-              <div className="mt-4 space-y-2">
-                <Label
-                  htmlFor="uniqueReasonOther"
-                  className="flex items-center text-[#9A9285]"
-                >
-                  <AlertCircle size={16} className="mr-2" /> Please specify
-                  other unique reason
-                </Label>
-                <Input
-                  id="uniqueReasonOther"
-                  name="uniqueReasonOther"
-                  value={formData.uniqueReasonOther}
-                  onChange={handleInputChange}
-                  placeholder="Please specify what makes your startup unique"
-                  className="border-[#D6CBBE] focus:border-[#9A9285]"
-                  required
-                />
-              </div>
-            )}
           </div>
         );
-
+        
       case 3: // Target Segment
         return (
           <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {ConstantData.target_audience_choices.map((audience, index) => (
-                <div
+                <div 
                   key={index}
                   className={`p-4 rounded-lg cursor-pointer border-2 transition-all ${
-                    formData.targetAudience.includes(audience.label)
-                      ? "border-[#9A9285] bg-[#F3F0E7]"
-                      : "border-[#E0E0E0] hover:border-[#D6CBBE]"
+                    formData.targetAudience.includes(audience.label) 
+                      ? 'border-[#9A9285] bg-[#F3F0E7]' 
+                      : 'border-[#E0E0E0] hover:border-[#D6CBBE]'
                   }`}
-                  onClick={() =>
-                    handleArrayChange("targetAudience", audience.label)
-                  }
+                  onClick={() => handleArrayChange('targetAudience', audience.label)}
                 >
                   <div className="flex items-center space-x-2">
-                    <div
-                      className={`w-5 h-5 rounded flex items-center justify-center ${
-                        formData.targetAudience.includes(audience.label)
-                          ? "bg-[#9A9285] text-white"
-                          : "border border-[#E0E0E0]"
-                      }`}
-                    >
-                      {formData.targetAudience.includes(audience.label) && (
-                        <Check size={16} />
-                      )}
+                    <div className={`w-5 h-5 rounded flex items-center justify-center ${
+                      formData.targetAudience.includes(audience.label) 
+                        ? 'bg-[#9A9285] text-white' 
+                        : 'border border-[#E0E0E0]'
+                    }`}>
+                      {formData.targetAudience.includes(audience.label) && <Check size={16} />}
                     </div>
                     <div className="flex items-center space-x-2">
                       <span className="text-[#9A9285]">{audience.icon}</span>
@@ -1086,55 +959,30 @@ export default function StartupForm() {
                 </div>
               ))}
             </div>
-
-            {formData.targetAudience.includes("Others") && (
-              <div className="mt-4 space-y-2">
-                <Label
-                  htmlFor="targetAudienceOther"
-                  className="flex items-center text-[#9A9285]"
-                >
-                  <AlertCircle size={16} className="mr-2" /> Please specify
-                  other target audience
-                </Label>
-                <Input
-                  id="targetAudienceOther"
-                  name="targetAudienceOther"
-                  value={formData.targetAudienceOther}
-                  onChange={handleInputChange}
-                  placeholder="Please specify your target audience"
-                  className="border-[#D6CBBE] focus:border-[#9A9285]"
-                  required
-                />
-              </div>
-            )}
           </div>
         );
-
+        
       case 4: // Industry
         return (
           <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               {ConstantData.industry_operated_choices.map((industry, index) => (
-                <div
+                <div 
                   key={index}
                   className={`p-4 rounded-lg cursor-pointer border-2 transition-all ${
-                    formData.industry.includes(industry.label)
-                      ? "border-[#9A9285] bg-[#F3F0E7]"
-                      : "border-[#E0E0E0] hover:border-[#D6CBBE]"
+                    formData.industry.includes(industry.label) 
+                      ? 'border-[#9A9285] bg-[#F3F0E7]' 
+                      : 'border-[#E0E0E0] hover:border-[#D6CBBE]'
                   }`}
-                  onClick={() => handleArrayChange("industry", industry.label)}
+                  onClick={() => handleArrayChange('industry', industry.label)}
                 >
                   <div className="flex items-center space-x-2">
-                    <div
-                      className={`w-5 h-5 rounded flex items-center justify-center ${
-                        formData.industry.includes(industry.label)
-                          ? "bg-[#9A9285] text-white"
-                          : "border border-[#E0E0E0]"
-                      }`}
-                    >
-                      {formData.industry.includes(industry.label) && (
-                        <Check size={16} />
-                      )}
+                    <div className={`w-5 h-5 rounded flex items-center justify-center ${
+                      formData.industry.includes(industry.label) 
+                        ? 'bg-[#9A9285] text-white' 
+                        : 'border border-[#E0E0E0]'
+                    }`}>
+                      {formData.industry.includes(industry.label) && <Check size={16} />}
                     </div>
                     <div className="flex items-center space-x-2">
                       <span className="text-[#9A9285]">{industry.icon}</span>
@@ -1144,30 +992,9 @@ export default function StartupForm() {
                 </div>
               ))}
             </div>
-
-            {formData.industry.includes("Others") && (
-              <div className="mt-4 space-y-2">
-                <Label
-                  htmlFor="industryOther"
-                  className="flex items-center text-[#9A9285]"
-                >
-                  <AlertCircle size={16} className="mr-2" /> Please specify
-                  other industry
-                </Label>
-                <Input
-                  id="industryOther"
-                  name="industryOther"
-                  value={formData.industryOther}
-                  onChange={handleInputChange}
-                  placeholder="Please specify your industry"
-                  className="border-[#D6CBBE] focus:border-[#9A9285]"
-                  required
-                />
-              </div>
-            )}
           </div>
         );
-
+        
       case 5: // Location
         return (
           <div className="space-y-4">
@@ -1184,37 +1011,28 @@ export default function StartupForm() {
             </div>
           </div>
         );
-
+        
       case 6: // Team Size
         return (
           <div className="space-y-4">
-            <RadioGroup
-              value={formData.teamSize}
-              onValueChange={(value) =>
-                handleSingleSelection("teamSize", value)
-              }
-            >
+            <RadioGroup value={formData.teamSize} onValueChange={(value) => handleSingleSelection('teamSize', value)}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {ConstantData.team_size_choices.map((size, index) => (
-                  <div
+                  <div 
                     key={index}
                     className={`p-4 rounded-lg cursor-pointer border-2 transition-all ${
-                      formData.teamSize === size.label
-                        ? "border-[#9A9285] bg-[#F3F0E7]"
-                        : "border-[#E0E0E0] hover:border-[#D6CBBE]"
+                      formData.teamSize === size.label 
+                        ? 'border-[#9A9285] bg-[#F3F0E7]' 
+                        : 'border-[#E0E0E0] hover:border-[#D6CBBE]'
                     }`}
-                    onClick={() =>
-                      handleSingleSelection("teamSize", size.label)
-                    }
+                    onClick={() => handleSingleSelection('teamSize', size.label)}
                   >
                     <div className="flex items-center space-x-2">
-                      <div
-                        className={`w-5 h-5 rounded-full flex items-center justify-center ${
-                          formData.teamSize === size.label
-                            ? "bg-[#9A9285] border-2 border-white outline outline-2 outline-[#9A9285]"
-                            : "border-2 border-[#E0E0E0]"
-                        }`}
-                      />
+                      <div className={`w-5 h-5 rounded-full flex items-center justify-center ${
+                        formData.teamSize === size.label 
+                          ? 'bg-[#9A9285] border-2 border-white outline outline-2 outline-[#9A9285]' 
+                          : 'border-2 border-[#E0E0E0]'
+                      }`} />
                       <div className="flex items-center space-x-2">
                         <span className="text-[#9A9285]">{size.icon}</span>
                         <span className="font-medium">{size.label}</span>
@@ -1226,34 +1044,28 @@ export default function StartupForm() {
             </RadioGroup>
           </div>
         );
-
+        
       case 7: // Team Background
         return (
           <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {ConstantData.team_background_choices.map((background, index) => (
-                <div
+                <div 
                   key={index}
                   className={`p-4 rounded-lg cursor-pointer border-2 transition-all ${
-                    formData.teamBackground.includes(background.label)
-                      ? "border-[#9A9285] bg-[#F3F0E7]"
-                      : "border-[#E0E0E0] hover:border-[#D6CBBE]"
+                    formData.teamBackground.includes(background.label) 
+                      ? 'border-[#9A9285] bg-[#F3F0E7]' 
+                      : 'border-[#E0E0E0] hover:border-[#D6CBBE]'
                   }`}
-                  onClick={() =>
-                    handleArrayChange("teamBackground", background.label)
-                  }
+                  onClick={() => handleArrayChange('teamBackground', background.label)}
                 >
                   <div className="flex items-center space-x-2">
-                    <div
-                      className={`w-5 h-5 rounded flex items-center justify-center ${
-                        formData.teamBackground.includes(background.label)
-                          ? "bg-[#9A9285] text-white"
-                          : "border border-[#E0E0E0]"
-                      }`}
-                    >
-                      {formData.teamBackground.includes(background.label) && (
-                        <Check size={16} />
-                      )}
+                    <div className={`w-5 h-5 rounded flex items-center justify-center ${
+                      formData.teamBackground.includes(background.label) 
+                        ? 'bg-[#9A9285] text-white' 
+                        : 'border border-[#E0E0E0]'
+                    }`}>
+                      {formData.teamBackground.includes(background.label) && <Check size={16} />}
                     </div>
                     <div className="flex items-center space-x-2">
                       <span className="text-[#9A9285]">{background.icon}</span>
@@ -1263,56 +1075,30 @@ export default function StartupForm() {
                 </div>
               ))}
             </div>
-
-            {formData.teamBackground.includes("Others") && (
-              <div className="mt-4 space-y-2">
-                <Label
-                  htmlFor="teamBackgroundOther"
-                  className="flex items-center text-[#9A9285]"
-                >
-                  <AlertCircle size={16} className="mr-2" /> Please specify
-                  other team background
-                </Label>
-                <Input
-                  id="teamBackgroundOther"
-                  name="teamBackgroundOther"
-                  value={formData.teamBackgroundOther}
-                  onChange={handleInputChange}
-                  placeholder="Please specify your team's background"
-                  className="border-[#D6CBBE] focus:border-[#9A9285]"
-                  required
-                />
-              </div>
-            )}
           </div>
         );
-
+        
       case 8: // Stage
         return (
           <div className="space-y-4">
-            <RadioGroup
-              value={formData.stage}
-              onValueChange={(value) => handleSingleSelection("stage", value)}
-            >
+            <RadioGroup value={formData.stage} onValueChange={(value) => handleSingleSelection('stage', value)}>
               <div className="grid grid-cols-1 gap-3">
                 {ConstantData.stage_choices.map((stage, index) => (
-                  <div
+                  <div 
                     key={index}
                     className={`p-4 rounded-lg cursor-pointer border-2 transition-all ${
-                      formData.stage === stage.label
-                        ? "border-[#9A9285] bg-[#F3F0E7]"
-                        : "border-[#E0E0E0] hover:border-[#D6CBBE]"
+                      formData.stage === stage.label 
+                        ? 'border-[#9A9285] bg-[#F3F0E7]' 
+                        : 'border-[#E0E0E0] hover:border-[#D6CBBE]'
                     }`}
-                    onClick={() => handleSingleSelection("stage", stage.label)}
+                    onClick={() => handleSingleSelection('stage', stage.label)}
                   >
                     <div className="flex items-center space-x-2">
-                      <div
-                        className={`w-5 h-5 rounded-full flex items-center justify-center ${
-                          formData.stage === stage.label
-                            ? "bg-[#9A9285] border-2 border-white outline outline-2 outline-[#9A9285]"
-                            : "border-2 border-[#E0E0E0]"
-                        }`}
-                      />
+                      <div className={`w-5 h-5 rounded-full flex items-center justify-center ${
+                        formData.stage === stage.label 
+                          ? 'bg-[#9A9285] border-2 border-white outline outline-2 outline-[#9A9285]' 
+                          : 'border-2 border-[#E0E0E0]'
+                      }`} />
                       <div className="flex items-center space-x-2">
                         <span className="text-[#9A9285]">{stage.icon}</span>
                         <span className="font-medium">{stage.label}</span>
@@ -1322,55 +1108,30 @@ export default function StartupForm() {
                 ))}
               </div>
             </RadioGroup>
-
-            {formData.stage === "Others" && (
-              <div className="mt-4 space-y-2">
-                <Label
-                  htmlFor="stageOther"
-                  className="flex items-center text-[#9A9285]"
-                >
-                  <AlertCircle size={16} className="mr-2" /> Please specify
-                  other stage
-                </Label>
-                <Input
-                  id="stageOther"
-                  name="stageOther"
-                  value={formData.stageOther}
-                  onChange={handleInputChange}
-                  placeholder="Please specify your current stage"
-                  className="border-[#D6CBBE] focus:border-[#9A9285]"
-                  required
-                />
-              </div>
-            )}
           </div>
         );
-
+        
       case 9: // Revenue Model
         return (
           <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {ConstantData.revenue_model_choices.map((model, index) => (
-                <div
+                <div 
                   key={index}
                   className={`p-4 rounded-lg cursor-pointer border-2 transition-all ${
-                    formData.revenueModel.includes(model.label)
-                      ? "border-[#9A9285] bg-[#F3F0E7]"
-                      : "border-[#E0E0E0] hover:border-[#D6CBBE]"
+                    formData.revenueModel.includes(model.label) 
+                      ? 'border-[#9A9285] bg-[#F3F0E7]' 
+                      : 'border-[#E0E0E0] hover:border-[#D6CBBE]'
                   }`}
-                  onClick={() => handleArrayChange("revenueModel", model.label)}
+                  onClick={() => handleArrayChange('revenueModel', model.label)}
                 >
                   <div className="flex items-center space-x-2">
-                    <div
-                      className={`w-5 h-5 rounded flex items-center justify-center ${
-                        formData.revenueModel.includes(model.label)
-                          ? "bg-[#9A9285] text-white"
-                          : "border border-[#E0E0E0]"
-                      }`}
-                    >
-                      {formData.revenueModel.includes(model.label) && (
-                        <Check size={16} />
-                      )}
+                    <div className={`w-5 h-5 rounded flex items-center justify-center ${
+                      formData.revenueModel.includes(model.label) 
+                        ? 'bg-[#9A9285] text-white' 
+                        : 'border border-[#E0E0E0]'
+                    }`}>
+                      {formData.revenueModel.includes(model.label) && <Check size={16} />}
                     </div>
                     <div className="flex items-center space-x-2">
                       <span className="text-[#9A9285]">{model.icon}</span>
@@ -1382,20 +1143,18 @@ export default function StartupForm() {
             </div>
           </div>
         );
-
+        
       default:
         return null;
     }
   };
-
+  
   return (
-    <div className="min-h-screen bg-[#F3F0E7] p-4 md:p-8">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-[#F3F0E7] p-4 md:p-8 flex items-center justify-center">
+      <div className="max-w-4xl w-full">
         <div className="mb-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-            <h1 className="text-2xl font-bold text-[#1E1E1E]">
-              Startup Profile
-            </h1>
+            <h1 className="text-2xl font-bold text-[#1E1E1E]">Innovise</h1>
             <div className="text-sm text-[#1E1E1E]/70">
               Step {currentPage + 1} of {ConstantData.total_pages}
             </div>
@@ -1404,73 +1163,76 @@ export default function StartupForm() {
             <div className="h-full bg-[#9A9285] rounded-full" />
           </Progress>
         </div>
-
-        <Card className="border-[#D6CBBE] shadow-md">
-          <CardHeader className="bg-[#9A9285] text-white rounded-t-lg flex flex-row items-center gap-3">
-            <div className="w-10 h-10 flex items-center justify-center bg-white/20 rounded-full">
-              {pageIcons[currentPage]}
-            </div>
-            <div>
-              <CardTitle>{ConstantData.appbar_titles[currentPage]}</CardTitle>
-              <CardDescription className="text-white/80">
-                {ConstantData.questions[currentPage]}
-              </CardDescription>
-            </div>
-          </CardHeader>
-
-          <CardContent className="p-6">
-            <div className="mb-6">
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <div className="flex items-center gap-2 p-3 bg-[#FFF6D7] text-[#1E1E1E] rounded-lg">
-                      <Info size={18} className="text-[#ECBB0D]" />
-                      <span className="text-sm">
-                        {ConstantData.tips[currentPage]}
-                      </span>
-                    </div>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Helpful Tip</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </div>
-
-            {renderFormFields()}
-          </CardContent>
-
-          <CardFooter className="p-6 pt-0 flex justify-between">
-            <Button
-              onClick={prevPage}
-              disabled={currentPage === 0}
-              variant="outline"
-              className="border-[#D6CBBE] text-[#9A9285] hover:bg-[#F3F0E7] hover:text-[#9A9285]"
-            >
-              <ChevronLeft className="mr-2 h-4 w-4" />
-              Previous
-            </Button>
-
-            {currentPage === ConstantData.total_pages - 1 ? (
+  
+        <div className="flex items-stretch">
+          <Card className="border-[#D6CBBE] shadow-md h-full w-full">
+            <CardHeader className="bg-[#9A9285] text-white rounded-t-lg flex flex-row items-center gap-3">
+              <div className="w-10 h-10 flex items-center justify-center bg-white/20 rounded-full">
+                {pageIcons[currentPage]}
+              </div>
+              <div>
+                <CardTitle>{ConstantData.appbar_titles[currentPage]}</CardTitle>
+                <CardDescription className="text-white/80">
+                  {ConstantData.questions[currentPage]}
+                </CardDescription>
+              </div>
+            </CardHeader>
+  
+            <CardContent className="p-6">
+              <div className="mb-6">
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <div className="flex items-center gap-2 p-3 bg-[#FFF6D7] text-[#1E1E1E] rounded-lg">
+                        <Info size={18} className="text-[#ECBB0D]" />
+                        <span className="text-sm">
+                          {ConstantData.tips[currentPage]}
+                        </span>
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Helpful Tip</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+  
+              {renderFormFields()}
+            </CardContent>
+  
+            <CardFooter className="p-6 pt-0 flex justify-between">
               <Button
-                onClick={submitForm}
-                className="bg-[#9A9285] hover:bg-[#8a8376] text-white"
+                onClick={prevPage}
+                disabled={currentPage === 0}
+                variant="outline"
+                className="border-[#D6CBBE] text-[#9A9285] hover:bg-[#F3F0E7] hover:text-[#9A9285]"
               >
-                Submit
-                <Check className="ml-2 h-4 w-4" />
+                <ChevronLeft className="mr-2 h-4 w-4" />
+                Previous
               </Button>
-            ) : (
-              <Button
-                onClick={nextPage}
-                className="bg-[#9A9285] hover:bg-[#8a8376] text-white"
-              >
-                Next
-                <ChevronRight className="ml-2 h-4 w-4" />
-              </Button>
-            )}
-          </CardFooter>
-        </Card>
+  
+              {currentPage === ConstantData.total_pages - 1 ? (
+                <Button
+                  onClick={submitForm}
+                  className="bg-[#9A9285] hover:bg-[#8a8376] text-white"
+                >
+                  Submit
+                  <Check className="ml-2 h-4 w-4" />
+                </Button>
+              ) : (
+                <Button
+                  onClick={nextPage}
+                  className="bg-[#9A9285] hover:bg-[#8a8376] text-white"
+                >
+                  Next
+                  <ChevronRight className="ml-2 h-4 w-4" />
+                </Button>
+              )}
+            </CardFooter>
+          </Card>
+        </div>
       </div>
     </div>
   );
+  
 }
