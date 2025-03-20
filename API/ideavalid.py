@@ -346,4 +346,4 @@ async def predict_startup_success_formatted(startup: StartupInput):
 # Run the app if executed directly
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("app:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("app:app", host="192.168.0.100", port=8000, reload=True)
