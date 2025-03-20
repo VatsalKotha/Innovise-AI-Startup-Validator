@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:innovise/auth/login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'common/colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,31 +12,119 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Innovise',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        fontFamily: 'Inter',
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
+        scaffoldBackgroundColor: AppColors.white,
         useMaterial3: true,
       ),
-      home: const Placeholder(),
+      debugShowCheckedModeBanner: false,
+      home: const SplashScreen(),
+      transitionDuration: const Duration(milliseconds: 1000),
+    );
+  }
+}
+
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    Future.delayed(const Duration(seconds: 3), () {
+      checkLogin();
+    });
+  }
+
+  Future checkLogin() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String token = prefs.getString('token') ?? '';
+    Future.delayed(const Duration(seconds: 3), () {
+      if (token.isNotEmpty) {
+      } else {
+        Get.offAll(() => const Login());
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.white,
+      body: Container(
+        child: Column(
+          children: [
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.only(top: 20, bottom: 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const SizedBox(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
+                          decoration: BoxDecoration(
+                            color: AppColors.primaryVariant.withOpacity(0.7),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: const Text(
+                            'Innovise',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 48,
+                                color: AppColors.black,
+                                fontWeight: FontWeight.bold,
+                                height: 0),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Column(
+                      children: [
+                        CircularProgressIndicator(
+                          color: AppColors.primary,
+                        ),
+                        SizedBox(
+                          height: 50,
+                        ),
+                        Text('''FutureFounders - HackToCrack2.0''',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 12,
+                                color: AppColors.black,
+                                fontWeight: FontWeight.bold,
+                                height: 0)),
+                        Text('Vatsal Kotha, Jeel Doshi, Meet Chavan',
+                            style: TextStyle(
+                                fontSize: 10,
+                                color: AppColors.primary,
+                                fontWeight: FontWeight.bold,
+                                height: 0)),
+                        SizedBox(
+                          height: 20,
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
