@@ -81,7 +81,7 @@ class _LoginState extends State<Login> {
                   padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
                   margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                   decoration: BoxDecoration(
-                      color: Colors.grey.shade50,
+                      color: Colors.grey.shade100,
                       borderRadius: const BorderRadius.all(Radius.circular(8))),
                   child: TextFormField(
                     textInputAction: TextInputAction.next,
@@ -127,7 +127,7 @@ class _LoginState extends State<Login> {
                   padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
                   margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                   decoration: BoxDecoration(
-                      color: Colors.grey.shade50,
+                      color: Colors.grey.shade100,
                       borderRadius: const BorderRadius.all(Radius.circular(8))),
                   child: TextFormField(
                     textInputAction: TextInputAction.next,

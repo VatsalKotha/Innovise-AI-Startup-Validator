@@ -16,6 +16,7 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   bool show_metrics_breakdown = true;
   bool show_swot_analysis = true;
+  bool show_news = true;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -151,8 +152,43 @@ class _DashboardState extends State<Dashboard> {
               )
             ],
           ),
-          SizedBox(
-            height: 20,
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.only(top: 10, bottom: 10),
+            padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+            decoration: BoxDecoration(
+                color: AppColors.primaryVariant,
+                borderRadius: BorderRadius.circular(15)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      height: 40,
+                      width: 40,
+                      padding: const EdgeInsets.fromLTRB(8, 5, 8, 5),
+                      decoration: BoxDecoration(
+                          color: AppColors.primary,
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Icon(
+                        Icons.info_outline_rounded,
+                        color: AppColors.white,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                      child: Text(
+                          "The market demand for your product is high. You have a good chance of success.",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w400, fontSize: 12)),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
           Row(
             children: [
@@ -395,6 +431,124 @@ class _DashboardState extends State<Dashboard> {
               )
             ],
           ),
+          SizedBox(
+            height: 30,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Trending News",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    show_news = !show_news;
+                  });
+                },
+                child: Container(
+                    padding: const EdgeInsets.fromLTRB(8, 5, 8, 5),
+                    decoration: BoxDecoration(
+                        color: AppColors.primaryVariant,
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Icon(
+                      show_news
+                          ? Icons.expand_less_rounded
+                          : Icons.expand_more_rounded,
+                      size: 20,
+                    )),
+              ),
+            ],
+          ),
+          show_news
+              ? Column(
+                  children: [
+                    Container(
+                      height: 140,
+                      width: double.infinity,
+                      margin: EdgeInsets.only(top: 10),
+                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                      decoration: BoxDecoration(
+                          color: AppColors.primaryVariant,
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: NetworkImage(
+                                          "https://b2bblogassets.airtel.in/wp-content/uploads/2022/06/startup-company-scaled.jpg"),
+                                      fit: BoxFit.cover),
+                                  borderRadius: BorderRadius.circular(15)),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "New Startup Launched",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16),
+                                ),
+                                Divider(
+                                  color: AppColors.grey,
+                                  thickness: 0.8,
+                                  height: 5,
+                                ),
+                                Expanded(
+                                  child: Text(
+                                      "The market demand for your product is high. You have a good chance of success.",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 12)),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          color: AppColors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
+                                      padding:
+                                          const EdgeInsets.fromLTRB(8, 5, 8, 5),
+                                      child: Text("CATEGORY",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 12,
+                                              color: AppColors.black)),
+                                    ),
+                                    Text(
+                                      DateFormat('EEE, d MMMM yyyy')
+                                          .format(DateTime.now()),
+                                      style: TextStyle(
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColors.primary),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                )
+              : SizedBox(),
           SizedBox(
             height: 30,
           ),
@@ -685,6 +839,45 @@ class _DashboardState extends State<Dashboard> {
                                 style: TextStyle(
                                     fontWeight: FontWeight.w400, fontSize: 12)),
                           )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: double.infinity,
+                      margin: EdgeInsets.only(top: 10, bottom: 10),
+                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                      decoration: BoxDecoration(
+                          color: AppColors.primaryVariant,
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                height: 40,
+                                width: 40,
+                                padding: const EdgeInsets.fromLTRB(8, 5, 8, 5),
+                                decoration: BoxDecoration(
+                                    color: AppColors.primary,
+                                    borderRadius: BorderRadius.circular(15)),
+                                child: Icon(
+                                  Icons.info_outline_rounded,
+                                  color: AppColors.white,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                child: Text(
+                                    "The market demand for your product is high. You have a good chance of success.",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12)),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),

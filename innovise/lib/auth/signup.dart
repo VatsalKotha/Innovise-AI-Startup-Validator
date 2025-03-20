@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:innovise/auth/login.dart';
+import 'package:innovise/auth/onboarding.dart';
 import 'package:innovise/common/colors.dart';
 
 import '../common/appbar.dart';
@@ -38,6 +39,7 @@ class _LoginState extends State<SignUp> {
       ));
       try {
         //todo
+        Get.offAll(() => Onboarding(username.text));
       } catch (e) {
         Get.back();
         Get.snackbar('Error', e.toString());
@@ -84,7 +86,7 @@ class _LoginState extends State<SignUp> {
                   padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
                   margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                   decoration: BoxDecoration(
-                      color: Colors.grey.shade50,
+                      color: Colors.grey.shade100,
                       borderRadius: const BorderRadius.all(Radius.circular(8))),
                   child: Center(
                     child: TextFormField(
@@ -132,7 +134,7 @@ class _LoginState extends State<SignUp> {
                   padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
                   margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                   decoration: BoxDecoration(
-                      color: Colors.grey.shade50,
+                      color: Colors.grey.shade100,
                       borderRadius: const BorderRadius.all(Radius.circular(8))),
                   child: Center(
                     child: TextFormField(
@@ -180,7 +182,7 @@ class _LoginState extends State<SignUp> {
                   padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
                   margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                   decoration: BoxDecoration(
-                      color: Colors.grey.shade50,
+                      color: Colors.grey.shade100,
                       borderRadius: const BorderRadius.all(Radius.circular(8))),
                   child: TextFormField(
                     textInputAction: TextInputAction.next,

@@ -3,9 +3,11 @@ import 'package:get/get.dart';
 import 'package:innovise/common/appbar.dart';
 import 'package:innovise/common/colors.dart';
 import 'package:innovise/common/home.dart';
+import 'package:innovise/formpage/form_main.dart';
 
 class Onboarding extends StatefulWidget {
-  const Onboarding({Key? key}) : super(key: key);
+  String user;
+  Onboarding(this.user, {Key? key}) : super(key: key);
 
   @override
   _OnboardingState createState() => _OnboardingState();
@@ -38,9 +40,9 @@ class _OnboardingState extends State<Onboarding> {
                       decoration: BoxDecoration(
                           color: AppColors.primaryVariant,
                           borderRadius: BorderRadius.circular(40)),
-                      child: const Text(
-                        "user!",
-                        style: TextStyle(
+                      child: Text(
+                        widget.user,
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 24,
                             color: AppColors.primary),
@@ -102,7 +104,9 @@ class _OnboardingState extends State<Onboarding> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Get.offAll(() => const FormMain());
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                             color: AppColors.primaryVariant,
