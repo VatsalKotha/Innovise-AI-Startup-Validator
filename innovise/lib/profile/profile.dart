@@ -120,7 +120,7 @@ class _MyProfileState extends State<MyProfile> {
                               ),
                               Row(
                                 children: [
-                                  Text(data!['uid'],
+                                  Text(data!['uid'] ?? '',
                                       style: const TextStyle(
                                         fontWeight: FontWeight.w300,
                                         fontSize: 8,
@@ -142,9 +142,11 @@ class _MyProfileState extends State<MyProfile> {
                               ),
                               child: Center(
                                 child: Text(
-                                  data!['name'].split('')[0] +
-                                          data!['name'].split(' ')[1][0] ??
-                                      data!['name'][0],
+                                  data != null &&
+                                          data['name'].split(' ').length > 1
+                                      ? data['name'].split('')[0] +
+                                          data['name'].split(' ')[1][0]
+                                      : data['name'][0],
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 24,
@@ -171,13 +173,16 @@ class _MyProfileState extends State<MyProfile> {
                                 color: AppColors.primaryVariant,
                                 borderRadius: BorderRadius.circular(20)),
                             child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(Icons.edit_outlined),
+                                SizedBox(
+                                  width: 5,
+                                ),
                                 Text(
                                   'Edit Details',
                                   style: TextStyle(
-                                      fontSize: 18,
+                                      fontSize: 14,
                                       color: AppColors.black,
                                       fontWeight: FontWeight.bold,
                                       height: 0),
@@ -207,16 +212,19 @@ class _MyProfileState extends State<MyProfile> {
                                 color: AppColors.primary,
                                 borderRadius: BorderRadius.circular(20)),
                             child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(
                                   Icons.power_settings_new_rounded,
                                   color: Colors.white,
                                 ),
+                                SizedBox(
+                                  width: 5,
+                                ),
                                 Text(
                                   'Logout',
                                   style: TextStyle(
-                                      fontSize: 18,
+                                      fontSize: 14,
                                       color: AppColors.white,
                                       fontWeight: FontWeight.bold,
                                       height: 0),
@@ -235,9 +243,9 @@ class _MyProfileState extends State<MyProfile> {
                   ),
                   data!['is_data_filled'] == true
                       ? Text(
-                          'Company Details',
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18),
+                          "Company Details",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16),
                         )
                       : SizedBox(),
                   const SizedBox(
@@ -296,14 +304,14 @@ class _MyProfileState extends State<MyProfile> {
               child: Text(
                 title + ': ',
                 style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
               ),
             ),
             Expanded(
               child: Text(
                 value.toString().replaceAll('[', '').replaceAll(']', ''),
                 style:
-                    const TextStyle(fontWeight: FontWeight.w300, fontSize: 16),
+                    const TextStyle(fontWeight: FontWeight.w300, fontSize: 14),
               ),
             ),
           ],

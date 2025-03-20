@@ -45,7 +45,7 @@ class BarChartWidget extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.only(top: 8.0),
                       child: Text(labels[value.toInt()],
-                          style: TextStyle(fontSize: 12)),
+                          style: TextStyle(fontSize: 8)),
                     );
                   }
                   return Container();

@@ -1,5 +1,5 @@
 class ConstantData {
-  static String server_url = 'http://192.168.0.128:1000';
+  static String server_url = 'http://192.168.0.128:1001';
   static int total_pages = 10;
 
   static List<String> appbar_titles = [
