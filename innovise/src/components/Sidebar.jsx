@@ -1,6 +1,6 @@
 "use client"; // Required for client-side interactivity
 import { useRouter } from "next/navigation";
-import { Home, User, MessageCircle, Settings, LogOut } from "lucide-react";
+import { Home, User, MessageCircle, Settings, LogOut, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
@@ -18,6 +18,7 @@ export default function Sidebar() {
     { label: "Pathway", icon: <User size={22} />, path: "/pathway" },
     { label: "Chatbot", icon: <MessageCircle size={22} />, path: "/chatbot" },
     { label: "Market Analysis", icon: <Settings size={22} />, path: "/market-gap-analysis" },
+    { label: "Maps", icon: <Globe size={22} />, path: "/maps" },
     { label: "Logout", icon: <LogOut size={22} />, path: "/login" },
   ];
 
