@@ -22,6 +22,16 @@ logger = logging.getLogger("StartupChatbot")
 load_dotenv()
 
 app = FastAPI()
+
+# Enable CORS
+from fastapi.middleware.cors import CORSMiddleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Update this with specific domains if needed
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 translator = Translator()  # Initialize translator
 
 # Pydantic models - Simplified to just take query
@@ -45,7 +55,7 @@ class StartupChatbot:
         )
 
         # Load dataset
-        self.funding_data = self.load_funding_data("D:\\DJSCE\\Hackathon\\FutureFounders_H2C\\Data\\crunchbase_last.csv")
+        self.funding_data = self.load_funding_data("..\\Data\\crunchbase_last.csv")
         
         logger.info("Startup Chatbot initialization complete")
 
@@ -76,19 +86,18 @@ class StartupChatbot:
 
     import asyncio  # Import asyncio for async handling
     async def translate_query(self, query: str) -> str:
-        """Detect and translate non-English queries to English asynchronously."""
+        """Detect and translate non-English queries to English."""
         try:
             detected_lang = detect(query)
             if detected_lang != "en":
-                translated_query = await translator.translate(query, src=detected_lang, dest='en')
-                translated_text = translated_query.text  # Extract translated text
-                logger.info(f"Translated query from {detected_lang} to English: {translated_text}")
-                return translated_text
+                translated_query = asyncio.run(translator.translate(query, src=detected_lang, dest='en'))
+                translated_query = translated_query.text
+                logger.info(f"Translated query from {detected_lang} to English: {translated_query}")
+                return translated_query
             return query
         except Exception as e:
             logger.error(f"Translation error: {str(e)}")
             return query  # Return original query if translation fails
-    # Return original query if translation fails
 
     async def process_query(self, query: str) -> StartupResponse:
         """Process startup-related query with dataset lookup for funding queries, otherwise use AI."""
@@ -96,8 +105,7 @@ class StartupChatbot:
             if not query.strip():
                 raise HTTPException(status_code=400, detail="Empty query")
 
-            detected_lang = detect(query)  # Detect user query language
-            query = await self.translate_query(query)  # Translate to English if needed
+            query = await self.translate_query(query)  # Translate if needed
             query_lower = query.lower()
 
             # Define keywords that indicate a funding-related query
@@ -113,34 +121,27 @@ class StartupChatbot:
 
                 if best_match and score > 80:  # Threshold to ensure a strong match
                     details = self.funding_data[best_match]
-                    response = f"""
-    **{best_match.title()} - Funding Overview**  
-    💰 **Total Funding:** {details['Total Funding']}  
-    🏢 **Headquarters:** {details['Headquarters']}  
-    📈 **Investment Stage:** {details['Investment Stage']}  
-    🚀 **Funding Rounds:** {details['Funding Rounds']}  
-    🗓 **Last Funding Date:** {details['Last Funding Date']}  
-    🔍 **Last Funding Type:** {details['Last Funding Type']}  
-    🤝 **Top Investors:** {details['Top Investors']} ({details['Number of Investors']} investors)  
-    """
-                else:
-                    response = self.model.invoke(query).content  # Fallback to AI model
+                    funding_info = f"""
+**{best_match.title()} - Funding Overview**  
+💰 **Total Funding:** {details['Total Funding']}  
+🏢 **Headquarters:** {details['Headquarters']}  
+📈 **Investment Stage:** {details['Investment Stage']}  
+🚀 **Funding Rounds:** {details['Funding Rounds']}  
+🗓 **Last Funding Date:** {details['Last Funding Date']}  
+🔍 **Last Funding Type:** {details['Last Funding Type']}  
+🤝 **Top Investors:** {details['Top Investors']} ({details['Number of Investors']} investors)  
+"""
+                    return StartupResponse(advice=funding_info)
 
-            else:
-                response = self.model.invoke(query).content  # Fallback to AI model for non-funding queries
-
-            # Translate response back to the original query language if needed
-            if detected_lang != "en":
-                response_translated = await translator.translate(response, src="en", dest=detected_lang)
-                return StartupResponse(advice=response_translated.text)
-
+            # If no matching company found, fallback to AI model
+            response = self.model.invoke(query).content
             return StartupResponse(advice=response)
 
         except Exception as e:
             logger.error(f"Processing error: {str(e)}")
             raise HTTPException(status_code=500, detail=f"Processing error: {str(e)}")
 
-# Initialize chatbot instance
+# Initialize chatbot
 try:
     chatbot = StartupChatbot()
 except Exception as e:
