@@ -1,11 +1,10 @@
-// import { useLanguage } from "@/context/LanguageContext";
-import { Mic, AudioLines } from "lucide-react";
+import { Mic} from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { toast } from "@/hooks/use-toast";
 import Image from "next/image";
 import { Logo } from "../../../public/images";
 import { CHATBOT_ROUTE } from "@/constants/utils";
-import { useChatbot } from "@/context/ChatbotContext";
+// import { useChatbot } from "@/context/ChatbotContext";
 
 export const TypingBox = ({
   setMessage,
