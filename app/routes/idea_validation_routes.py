@@ -10,7 +10,7 @@ DB_NAME = "innovise"
 
 repo = IdeaValidationRepository(MONGO_URI, DB_NAME)
 
-AI_MODEL_URL = "http://192.168.0.100:8021/predict"
+AI_MODEL_URL = "http://192.168.0.120:8021/predict"
 
 @idea_validation_bp.route("/create_idea_validation", methods=["POST"])
 def create_idea_validation():
@@ -27,7 +27,7 @@ def create_idea_validation():
             "target_audiences": 1, "industry_operated": 1, "startup_location": 1, "team_size": 1,
             "founding_team_background": 1, "stage": 1, "revenue_model": 1
         })
-        print(user_data)
+       
 
         if not user_data:
             print("user_data not found")
@@ -50,9 +50,9 @@ def create_idea_validation():
         # Send request to AI model
         ai_response = requests.post(AI_MODEL_URL, json=ai_payload)
         if ai_response.status_code != 200:
-            print(ai_response.json())
+      
             return jsonify({"error": "AI model prediction failed"}), 500
-        print(ai_response.json())
+        
         
         ai_data = ai_response.json()
 

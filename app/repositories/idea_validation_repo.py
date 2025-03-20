@@ -26,12 +26,12 @@ class IdeaValidationRepository:
             # Fetch past records with success_score and date_of_creation
             past_dates = [
                 str( datetime.strftime(record["date_of_creation"], "%d-%m-%y"))
-                for record in self.collection.find({"uid": uid}, {"_id": 0, "date_of_creation": 1, "success_score": 1})
+                for record in self.collection.find({"uid": uid}, {"_id": 0, "date_of_creation": 1, "success_score": 1}, sort=[("date_of_creation", DESCENDING)])
             ]
             
             past_scores = [
                 float( record["success_score"])
-                for record in self.collection.find({"uid": uid}, {"_id": 0, "date_of_creation": 1, "success_score": 1})
+                for record in self.collection.find({"uid": uid}, {"_id": 0, "date_of_creation": 1, "success_score": 1}, sort=[("date_of_creation", DESCENDING)])
             ]
             
             if len(past_dates) > 4:
@@ -42,5 +42,5 @@ class IdeaValidationRepository:
 
             latest_record["past_dates"] = past_dates
             latest_record["past_scores"] = past_scores
-            print(latest_record)
+
             return latest_record

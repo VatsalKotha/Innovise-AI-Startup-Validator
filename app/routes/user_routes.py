@@ -29,7 +29,7 @@ def login():
 def create_user():
     try:
         data = request.json
-        print(data)
+   
         email = data.get("email")
         name = data.get("name")
         password = data.get("password")
