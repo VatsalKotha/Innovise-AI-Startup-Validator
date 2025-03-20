@@ -14,7 +14,8 @@ export default function Sidebar() {
   // Sidebar navigation items with enhanced icons
   const sidebarItems = [
     { label: "Dashboard", icon: <Home size={22} />, path: "/dashboard" },
-    { label: "Profile", icon: <User size={22} />, path: "/profile" },
+    { label: "Competitor Analysis", icon: <User size={22} />, path: "/competitor-analysis" },
+    { label: "Pathway", icon: <User size={22} />, path: "/pathway" },
     { label: "Chatbot", icon: <MessageCircle size={22} />, path: "/chatbot" },
     { label: "Market Analysis", icon: <Settings size={22} />, path: "/market-gap-analysis" },
     { label: "Logout", icon: <LogOut size={22} />, path: "/login" },
