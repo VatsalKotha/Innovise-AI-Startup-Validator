@@ -177,6 +177,7 @@ from dotenv import load_dotenv
 from fuzzywuzzy import process  # Import fuzzy matching for better company name detection
 from langdetect import detect  # Detect query language
 from googletrans import Translator  # Translate queries if needed
+    
 
 # Initialize logging
 logging.basicConfig(
@@ -298,15 +299,16 @@ class StartupChatbot:
                 if best_match and score > 80:  # Threshold to ensure a strong match
                     details = self.funding_data[best_match]
                     funding_info = f"""
-                        **{best_match.title()} - Funding Overview**  
-                        💰 **Total Funding:** {details['Total Funding']}  
-                        🏢 **Headquarters:** {details['Headquarters']}  
-                        📈 **Investment Stage:** {details['Investment Stage']}  
-                        🚀 **Funding Rounds:** {details['Funding Rounds']}  
-                        🗓 **Last Funding Date:** {details['Last Funding Date']}  
-                        🔍 **Last Funding Type:** {details['Last Funding Type']}  
-                        🤝 **Top Investors:** {details['Top Investors']} ({details['Number of Investors']} investors)  
-"""
+                            **{best_match.title()} - Funding Overview**  
+                            💰 **Total Funding:** {details['Total Funding']}  
+                            🏢 **Headquarters:** {details['Headquarters']}  
+                            📈 **Investment Stage:** {details['Investment Stage']}  
+                            🚀 **Funding Rounds:** {details['Funding Rounds']}  
+                            🗓 **Last Funding Date:** {details['Last Funding Date']}  
+                            🔍 **Last Funding Type:** {details['Last Funding Type']}  
+                            🤝 **Top Investors:** {details['Top Investors']} ({details['Number of Investors']} investors)  
+                            """
+
                     return StartupResponse(advice=funding_info)
 
             # If no matching company found, fallback to AI model
