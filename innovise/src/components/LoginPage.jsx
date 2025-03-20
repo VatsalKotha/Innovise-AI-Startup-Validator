@@ -135,7 +135,7 @@
 //   );
 // }
 
-"use client"; 
+"use client";
 import { useState } from 'react';
 import axios from 'axios';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -145,7 +145,7 @@ import { Label } from '@/components/ui/label';
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
 import { useRouter } from "next/navigation";
 
-const SERVER_URL = "http://192.168.0.128:1001"; // Define server URL
+const SERVER_URL = "http://192.168.0.128:1001";
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -173,8 +173,14 @@ export default function LoginPage() {
       });
 
       if (response.status === 200) {
-        // Handle successful login, store token if provided
-        router.push('/startup-form'); // Navigate after login
+        const { uid } = response.data; // Extract UID from response
+
+        if (uid) {
+          localStorage.setItem("uid", uid); // Store UID in localStorage
+          router.push('/startup-form'); // Navigate after storing UID
+        } else {
+          setError("User ID not found. Please try again.");
+        }
       } else {
         setError(response.data.message || 'Login failed');
       }

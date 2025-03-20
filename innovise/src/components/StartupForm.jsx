@@ -1,583 +1,6 @@
-// "use client"; // Add this if you're using Next.js App Router
-// import { useRouter } from "next/navigation";
-// import { useState } from 'react';
-// import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-// import { Input } from '@/components/ui/input';
-// import { Textarea } from '@/components/ui/textarea';
-// import { Button } from '@/components/ui/button';
-// import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-// import { Label } from '@/components/ui/label';
-// import { 
-//   Building2, 
-//   Lightbulb, 
-//   Star, 
-//   Users, 
-//   Briefcase, 
-//   MapPin, 
-//   UserPlus, 
-//   GraduationCap, 
-//   BarChart3, 
-//   DollarSign,
-//   ChevronLeft,
-//   ChevronRight,
-//   Check,
-//   AlertCircle,
-//   Info
-// } from 'lucide-react';
-// import { Progress } from '@/components/ui/progress';
-// import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-
-// // Constants from your data
-// const ConstantData = {
-//   total_pages: 10,
-  
-//   appbar_titles: [
-//     'Startup Name',
-//     'Problem/Need',
-//     'Unique Selling Proposition',
-//     'Target Segment',
-//     'Industry',
-//     'Location',
-//     'Team Size',
-//     'Team Background',
-//     'Stage',
-//     'Revenue Model'
-//   ],
-  
-//   questions: [
-//     'What\'s your startup name?',
-//     'What problem or need does your startup address?',
-//     'What makes your startup unique?',
-//     'Who is your target audience?',
-//     'What industry do you operate in?',
-//     'Where is your startup based?',
-//     'How many people are on your team?',
-//     'What is your founding team\s background?',
-//     'What stage are you currently in?',
-//     'What revenue model does your startup use?'
-//   ],
-  
-//   problems_addressed_choices: [
-//     'Inefficient Processes',
-//     'High Costs',
-//     'Lack of Access to Information',
-//     'Poor User Experience',
-//     'Health Issues',
-//     'Environmental Concerns'
-//   ],
-  
-//   startup_unique_reasons_choices: [
-//     'Innovative Technology',
-//     'Sustainability',
-//     'Cost-Effective Solution',
-//     'Superior Quality',
-//     'Niche Market Focus',
-//     'Exceptional Customer Service',
-//   ],
-  
-//   target_audience_choices: [
-//     'B2B - Business to Business',
-//     'B2C - Business to Consumer',
-//     'SMEs - Small & Medium Enterprises',
-//     'Enterprises',
-//     'Millennials',
-//     'Gen Z',
-//   ],
-  
-//   industry_operated_choices: [
-//     'Technology',
-//     'Healthcare',
-//     'Finance',
-//     'Education',
-//     'Retail',
-//     'Agriculture',
-//     'Entertainment',
-//     'E-Commerce',
-//     'Others'
-//   ],
-  
-//   team_size_choices: [
-//     '1-5',
-//     '6-10',
-//     '11-20',
-//     '21-50',
-//     '51-100',
-//     '100+'
-//   ],
-  
-//   team_background_choices: [
-//     'Technical Expertise',
-//     'Business/Entrepreneurial Experience',
-//     'Industry-Specific Knowledge',
-//     'Marketing and Sales',
-//   ],
-  
-//   stage_choices: [
-//     'Idea Stage - Conceptualization',
-//     'Early Stage - MVP Development',
-//     'Growth Stage - Scaling Operations',
-//     'Established - Market Expansion'
-//   ],
-  
-//   revenue_model_choices: [
-//     'Subscription Fees',
-//     'Direct Sales',
-//     'Advertising',
-//     'Transaction Fees',
-//     'Freemium',
-//   ],
-  
-//   tips: [
-//     'A catchy and memorable name helps boosts brand recognition.',
-//     'Clearly defining the problem helps in attracting the right customers.',
-//     'Highlighting your USP helps in standing out from the competition.',
-//     'Understanding your target segment ensures better product-market fit.',
-//     'Knowing your industry helps in understanding market trends.',
-//     'Location influences market access and operational costs.',
-//     'A well-sized team indicates the capacity to handle growth.',
-//     'A strong founding team attracts investors and partners.',
-//     'Identifying your stage helps in setting the right strategic goals.',
-//     'A clear revenue model is essential for financial sustainability.'
-//   ]
-// };
-
-// // Icons for each page
-// const pageIcons = [
-//   <Building2 key="building" />,
-//   <Lightbulb key="lightbulb" />,
-//   <Star key="star" />,
-//   <Users key="users" />,
-//   <Briefcase key="briefcase" />,
-//   <MapPin key="mappin" />,
-//   <UserPlus key="userplus" />,
-//   <GraduationCap key="graduation" />,
-//   <BarChart3 key="barchart" />,
-//   <DollarSign key="dollar" />
-// ];
-
-// export default function StartupForm() {
-//   const [currentPage, setCurrentPage] = useState(0);
-//   const [formData, setFormData] = useState({
-//     startupName: '',
-//     problemNeed: [],
-//     uniqueReason: [],
-//     targetAudience: [],
-//     industry: [],
-//     location: '',
-//     teamSize: '',
-//     teamBackground: [],
-//     stage: '',
-//     revenueModel: []
-//   });
-  
-//   const handleInputChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData(prev => ({ ...prev, [name]: value }));
-//   };
-  
-//   const handleArrayChange = (name, value) => {
-//     // Toggle selection for multi-select items
-//     setFormData(prev => {
-//       const currentValues = prev[name] || [];
-//       const exists = currentValues.includes(value);
-      
-//       if (exists) {
-//         return { ...prev, [name]: currentValues.filter(v => v !== value) };
-//       } else {
-//         return { ...prev, [name]: [...currentValues, value] };
-//       }
-//     });
-//   };
-  
-//   const handleSingleSelection = (name, value) => {
-//     setFormData(prev => ({ ...prev, [name]: value }));
-//   };
-  
-//   const nextPage = () => {
-//     if (currentPage < ConstantData.total_pages - 1) {
-//       setCurrentPage(currentPage + 1);
-//     }
-//   };
-  
-//   const prevPage = () => {
-//     if (currentPage > 0) {
-//       setCurrentPage(currentPage - 1);
-//     }
-//   };
-  
-//   const submitForm = () => {
-//     // Here you would typically submit the form data to your backend
-//     console.log('Form submitted:', formData);
-//     alert('Form submitted successfully!');
-//   };
-  
-//   // Helper function to render the appropriate form fields based on the current page
-//   const renderFormFields = () => {
-//     switch (currentPage) {
-//       case 0: // Startup Name
-//         return (
-//           <div className="space-y-4">
-//             <div className="space-y-2">
-//               <Label htmlFor="startupName">Startup Name</Label>
-//               <Input
-//                 id="startupName"
-//                 name="startupName"
-//                 value={formData.startupName}
-//                 onChange={handleInputChange}
-//                 placeholder="Enter your startup name"
-//                 className="border-[#D6CBBE] focus:border-[#9A9285]"
-//               />
-//             </div>
-//           </div>
-//         );
-        
-//       case 1: // Problem/Need
-//         return (
-//           <div className="space-y-4">
-//             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-//               {ConstantData.problems_addressed_choices.map((problem, index) => (
-//                 <div 
-//                   key={index}
-//                   className={`p-4 rounded-lg cursor-pointer border-2 transition-all ${
-//                     formData.problemNeed.includes(problem) 
-//                       ? 'border-[#9A9285] bg-[#F3F0E7]' 
-//                       : 'border-[#E0E0E0] hover:border-[#D6CBBE]'
-//                   }`}
-//                   onClick={() => handleArrayChange('problemNeed', problem)}
-//                 >
-//                   <div className="flex items-center space-x-2">
-//                     <div className={`w-5 h-5 rounded flex items-center justify-center ${
-//                       formData.problemNeed.includes(problem) 
-//                         ? 'bg-[#9A9285] text-white' 
-//                         : 'border border-[#E0E0E0]'
-//                     }`}>
-//                       {formData.problemNeed.includes(problem) && <Check size={16} />}
-//                     </div>
-//                     <span className="font-medium">{problem}</span>
-//                   </div>
-//                 </div>
-//               ))}
-//             </div>
-//           </div>
-//         );
-        
-//       case 2: // Unique Selling Proposition
-//         return (
-//           <div className="space-y-4">
-//             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-//               {ConstantData.startup_unique_reasons_choices.map((reason, index) => (
-//                 <div 
-//                   key={index}
-//                   className={`p-4 rounded-lg cursor-pointer border-2 transition-all ${
-//                     formData.uniqueReason.includes(reason) 
-//                       ? 'border-[#9A9285] bg-[#F3F0E7]' 
-//                       : 'border-[#E0E0E0] hover:border-[#D6CBBE]'
-//                   }`}
-//                   onClick={() => handleArrayChange('uniqueReason', reason)}
-//                 >
-//                   <div className="flex items-center space-x-2">
-//                     <div className={`w-5 h-5 rounded flex items-center justify-center ${
-//                       formData.uniqueReason.includes(reason) 
-//                         ? 'bg-[#9A9285] text-white' 
-//                         : 'border border-[#E0E0E0]'
-//                     }`}>
-//                       {formData.uniqueReason.includes(reason) && <Check size={16} />}
-//                     </div>
-//                     <span className="font-medium">{reason}</span>
-//                   </div>
-//                 </div>
-//               ))}
-//             </div>
-//           </div>
-//         );
-        
-//       case 3: // Target Segment
-//         return (
-//           <div className="space-y-4">
-//             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-//               {ConstantData.target_audience_choices.map((audience, index) => (
-//                 <div 
-//                   key={index}
-//                   className={`p-4 rounded-lg cursor-pointer border-2 transition-all ${
-//                     formData.targetAudience.includes(audience) 
-//                       ? 'border-[#9A9285] bg-[#F3F0E7]' 
-//                       : 'border-[#E0E0E0] hover:border-[#D6CBBE]'
-//                   }`}
-//                   onClick={() => handleArrayChange('targetAudience', audience)}
-//                 >
-//                   <div className="flex items-center space-x-2">
-//                     <div className={`w-5 h-5 rounded flex items-center justify-center ${
-//                       formData.targetAudience.includes(audience) 
-//                         ? 'bg-[#9A9285] text-white' 
-//                         : 'border border-[#E0E0E0]'
-//                     }`}>
-//                       {formData.targetAudience.includes(audience) && <Check size={16} />}
-//                     </div>
-//                     <span className="font-medium">{audience}</span>
-//                   </div>
-//                 </div>
-//               ))}
-//             </div>
-//           </div>
-//         );
-        
-//       case 4: // Industry
-//         return (
-//           <div className="space-y-4">
-//             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-//               {ConstantData.industry_operated_choices.map((industry, index) => (
-//                 <div 
-//                   key={index}
-//                   className={`p-4 rounded-lg cursor-pointer border-2 transition-all ${
-//                     formData.industry.includes(industry) 
-//                       ? 'border-[#9A9285] bg-[#F3F0E7]' 
-//                       : 'border-[#E0E0E0] hover:border-[#D6CBBE]'
-//                   }`}
-//                   onClick={() => handleArrayChange('industry', industry)}
-//                 >
-//                   <div className="flex items-center space-x-2">
-//                     <div className={`w-5 h-5 rounded flex items-center justify-center ${
-//                       formData.industry.includes(industry) 
-//                         ? 'bg-[#9A9285] text-white' 
-//                         : 'border border-[#E0E0E0]'
-//                     }`}>
-//                       {formData.industry.includes(industry) && <Check size={16} />}
-//                     </div>
-//                     <span className="font-medium">{industry}</span>
-//                   </div>
-//                 </div>
-//               ))}
-//             </div>
-//           </div>
-//         );
-        
-//       case 5: // Location
-//         return (
-//           <div className="space-y-4">
-//             <div className="space-y-2">
-//               <Label htmlFor="location">Location</Label>
-//               <Input
-//                 id="location"
-//                 name="location"
-//                 value={formData.location}
-//                 onChange={handleInputChange}
-//                 placeholder="Enter your startup location"
-//                 className="border-[#D6CBBE] focus:border-[#9A9285]"
-//               />
-//             </div>
-//           </div>
-//         );
-        
-//       case 6: // Team Size
-//         return (
-//           <div className="space-y-4">
-//             <RadioGroup value={formData.teamSize} onValueChange={(value) => handleSingleSelection('teamSize', value)}>
-//               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-//                 {ConstantData.team_size_choices.map((size, index) => (
-//                   <div 
-//                     key={index}
-//                     className={`p-4 rounded-lg cursor-pointer border-2 transition-all ${
-//                       formData.teamSize === size 
-//                         ? 'border-[#9A9285] bg-[#F3F0E7]' 
-//                         : 'border-[#E0E0E0] hover:border-[#D6CBBE]'
-//                     }`}
-//                     onClick={() => handleSingleSelection('teamSize', size)}
-//                   >
-//                     <div className="flex items-center space-x-2">
-//                       <div className={`w-5 h-5 rounded-full flex items-center justify-center ${
-//                         formData.teamSize === size 
-//                           ? 'bg-[#9A9285] border-2 border-white outline outline-2 outline-[#9A9285]' 
-//                           : 'border-2 border-[#E0E0E0]'
-//                       }`} />
-//                       <span className="font-medium">{size}</span>
-//                     </div>
-//                   </div>
-//                 ))}
-//               </div>
-//             </RadioGroup>
-//           </div>
-//         );
-        
-//       case 7: // Team Background
-//         return (
-//           <div className="space-y-4">
-//             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-//               {ConstantData.team_background_choices.map((background, index) => (
-//                 <div 
-//                   key={index}
-//                   className={`p-4 rounded-lg cursor-pointer border-2 transition-all ${
-//                     formData.teamBackground.includes(background) 
-//                       ? 'border-[#9A9285] bg-[#F3F0E7]' 
-//                       : 'border-[#E0E0E0] hover:border-[#D6CBBE]'
-//                   }`}
-//                   onClick={() => handleArrayChange('teamBackground', background)}
-//                 >
-//                   <div className="flex items-center space-x-2">
-//                     <div className={`w-5 h-5 rounded flex items-center justify-center ${
-//                       formData.teamBackground.includes(background) 
-//                         ? 'bg-[#9A9285] text-white' 
-//                         : 'border border-[#E0E0E0]'
-//                     }`}>
-//                       {formData.teamBackground.includes(background) && <Check size={16} />}
-//                     </div>
-//                     <span className="font-medium">{background}</span>
-//                   </div>
-//                 </div>
-//               ))}
-//             </div>
-//           </div>
-//         );
-        
-//       case 8: // Stage
-//         return (
-//           <div className="space-y-4">
-//             <RadioGroup value={formData.stage} onValueChange={(value) => handleSingleSelection('stage', value)}>
-//               <div className="grid grid-cols-1 gap-3">
-//                 {ConstantData.stage_choices.map((stage, index) => (
-//                   <div 
-//                     key={index}
-//                     className={`p-4 rounded-lg cursor-pointer border-2 transition-all ${
-//                       formData.stage === stage 
-//                         ? 'border-[#9A9285] bg-[#F3F0E7]' 
-//                         : 'border-[#E0E0E0] hover:border-[#D6CBBE]'
-//                     }`}
-//                     onClick={() => handleSingleSelection('stage', stage)}
-//                   >
-//                     <div className="flex items-center space-x-2">
-//                       <div className={`w-5 h-5 rounded-full flex items-center justify-center ${
-//                         formData.stage === stage 
-//                           ? 'bg-[#9A9285] border-2 border-white outline outline-2 outline-[#9A9285]' 
-//                           : 'border-2 border-[#E0E0E0]'
-//                       }`} />
-//                       <span className="font-medium">{stage}</span>
-//                     </div>
-//                   </div>
-//                 ))}
-//               </div>
-//             </RadioGroup>
-//           </div>
-//         );
-        
-//       case 9: // Revenue Model
-//         return (
-//           <div className="space-y-4">
-//             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-//               {ConstantData.revenue_model_choices.map((model, index) => (
-//                 <div 
-//                   key={index}
-//                   className={`p-4 rounded-lg cursor-pointer border-2 transition-all ${
-//                     formData.revenueModel.includes(model) 
-//                       ? 'border-[#9A9285] bg-[#F3F0E7]' 
-//                       : 'border-[#E0E0E0] hover:border-[#D6CBBE]'
-//                   }`}
-//                   onClick={() => handleArrayChange('revenueModel', model)}
-//                 >
-//                   <div className="flex items-center space-x-2">
-//                     <div className={`w-5 h-5 rounded flex items-center justify-center ${
-//                       formData.revenueModel.includes(model) 
-//                         ? 'bg-[#9A9285] text-white' 
-//                         : 'border border-[#E0E0E0]'
-//                     }`}>
-//                       {formData.revenueModel.includes(model) && <Check size={16} />}
-//                     </div>
-//                     <span className="font-medium">{model}</span>
-//                   </div>
-//                 </div>
-//               ))}
-//             </div>
-//           </div>
-//         );
-        
-//       default:
-//         return null;
-//     }
-//   };
-  
-//   return (
-//     <div className="min-h-screen bg-[#F3F0E7] p-4 md:p-8">
-//       <div className="max-w-4xl mx-auto">
-//         <div className="mb-6">
-//           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-//             <h1 className="text-2xl font-bold text-[#1E1E1E]">Innovise</h1>
-//             <div className="text-sm text-[#1E1E1E]/70">
-//               Step {currentPage + 1} of {ConstantData.total_pages}
-//             </div>
-//           </div>
-//           <Progress value={(currentPage + 1) * 10} className="h-2 bg-[#D6CBBE]">
-//             <div className="h-full bg-[#9A9285] rounded-full" />
-//           </Progress>
-//         </div>
-        
-//         <Card className="border-[#D6CBBE] shadow-md">
-//           <CardHeader className="bg-[#9A9285] text-white rounded-t-lg flex flex-row items-center gap-3">
-//             <div className="w-10 h-10 flex items-center justify-center bg-white/20 rounded-full">
-//               {pageIcons[currentPage]}
-//             </div>
-//             <div>
-//               <CardTitle>{ConstantData.appbar_titles[currentPage]}</CardTitle>
-//               <CardDescription className="text-white/80">
-//                 {ConstantData.questions[currentPage]}
-//               </CardDescription>
-//             </div>
-//           </CardHeader>
-          
-//           <CardContent className="p-6">
-//             <div className="mb-6">
-//               <TooltipProvider>
-//                 <Tooltip>
-//                   <TooltipTrigger asChild>
-//                     <div className="flex items-center gap-2 p-3 bg-[#FFF6D7] text-[#1E1E1E] rounded-lg">
-//                       <Info size={18} className="text-[#ECBB0D]" />
-//                       <span className="text-sm">{ConstantData.tips[currentPage]}</span>
-//                     </div>
-//                   </TooltipTrigger>
-//                   <TooltipContent>
-//                     <p>Helpful Tip</p>
-//                   </TooltipContent>
-//                 </Tooltip>
-//               </TooltipProvider>
-//             </div>
-            
-//             {renderFormFields()}
-//           </CardContent>
-          
-//           <CardFooter className="p-6 pt-0 flex justify-between">
-//             <Button
-//               onClick={prevPage}
-//               disabled={currentPage === 0}
-//               variant="outline"
-//               className="border-[#D6CBBE] text-[#9A9285] hover:bg-[#F3F0E7] hover:text-[#9A9285]"
-//             >
-//               <ChevronLeft className="mr-2 h-4 w-4" />
-//               Previous
-//             </Button>
-            
-//             {currentPage === ConstantData.total_pages - 1 ? (
-//               <Button 
-//                 onClick={submitForm} 
-//                 className="bg-[#9A9285] hover:bg-[#8a8376] text-white"
-//               >
-//                 Submit
-//                 <Check className="ml-2 h-4 w-4" />
-//               </Button>
-//             ) : (
-//               <Button 
-//                 onClick={nextPage} 
-//                 className="bg-[#9A9285] hover:bg-[#8a8376] text-white"
-//               >
-//                 Next
-//                 <ChevronRight className="ml-2 h-4 w-4" />
-//               </Button>
-//             )}
-//           </CardFooter>
-//         </Card>
-//       </div>
-//     </div>
-//   );
-// }
-
 "use client"; // Add this if you're using Next.js App Router
 import { useRouter } from "next/navigation";
+import { Toaster } from "sonner"; 
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -601,28 +24,24 @@ import {
   Check,
   AlertCircle,
   Info,
-  // Additional icons for problems addressed
   Zap,
   CircleDollarSign,
   BookOpen,
   Frown,
   Heart,
   Leaf,
-  // Additional icons for unique reasons
   Cpu,
   Recycle,
   PiggyBank,
   Award,
   Target,
   HandHelping,
-  // Additional icons for target audience
   Building,
   ShoppingBag,
   Building2 as SmallBusiness,
   Layers,
   User,
   Users as GenZ,
-  // Additional icons for industries
   Monitor,
   Stethoscope,
   Landmark,
@@ -632,24 +51,20 @@ import {
   Film,
   Store,
   Smartphone,
-  // Additional icons for team size
   User as SingleUser,
   Users as SmallTeam,
   UsersRound,
   UserRound,
   UserPlus as MediumTeam,
   UserCheck,
-  // Additional icons for team background
   Code,
   Briefcase as BusinessExp,
   BookOpen as Industry,
   BarChart,
-  // Additional icons for stage
   Lightbulb as IdeaStage,
   Code as EarlyStage,
   TrendingUp,
   Globe,
-  // Additional icons for revenue model
   CreditCard,
   ShoppingCart as Sales,
   Megaphone,
@@ -658,6 +73,105 @@ import {
 } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import axios from 'axios'; // Import axios
+
+const SERVER_URL = "http://192.168.0.128:1001"; // Server URL
+
+export default function StartupForm() {
+  const router = useRouter();
+  const [currentPage, setCurrentPage] = useState(0);
+  const [formData, setFormData] = useState({
+    startupName: '',
+    problemNeed: [],
+    uniqueReason: [],
+    targetAudience: [],
+    industry: '',
+    location: '',
+    teamSize: '',
+    teamBackground: [],
+    stage: '',
+    revenueModel: []
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleArrayChange = (name, value) => {
+    setFormData(prev => {
+      const currentValues = prev[name] || [];
+      const exists = currentValues.includes(value);
+      
+      if (exists) {
+        return { ...prev, [name]: currentValues.filter(v => v !== value) };
+      } else {
+        return { ...prev, [name]: [...currentValues, value] };
+      }
+    });
+  };
+
+  const handleSingleSelection = (name, value) => {
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const nextPage = () => {
+    if (currentPage < ConstantData.total_pages - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const prevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const submitForm = async () => {
+    const storedUid = localStorage.getItem("uid"); // Fetch UID directly inside submitForm
+
+    if (!storedUid) {
+      alert("User ID not found. Please log in again.");
+      return;
+    }
+
+    try {
+      const requestData = {
+        uid: storedUid,
+        startup_name: formData.startupName,
+        problems_addressed: formData.problemNeed,
+        startup_unique_reasons: formData.uniqueReason,
+        target_audiences: formData.targetAudience,
+        industry_operated: formData.industry,
+        startup_location: formData.location,
+        team_size: formData.teamSize,
+        founding_team_background: formData.teamBackground,
+        stage: formData.stage,
+        revenue_model: formData.revenueModel,
+        is_data_filled: true,
+      };
+
+      console.log("Submitting Data:", requestData); // Debugging Log
+
+      const response = await axios.post(`${SERVER_URL}/update_user`, requestData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.status === 200) {
+        console.log("Response:", response.data);
+        toast.success("Form submitted successfully!"); 
+        router.push("/dashboard"); // Redirect after submission
+      } else {
+        console.error("Error:", response.data);
+        alert(response.data.message || "Failed to submit form");
+      }
+    } catch (error) {
+      console.error("API Error:", error.response?.data || error.message);
+      alert(error.response?.data?.message || "An error occurred. Please try again.");
+    }
+  };
 
 // Enhanced Constants with icons
 const ConstantData = {
@@ -787,61 +301,62 @@ const pageIcons = [
   <DollarSign key="dollar" />
 ];
 
-export default function StartupForm() {
-  const [currentPage, setCurrentPage] = useState(0);
-  const [formData, setFormData] = useState({
-    startupName: '',
-    problemNeed: [],
-    uniqueReason: [],
-    targetAudience: [],
-    industry: [],
-    location: '',
-    teamSize: '',
-    teamBackground: [],
-    stage: '',
-    revenueModel: []
-  });
+// export default function StartupForm() {
+//   const [currentPage, setCurrentPage] = useState(0);
+//   const [formData, setFormData] = useState({
+    
+//     startupName: '',
+//     problemNeed: [],
+//     uniqueReason: [],
+//     targetAudience: [],
+//     industry: [],
+//     location: '',
+//     teamSize: '',
+//     teamBackground: [],
+//     stage: '',
+//     revenueModel: []
+//   });
   
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
+//   const handleInputChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormData(prev => ({ ...prev, [name]: value }));
+//   };
   
-  const handleArrayChange = (name, value) => {
-    // Toggle selection for multi-select items
-    setFormData(prev => {
-      const currentValues = prev[name] || [];
-      const exists = currentValues.includes(value);
+//   const handleArrayChange = (name, value) => {
+//     // Toggle selection for multi-select items
+//     setFormData(prev => {
+//       const currentValues = prev[name] || [];
+//       const exists = currentValues.includes(value);
       
-      if (exists) {
-        return { ...prev, [name]: currentValues.filter(v => v !== value) };
-      } else {
-        return { ...prev, [name]: [...currentValues, value] };
-      }
-    });
-  };
+//       if (exists) {
+//         return { ...prev, [name]: currentValues.filter(v => v !== value) };
+//       } else {
+//         return { ...prev, [name]: [...currentValues, value] };
+//       }
+//     });
+//   };
   
-  const handleSingleSelection = (name, value) => {
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
+//   const handleSingleSelection = (name, value) => {
+//     setFormData(prev => ({ ...prev, [name]: value }));
+//   };
   
-  const nextPage = () => {
-    if (currentPage < ConstantData.total_pages - 1) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
+//   const nextPage = () => {
+//     if (currentPage < ConstantData.total_pages - 1) {
+//       setCurrentPage(currentPage + 1);
+//     }
+//   };
   
-  const prevPage = () => {
-    if (currentPage > 0) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
+//   const prevPage = () => {
+//     if (currentPage > 0) {
+//       setCurrentPage(currentPage - 1);
+//     }
+//   };
   
-  const submitForm = () => {
-    // Here you would typically submit the form data to your backend
-    console.log('Form submitted:', formData);
-    alert('Form submitted successfully!');
-  };
+  // const submitForm = () => {
+  //   // Here you would typically submit the form data to your backend
+  //   console.log('Form submitted:', formData);
+  //   alert('Form submitted successfully!');
+  // };
   
   // Helper function to render the appropriate form fields based on the current page
   const renderFormFields = () => {
@@ -974,7 +489,7 @@ export default function StartupForm() {
                       ? 'border-[#9A9285] bg-[#F3F0E7]' 
                       : 'border-[#E0E0E0] hover:border-[#D6CBBE]'
                   }`}
-                  onClick={() => handleArrayChange('industry', industry.label)}
+                  onClick={() => handleSingleSelection('industry', industry.label)}
                 >
                   <div className="flex items-center space-x-2">
                     <div className={`w-5 h-5 rounded flex items-center justify-center ${
