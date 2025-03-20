@@ -1,8 +1,12 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:innovise/auth/signup.dart';
 import 'package:innovise/common/appbar.dart';
 import 'package:innovise/common/colors.dart';
+import 'package:innovise/common/home.dart';
+import 'package:innovise/formpage/constant_data.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -35,10 +39,26 @@ class _LoginState extends State<Login> {
         ],
       ));
       try {
-        //todo
+        var response = await Dio().post(
+          '${ConstantData.server_url}/login',
+          data: {
+            'email': email.text,
+            'password': password.text,
+          },
+        );
+
+        if (response.statusCode == 200) {
+          String uid = response.data['uid'];
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          await prefs.setString('uid', uid);
+
+          Get.offAll(() => Home());
+        } else {
+          throw Exception('Login failed');
+        }
       } catch (e) {
         Get.back();
-        Get.snackbar('Error', e.toString().split('] ')[1]);
+        Get.snackbar('Error', e.toString());
       }
     }
   }

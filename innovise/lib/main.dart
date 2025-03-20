@@ -50,9 +50,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future checkLogin() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String token = prefs.getString('token') ?? '';
+    String token = prefs.getString('uid') ?? '';
     Future.delayed(const Duration(seconds: 3), () {
       if (token.isNotEmpty) {
+        Get.offAll(() => Login());
       } else {
         Get.offAll(() => const Login());
       }

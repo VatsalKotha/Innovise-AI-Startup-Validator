@@ -1,8 +1,11 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:innovise/auth/login.dart';
 import 'package:innovise/auth/onboarding.dart';
 import 'package:innovise/common/colors.dart';
+import 'package:innovise/formpage/constant_data.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../common/appbar.dart';
 
@@ -38,8 +41,24 @@ class _LoginState extends State<SignUp> {
         ],
       ));
       try {
-        //todo
-        Get.offAll(() => Onboarding(username.text));
+        var response = await Dio().post(
+          '${ConstantData.server_url}/create_user',
+          data: {
+            'email': email.text,
+            'name': username.text,
+            'password': password.text,
+          },
+        );
+
+        if (response.statusCode == 201) {
+          String uid = response.data['uid'];
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          await prefs.setString('uid', uid);
+
+          Get.offAll(() => Onboarding(username.text));
+        } else {
+          throw Exception('Signup failed');
+        }
       } catch (e) {
         Get.back();
         Get.snackbar('Error', e.toString());

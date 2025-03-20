@@ -1,11 +1,14 @@
 import 'package:auto_size_text_field/auto_size_text_field.dart';
 import 'package:choice/choice.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:innovise/common/home.dart';
 import 'package:innovise/formpage/constant_data.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../common/colors.dart';
 
@@ -243,6 +246,43 @@ class _FormMainState extends State<FormMain> {
           ),
         ],
       ));
+      try {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        String? uid = prefs.getString('uid');
+
+        if (uid == null) {
+          throw Exception('User not logged in');
+        }
+
+        var response = await Dio().post(
+          '${ConstantData.server_url}/update_user',
+          data: {
+            'uid': uid,
+            'startup_name': startup_name.text,
+            'problems_addressed': problems_addressed,
+            'startup_unique_reasons': startup_unique_reasons,
+            'target_audiences': target_audiences,
+            'industry_operated': industry_operated,
+            'startup_location': startup_location.text,
+            'team_size': team_size,
+            'founding_team_background': founding_team_background,
+            'stage': stage,
+            'revenue_model': revenue_model,
+            'is_data_filled': true,
+          },
+        );
+
+        if (response.statusCode == 200) {
+          Get.snackbar('Success', 'User data updated successfully');
+          Get.offAll(() => const Home());
+        } else {
+          Get.back();
+          throw Exception('Update failed');
+        }
+      } catch (e) {
+        Get.snackbar('Error', e.toString());
+        Get.back();
+      }
       // await FirebaseFirestore.instance
       //     .collection('users')
       //     .doc(FirebaseAuth.instance.currentUser!.uid)
