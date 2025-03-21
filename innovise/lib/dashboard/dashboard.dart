@@ -1,6 +1,7 @@
 //TODO: CHECK IF DATA FILLED
 import 'dart:io';
 
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,6 +32,31 @@ class _DashboardState extends State<Dashboard> {
   bool show_metrics_breakdown = true;
   bool show_swot_analysis = true;
   bool show_news = true;
+  var news_data;
+  Future fetchBusinessNews() async {
+    try {
+      final response = await Dio().get(
+        'https://newsapi.org/v2/top-headlines',
+        queryParameters: {
+          // 'country': 'en',
+          'category': 'business',
+          'apiKey': "7a08fa1cb14846d0a4e1966f3515a4a6",
+        },
+      );
+
+      if (response.statusCode == 200) {
+        print(response.data['articles']);
+        List news_data = response.data['articles'];
+
+        setState(() {});
+      } else {
+        throw Exception('Failed to load business news');
+      }
+    } catch (e) {
+      throw Exception('Error fetching business news: $e');
+    }
+  }
+
   Future analyseData() async {
     try {
       Get.dialog(Column(
@@ -82,7 +108,9 @@ class _DashboardState extends State<Dashboard> {
   void initState() {
     // TODO: implement initState
     super.initState();
+
     fetchData();
+    fetchBusinessNews();
   }
 
   var data;
@@ -606,132 +634,6 @@ class _DashboardState extends State<Dashboard> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Trending News",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            setState(() {
-                              show_news = !show_news;
-                            });
-                          },
-                          child: Container(
-                              padding: const EdgeInsets.fromLTRB(8, 5, 8, 5),
-                              decoration: BoxDecoration(
-                                  color: AppColors.primaryVariant,
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: Icon(
-                                show_news
-                                    ? Icons.expand_less_rounded
-                                    : Icons.expand_more_rounded,
-                                size: 20,
-                              )),
-                        ),
-                      ],
-                    ),
-                    show_news
-                        ? Column(
-                            children: [
-                              Container(
-                                height: 140,
-                                width: double.infinity,
-                                margin: EdgeInsets.only(top: 10),
-                                padding:
-                                    const EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                decoration: BoxDecoration(
-                                    color: AppColors.primaryVariant,
-                                    borderRadius: BorderRadius.circular(15)),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image: NetworkImage(
-                                                    "https://b2bblogassets.airtel.in/wp-content/uploads/2022/06/startup-company-scaled.jpg"),
-                                                fit: BoxFit.cover),
-                                            borderRadius:
-                                                BorderRadius.circular(15)),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Expanded(
-                                      flex: 2,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "New Startup Launched",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 16),
-                                          ),
-                                          Divider(
-                                            color: AppColors.grey,
-                                            thickness: 0.8,
-                                            height: 5,
-                                          ),
-                                          Expanded(
-                                            child: Text(
-                                                "The market demand for your product is high. You have a good chance of success.",
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 12)),
-                                          ),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Container(
-                                                decoration: BoxDecoration(
-                                                    color: AppColors.white,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            15)),
-                                                padding:
-                                                    const EdgeInsets.fromLTRB(
-                                                        8, 5, 8, 5),
-                                                child: Text("CATEGORY",
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 12,
-                                                        color:
-                                                            AppColors.black)),
-                                              ),
-                                              Text(
-                                                DateFormat('EEE, d MMMM yyyy')
-                                                    .format(DateTime.now()),
-                                                style: TextStyle(
-                                                    fontSize: 10,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: AppColors.primary),
-                                              ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          )
-                        : SizedBox(),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
                           "Metrics Breakdown",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 16),
@@ -873,6 +775,181 @@ class _DashboardState extends State<Dashboard> {
                                     data['swot']['threats']),
                               ],
                             ),
+                          )
+                        : SizedBox(),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Trending News",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              show_news = !show_news;
+                            });
+                          },
+                          child: Container(
+                              padding: const EdgeInsets.fromLTRB(8, 5, 8, 5),
+                              decoration: BoxDecoration(
+                                  color: AppColors.primaryVariant,
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: Icon(
+                                show_news
+                                    ? Icons.expand_less_rounded
+                                    : Icons.expand_more_rounded,
+                                size: 20,
+                              )),
+                        ),
+                      ],
+                    ),
+                    show_news
+                        ? Column(
+                            children: [
+                              news_data != null
+                                  ? CarouselSlider.builder(
+                                      options: CarouselOptions(
+                                          height: 400,
+                                          viewportFraction: 0.75,
+                                          enlargeCenterPage: true,
+                                          autoPlay: true,
+                                          autoPlayAnimationDuration:
+                                              Duration(seconds: 3),
+                                          autoPlayCurve: Curves.easeInOut),
+                                      itemCount: news_data.length,
+                                      itemBuilder: (BuildContext context,
+                                          int index, int pageViewIndex) {
+                                        return Container(
+                                          height: 400,
+                                          margin: EdgeInsets.only(top: 10),
+                                          padding: const EdgeInsets.fromLTRB(
+                                              10, 10, 10, 10),
+                                          decoration: BoxDecoration(
+                                              color: AppColors.primaryVariant,
+                                              borderRadius:
+                                                  BorderRadius.circular(15)),
+                                          child: Column(
+                                            children: [
+                                              news_data[index]['urlToImage'] ==
+                                                      null
+                                                  ? SizedBox()
+                                                  : Expanded(
+                                                      child: Container(
+                                                        decoration: BoxDecoration(
+                                                            image: DecorationImage(
+                                                                image: NetworkImage(
+                                                                    news_data[
+                                                                            index]
+                                                                        [
+                                                                        'urlToImage']),
+                                                                fit: BoxFit
+                                                                    .cover),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        15)),
+                                                      ),
+                                                    ),
+                                              Expanded(
+                                                flex: 1,
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    SizedBox(
+                                                      height: 10,
+                                                    ),
+                                                    Text(
+                                                      news_data[index]
+                                                              ['title'] ??
+                                                          '',
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 12),
+                                                    ),
+                                                    Divider(
+                                                      color: AppColors.grey,
+                                                      thickness: 0.8,
+                                                      height: 5,
+                                                    ),
+                                                    Expanded(
+                                                      child: Text(
+                                                          news_data[index]
+                                                                  [
+                                                                  'description'] ??
+                                                              '',
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              fontSize: 12)),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Container(
+                                                          decoration: BoxDecoration(
+                                                              color: AppColors
+                                                                  .white,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          15)),
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .fromLTRB(
+                                                                  8, 5, 8, 5),
+                                                          child: Text(
+                                                              news_data[index][
+                                                                          'source']
+                                                                      [
+                                                                      'name'] ??
+                                                                  '',
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 12,
+                                                                  color: AppColors
+                                                                      .black)),
+                                                        ),
+                                                        Text(
+                                                          DateFormat(
+                                                                  'EEE, d MMMM yyyy')
+                                                              .format(DateTime
+                                                                  .parse(news_data[
+                                                                          index]
+                                                                      [
+                                                                      'publishedAt'])),
+                                                          style: TextStyle(
+                                                              fontSize: 10,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              color: AppColors
+                                                                  .primary),
+                                                        ),
+                                                      ],
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                    )
+                                  : CircularProgressIndicator(),
+                            ],
                           )
                         : SizedBox(),
                   ],
