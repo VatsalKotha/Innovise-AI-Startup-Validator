@@ -390,7 +390,7 @@ const BusinessPathway = () => {
             disabled={!activeTab || isGenerating}
             className={`w-full flex items-center justify-center space-x-3 px-8 py-4 rounded-xl text-lg font-medium transition-all duration-300 transform hover:scale-102 ${
               activeTab && !isGenerating
-                ? "bg-gradient-to-tr from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg hover:shadow-xl font-semibold"
+                ? "bg-[#F3F0E7] from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-black shadow-lg hover:shadow-xl font-semibold text-[#9A9285]"
                 : "bg-gray-100 text-gray-400 cursor-not-allowed"
             }`}
           >

@@ -12,7 +12,7 @@ export default function ProfilePage() {
   const [editing, setEditing] = useState(false);
 
   const uid = "67dbeefc8b478f6de251a0de"; // Replace with dynamic UID fetching
-  const apiURL = `http://192.168.0.128:1001/get_user/${uid}`;
+  const apiURL = `http://192.168.141.97:1001/get_user/${uid}`;
 
   useEffect(() => {
     async function fetchUser() {
@@ -41,7 +41,7 @@ export default function ProfilePage() {
 
   const handleSave = async () => {
     try {
-      await axios.post(`http://192.168.0.128:1001/update_user/${uid}`, formData, {
+      await axios.post(`http://192.168.141.97:1001/update_user/${uid}`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       setEditing(false);

@@ -110,7 +110,7 @@ export default function MarketGapAnalysis() {
     setError("");
 
     try {
-      const response = await axios.post("http://192.168.0.120:8008/analyze", {
+      const response = await axios.post("http://192.168.141.251:8008/analyze", {
         industry: industry,
       });
       setInsights(response.data.insights);
@@ -163,7 +163,7 @@ export default function MarketGapAnalysis() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-indigo-600 text-white p-2 rounded-md hover:bg-indigo-700 disabled:bg-indigo-300"
+              className="w-full bg-[#F3F0E7] text-black p-2 rounded-md disabled:bg-indigo-300"
             >
               {loading ? "Analyzing..." : "Analyze"}
             </button>

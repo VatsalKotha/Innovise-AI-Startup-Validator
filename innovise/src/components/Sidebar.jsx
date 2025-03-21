@@ -20,7 +20,7 @@ export default function Sidebar() {
     { label: "Chatbot", icon: <MessageCircle size={22} />, path: "/chatbot" },
     { label: "Market Analysis", icon: <Settings size={22} />, path: "/market-gap-analysis" },
     { label: "Maps", icon: <Globe size={22} />, path: "/maps" },
-    { label: "Profile", icon: <User2 size={22} />, path: "/profile" },
+    // { label: "Profile", icon: <User2 size={22} />, path: "/profile" },
     { label: "Logout", icon: <LogOut size={22} />, path: "/login" },
   ];
 
@@ -37,7 +37,7 @@ export default function Sidebar() {
           <div className="h-10 w-10 rounded-lg bg-[oklch(0.208_0.042_265.755)] flex items-center justify-center mr-3">
             <span className="text-white font-bold text-xl">I</span>
           </div>
-          <div className="text-3xl font-bold tracking-tight text-[oklch(0.208_0.042_265.755)]">Innovise</div>
+          <div className="text-3xl font-bold tracking-tight text-[#9A9285]">Innovise</div>
         </div>
         
         {/* Navigation items */}
