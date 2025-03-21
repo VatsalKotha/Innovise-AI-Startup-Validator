@@ -39,14 +39,15 @@ class _DashboardState extends State<Dashboard> {
         'https://newsapi.org/v2/top-headlines',
         queryParameters: {
           // 'country': 'en',
-          'category': 'business',
+
           'apiKey': "7a08fa1cb14846d0a4e1966f3515a4a6",
+          'sources': 'bloomberg,financial-times,cnn-business',
         },
       );
 
       if (response.statusCode == 200) {
         print(response.data['articles']);
-        List news_data = response.data['articles'];
+        news_data = response.data['articles'];
 
         setState(() {});
       } else {
@@ -189,6 +190,37 @@ class _DashboardState extends State<Dashboard> {
                             children: [
                               Text(
                                 'Take up the Questionnaire',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 15),
+                              ),
+                              SizedBox(
+                                width: 0,
+                              ),
+                              Icon(Icons.chevron_right_rounded),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Text("Already done?"),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          analyseData();
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: AppColors.primaryVariant,
+                              borderRadius: BorderRadius.circular(40)),
+                          margin: const EdgeInsets.only(top: 20, bottom: 20),
+                          padding: const EdgeInsets.fromLTRB(15, 10, 5, 10),
+                          child: const Row(
+                            children: [
+                              Text(
+                                'Refresh',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 15),
                               ),
@@ -922,21 +954,25 @@ class _DashboardState extends State<Dashboard> {
                                                                   color: AppColors
                                                                       .black)),
                                                         ),
-                                                        Text(
-                                                          DateFormat(
-                                                                  'EEE, d MMMM yyyy')
-                                                              .format(DateTime
-                                                                  .parse(news_data[
-                                                                          index]
-                                                                      [
-                                                                      'publishedAt'])),
-                                                          style: TextStyle(
-                                                              fontSize: 10,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              color: AppColors
-                                                                  .primary),
+                                                        Expanded(
+                                                          child: Text(
+                                                            DateFormat(
+                                                                    'EEE, d MMMM yyyy')
+                                                                .format(DateTime
+                                                                    .parse(news_data[
+                                                                            index]
+                                                                        [
+                                                                        'publishedAt'])),
+                                                            textAlign:
+                                                                TextAlign.end,
+                                                            style: TextStyle(
+                                                                fontSize: 10,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                color: AppColors
+                                                                    .primary),
+                                                          ),
                                                         ),
                                                       ],
                                                     )
@@ -952,6 +988,50 @@ class _DashboardState extends State<Dashboard> {
                             ],
                           )
                         : SizedBox(),
+                    SizedBox(
+                      height: 100,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Project "Innovise" by, ',
+                          style: TextStyle(
+                              fontSize: 14,
+                              height: 1,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.grey.shade400),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        RotatedBox(
+                          quarterTurns: 3,
+                          child: Text(
+                            "H2C",
+                            style: TextStyle(
+                                fontSize: 34,
+                                height: 1,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey.shade300),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          "Future\nFounders",
+                          style: TextStyle(
+                              fontSize: 40,
+                              height: 1,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey.shade300),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 100,
+                    ),
                   ],
                 ),
               );
