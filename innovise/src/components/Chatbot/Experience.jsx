@@ -6,7 +6,6 @@ import { degToRad } from "three/src/math/MathUtils";
 import { Suspense, useState } from "react";
 import { TypingBox } from "./TypingBox";
 import MessageBox from "./MessageBox";
-// import { useLanguage } from "@/context/LanguageContext";
 import { Thinking } from "../../../public/images";
 import Image from "next/image";
 import { useChatbot } from "@/context/ChatbotContext";
@@ -96,7 +95,7 @@ const Experience = () => {
           position: [0, 0, 3],
           fov: 50,
         }}
-        style={{ width: "100vw", height: "100vh" }}
+        style={{ width: "80vw", height: "80vh" }}
       >
         <Environment preset="sunset" />
         <ambientLight intensity={0.5} />
