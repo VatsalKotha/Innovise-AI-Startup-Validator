@@ -46,7 +46,7 @@ def match_investors():
             "startup_name": user_data["startup_name"],
             "industry": user_data["industry_operated"],
             "stage": user_data["stage"],
-            "funding_needed": 100000,  # Placeholder value],
+            "funding_needed": int(data['funding_needed']) if 'funding_needed' in data else 999999,  
             "location": user_data["startup_location"]
         }
 

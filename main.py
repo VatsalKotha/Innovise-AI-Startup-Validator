@@ -3,11 +3,13 @@ from flask_cors import CORS
 from app.routes.user_routes import user_bp
 from app.routes.idea_validation_routes import idea_validation_bp
 from app.routes.investor_matching import investor_matching_bp
+from app.routes.competitor_analysis_routes import competitor_analysis_bp
 
 app = Flask(__name__)
 app.register_blueprint(user_bp)
 app.register_blueprint(idea_validation_bp)
 app.register_blueprint(investor_matching_bp)
+app.register_blueprint(competitor_analysis_bp)
 
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
