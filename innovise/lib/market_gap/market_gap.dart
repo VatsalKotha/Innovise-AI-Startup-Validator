@@ -38,7 +38,7 @@ class _MarketGapState extends State<MarketGap> {
       ));
 
       var response = await Dio().post(
-        '${ConstantData.market_gap_url}/analyze',
+        '${ConstantData.market_gap_url}',
         data: {
           'industry': industry_operated,
         },

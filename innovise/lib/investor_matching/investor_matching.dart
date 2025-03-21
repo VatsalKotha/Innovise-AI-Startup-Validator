@@ -210,10 +210,10 @@ class _InvestorMatchingState extends State<InvestorMatching> {
                           hintText: "Funding Amount",
                           border: InputBorder.none,
                           prefixIconColor: Colors.black,
-                          prefixIcon: Icon(
-                            Icons.attach_money_outlined,
-                            size: 23,
-                          ),
+                          // prefixIcon: Icon(
+                          //   Icons.attach_money_outlined,
+                          //   size: 23,
+                          // ),
                           contentPadding: EdgeInsets.symmetric(vertical: 12),
                           isDense: true,
                         ),

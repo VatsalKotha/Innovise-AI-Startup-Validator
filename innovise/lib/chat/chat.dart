@@ -17,7 +17,7 @@ class _ChatState extends State<Chat> {
   List<Map<String, dynamic>> chatHistory = [];
   final Dio dio = Dio(); // Dio instance
 
-  static String apiUrl = "${ConstantData.server_url}/startup-advice";
+  static String apiUrl = "${ConstantData.chat_url}";
 
   Future<void> sendMessage() async {
     if (chatMessage.text.isEmpty) return;
