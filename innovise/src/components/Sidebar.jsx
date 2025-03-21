@@ -1,9 +1,9 @@
 "use client"; // Required for client-side interactivity
 import { useRouter } from "next/navigation";
-import { Home, User, MessageCircle, Settings, LogOut, Globe } from "lucide-react";
+import { Home, User, MessageCircle, Settings, LogOut, Globe, User2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { IconGraphFilled } from "@tabler/icons-react";
+import { IconGraphFilled, IconReportAnalytics } from "@tabler/icons-react";
 
 export default function Sidebar() {
   const router = useRouter();
@@ -15,11 +15,12 @@ export default function Sidebar() {
   // Sidebar navigation items with enhanced icons
   const sidebarItems = [
     { label: "Dashboard", icon: <Home size={22} />, path: "/dashboard" },
-    { label: "Competitor Analysis", icon: <User size={22} />, path: "/competitor-analysis" },
+    { label: "Competitor Analysis", icon: <IconReportAnalytics size={22} />, path: "/competitor-analysis" },
     { label: "Pathway", icon: <IconGraphFilled size={22} />, path: "/pathway" },
     { label: "Chatbot", icon: <MessageCircle size={22} />, path: "/chatbot" },
     { label: "Market Analysis", icon: <Settings size={22} />, path: "/market-gap-analysis" },
     { label: "Maps", icon: <Globe size={22} />, path: "/maps" },
+    { label: "Profile", icon: <User2 size={22} />, path: "/profile" },
     { label: "Logout", icon: <LogOut size={22} />, path: "/login" },
   ];
 

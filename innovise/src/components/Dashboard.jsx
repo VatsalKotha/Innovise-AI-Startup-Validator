@@ -1,162 +1,3 @@
-// "use client"; // Required for client-side interactivity
-// import { useEffect, useState } from "react";
-// import axios from "axios";
-// import {
-//   Card,
-//   CardHeader,
-//   CardTitle,
-//   CardDescription,
-//   CardContent,
-//   CardFooter,
-// } from "@/components/ui/card";
-// import { Progress } from "@/components/ui/progress";
-// import { Badge } from "@/components/ui/badge";
-// import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
-
-// const SERVER_URL = "http://192.168.0.128:1001"; // Server URL
-
-// export default function Dashboard() {
-//   const [data, setData] = useState(null);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState(null);
-
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const uid = "67dbeefc8b478f6de251a0de"; // Replace with dynamic UID if needed
-//         const response = await axios.get(`${SERVER_URL}/get_latest_idea_validation?uid=${uid}`);
-//         setData(response.data);
-//       } catch (err) {
-//         setError(err.message);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchData();
-//   }, []);
-
-//   if (loading) return <div>Loading...</div>;
-//   if (error) return <div>Error: {error}</div>;
-
-//   const { metrics, swot, past_scores, past_dates, success_score, detailed_analysis, final_verdict } = data;
-
-//   return (
-//     <div className="min-h-screen bg-gray-100 p-6">
-//       <div className="max-w-7xl mx-auto space-y-6">
-//         {/* Header */}
-//         <div className="text-center">
-//           <h1 className="text-3xl font-bold">Startup Validation Dashboard</h1>
-//           <p className="text-gray-600">Detailed analysis and metrics for your startup idea</p>
-//         </div>
-
-//         {/* Success Score */}
-//         <Card>
-//           <CardHeader>
-//             <CardTitle>Success Score</CardTitle>
-//             <CardDescription>Overall score based on feasibility, market demand, scalability, and sustainability.</CardDescription>
-//           </CardHeader>
-//           <CardContent>
-//             <div className="flex items-center space-x-4">
-//               <Progress value={success_score} className="h-3" />
-//               <span className="text-xl font-bold">{success_score}%</span>
-//             </div>
-//           </CardContent>
-//         </Card>
-
-//         {/* Metrics Grid */}
-//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-//           {Object.entries(metrics).map(([key, value]) => (
-//             <Card key={key}>
-//               <CardHeader>
-//                 <CardTitle className="capitalize">{key.replace("_", " ")}</CardTitle>
-//                 <CardDescription>{value.explanation}</CardDescription>
-//               </CardHeader>
-//               <CardContent>
-//                 <Progress value={value.score * 10} className="h-3" />
-//                 <span className="text-lg font-bold">{value.score}/10</span>
-//               </CardContent>
-//             </Card>
-//           ))}
-//         </div>
-
-//         {/* SWOT Analysis */}
-//         <Card>
-//           <CardHeader>
-//             <CardTitle>SWOT Analysis</CardTitle>
-//             <CardDescription>Strengths, Weaknesses, Opportunities, and Threats</CardDescription>
-//           </CardHeader>
-//           <CardContent>
-//             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-//               {Object.entries(swot).map(([key, value]) => (
-//                 <div key={key}>
-//                   <h3 className="text-lg font-semibold capitalize">{key}</h3>
-//                   <ul className="space-y-2">
-//                     {value.map((item, index) => (
-//                       <li key={index} className="flex items-center space-x-2">
-//                         <Badge variant="outline" className="capitalize">
-//                           {key}
-//                         </Badge>
-//                         <span>{item}</span>
-//                       </li>
-//                     ))}
-//                   </ul>
-//                 </div>
-//               ))}
-//             </div>
-//           </CardContent>
-//         </Card>
-
-//         {/* Past Scores */}
-//         <Card>
-//           <CardHeader>
-//             <CardTitle>Past Scores</CardTitle>
-//             <CardDescription>Historical success scores over time</CardDescription>
-//           </CardHeader>
-//           <CardContent>
-//             <Table>
-//               <TableHeader>
-//                 <TableRow>
-//                   <TableHead>Date</TableHead>
-//                   <TableHead>Score</TableHead>
-//                 </TableRow>
-//               </TableHeader>
-//               <TableBody>
-//                 {past_dates.map((date, index) => (
-//                   <TableRow key={index}>
-//                     <TableCell>{date}</TableCell>
-//                     <TableCell>{past_scores[index]}%</TableCell>
-//                   </TableRow>
-//                 ))}
-//               </TableBody>
-//             </Table>
-//           </CardContent>
-//         </Card>
-
-//         {/* Detailed Analysis */}
-//         <Card>
-//           <CardHeader>
-//             <CardTitle>Detailed Analysis</CardTitle>
-//           </CardHeader>
-//           <CardContent>
-//             <p className="text-gray-700">{detailed_analysis}</p>
-//           </CardContent>
-//         </Card>
-
-//         {/* Final Verdict */}
-//         <Card>
-//           <CardHeader>
-//             <CardTitle>Final Verdict</CardTitle>
-//           </CardHeader>
-//           <CardContent>
-//             <p className="text-gray-700">{final_verdict}</p>
-//           </CardContent>
-//         </Card>
-//       </div>
-//     </div>
-//   );
-// }
-
 "use client"; // Required for client-side interactivity
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -173,10 +14,11 @@ import { Badge } from "@/components/ui/badge";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell, RadialBarChart, RadialBar, PolarAngleAxis } from "recharts"; // Import Recharts components
 import { Check, AlertTriangle, Lightbulb, Zap, Heart, Leaf } from "lucide-react"; // Import icons for SWOT
+import NewsCarousel from "./NewsCarousel";
 
 const SERVER_URL = "http://192.168.0.128:1001"; // Server URL
 
-export default function Dashboard() {
+export default function Dashboard({ children }) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -265,8 +107,7 @@ export default function Dashboard() {
                   background
                   dataKey="value"
                   cornerRadius={10}
-                  fill="#8884d8"
-                />
+                  fill="#8884d8" />
                 <text
                   x="50%"
                   y="50%"
