@@ -55,6 +55,49 @@ class _MyProfileState extends State<MyProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          scrolledUnderElevation: 0,
+          backgroundColor: AppColors.white,
+          centerTitle: true,
+          actions: [
+            SizedBox(
+              width: 50,
+            )
+          ],
+          title: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Innovise",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                    ),
+                    const SizedBox(
+                      height: 2,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.fromLTRB(7, 2, 7, 2),
+                      decoration: BoxDecoration(
+                          color: AppColors.primaryVariant,
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Text(
+                        'My Profile',
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                            color: AppColors.primary),
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          )),
       backgroundColor: AppColors.white,
       body: data == null
           ? Column(
@@ -75,231 +118,236 @@ class _MyProfileState extends State<MyProfile> {
                 ),
               ],
             )
-          : SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    height: 130,
-                    padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
-                    decoration: BoxDecoration(
-                        color: AppColors.primaryVariant,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Icon(Icons.person_outline),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(data!['name'],
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 16,
-                                      )),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Icon(Icons.email_outlined),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(data!['email'],
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 16,
-                                      )),
-                                ],
-                              ),
-                              Expanded(child: SizedBox()),
-                              Row(
-                                children: [
-                                  Text(
-                                      DateFormat('dd-MMMM-yyyy, hh:mm a')
-                                          .format(DateTime.parse(
-                                              data!['date_of_join'])),
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 12,
-                                      )),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text(data!['uid'] ?? '',
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 8,
-                                      )),
-                                ],
-                              )
-                            ],
+          : Padding(
+              padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 130,
+                      padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
+                      decoration: BoxDecoration(
+                          color: AppColors.primaryVariant,
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Icon(Icons.person_outline),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(data!['name'],
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                        )),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Icon(Icons.email_outlined),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(data!['email'],
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                        )),
+                                  ],
+                                ),
+                                Expanded(child: SizedBox()),
+                                Row(
+                                  children: [
+                                    Text(
+                                        DateFormat('dd-MMMM-yyyy, hh:mm a')
+                                            .format(DateTime.parse(
+                                                data!['date_of_join'])),
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 12,
+                                        )),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(data!['uid'] ?? '',
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 8,
+                                        )),
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              height: 70,
-                              width: 70,
-                              decoration: BoxDecoration(
-                                color: AppColors.white,
-                                borderRadius: BorderRadius.circular(35),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  data != null &&
-                                          data['name'].split(' ').length > 1
-                                      ? data['name'].split('')[0] +
-                                          data['name'].split(' ')[1][0]
-                                      : data['name'][0],
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 24,
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                height: 70,
+                                width: 70,
+                                decoration: BoxDecoration(
+                                  color: AppColors.white,
+                                  borderRadius: BorderRadius.circular(35),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    data != null &&
+                                            data['name'].split(' ').length > 1
+                                        ? data['name'].split('')[0] +
+                                            data['name'].split(' ')[1][0]
+                                        : data['name'][0],
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 24,
+                                    ),
                                   ),
                                 ),
                               ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: InkWell(
+                            onTap: () => Get.offAll(() => const FormMain()),
+                            child: Container(
+                              padding:
+                                  const EdgeInsets.fromLTRB(15, 10, 15, 10),
+                              decoration: BoxDecoration(
+                                  color: AppColors.primaryVariant,
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: const Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.edit_outlined),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(
+                                    'Edit Details',
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        color: AppColors.black,
+                                        fontWeight: FontWeight.bold,
+                                        height: 0),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ],
-                        )
+                          ),
+                        ),
+                        Expanded(
+                          child: InkWell(
+                            onTap: () async {
+                              SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              prefs.remove('uid');
+                              Get.offAll(() => Login());
+                              // await FirebaseAuth.instance
+                              //     .signOut()
+                              //     .then((value) {
+                              //   Get.offAllNamed('/');
+                              // });
+                            },
+                            child: Container(
+                              margin: const EdgeInsets.only(left: 10),
+                              padding:
+                                  const EdgeInsets.fromLTRB(15, 10, 15, 10),
+                              decoration: BoxDecoration(
+                                  color: AppColors.primary,
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: const Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.power_settings_new_rounded,
+                                    color: Colors.white,
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(
+                                    'Logout',
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        color: AppColors.white,
+                                        fontWeight: FontWeight.bold,
+                                        height: 0),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: InkWell(
-                          onTap: () => Get.offAll(() => const FormMain()),
-                          child: Container(
+                    Divider(
+                      color: AppColors.grey,
+                      thickness: 0.8,
+                      height: 30,
+                    ),
+                    data!['is_data_filled'] == true
+                        ? Text(
+                            "Company Details",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 16),
+                          )
+                        : SizedBox(),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    data!['is_data_filled'] == true
+                        ? Container(
                             padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
                             decoration: BoxDecoration(
                                 color: AppColors.primaryVariant,
                                 borderRadius: BorderRadius.circular(20)),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                            child: Column(
                               children: [
-                                Icon(Icons.edit_outlined),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Text(
-                                  'Edit Details',
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      color: AppColors.black,
-                                      fontWeight: FontWeight.bold,
-                                      height: 0),
-                                ),
+                                detailWidget(
+                                    'Startup Name', data!['startup_name']),
+                                detailWidget('Problem/Need',
+                                    data!['problems_addressed']),
+                                detailWidget('Unique Selling Proposition',
+                                    data!['startup_unique_reasons']),
+                                detailWidget('Target Segment',
+                                    data!['target_audiences']),
+                                detailWidget(
+                                    'Industry', data!['industry_operated']),
+                                detailWidget(
+                                    'Location', data!['startup_location']),
+                                detailWidget('Team Size', data!['team_size']),
+                                detailWidget('Founding Team Background',
+                                    data!['founding_team_background']),
+                                detailWidget('Stage', data!['stage']),
+                                detailWidget(
+                                    'Revenue Model', data!['revenue_model']),
                               ],
                             ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: InkWell(
-                          onTap: () async {
-                            SharedPreferences prefs =
-                                await SharedPreferences.getInstance();
-                            prefs.remove('uid');
-                            Get.offAll(() => Login());
-                            // await FirebaseAuth.instance
-                            //     .signOut()
-                            //     .then((value) {
-                            //   Get.offAllNamed('/');
-                            // });
-                          },
-                          child: Container(
-                            margin: const EdgeInsets.only(left: 10),
-                            padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
-                            decoration: BoxDecoration(
-                                color: AppColors.primary,
-                                borderRadius: BorderRadius.circular(20)),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.power_settings_new_rounded,
-                                  color: Colors.white,
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Text(
-                                  'Logout',
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      color: AppColors.white,
-                                      fontWeight: FontWeight.bold,
-                                      height: 0),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Divider(
-                    color: AppColors.grey,
-                    thickness: 0.8,
-                    height: 30,
-                  ),
-                  data!['is_data_filled'] == true
-                      ? Text(
-                          "Company Details",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
-                        )
-                      : SizedBox(),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  data!['is_data_filled'] == true
-                      ? Container(
-                          padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
-                          decoration: BoxDecoration(
-                              color: AppColors.primaryVariant,
-                              borderRadius: BorderRadius.circular(20)),
-                          child: Column(
-                            children: [
-                              detailWidget(
-                                  'Startup Name', data!['startup_name']),
-                              detailWidget(
-                                  'Problem/Need', data!['problems_addressed']),
-                              detailWidget('Unique Selling Proposition',
-                                  data!['startup_unique_reasons']),
-                              detailWidget(
-                                  'Target Segment', data!['target_audiences']),
-                              detailWidget(
-                                  'Industry', data!['industry_operated']),
-                              detailWidget(
-                                  'Location', data!['startup_location']),
-                              detailWidget('Team Size', data!['team_size']),
-                              detailWidget('Founding Team Background',
-                                  data!['founding_team_background']),
-                              detailWidget('Stage', data!['stage']),
-                              detailWidget(
-                                  'Revenue Model', data!['revenue_model']),
-                            ],
-                          ),
-                        )
-                      : SizedBox(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                ],
+                          )
+                        : SizedBox(),
+                    SizedBox(
+                      height: 20,
+                    ),
+                  ],
+                ),
               ),
             ),
     );

@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:innovise/common/home.dart';
+import 'package:innovise/competitor_analysis/competitor_analysis.dart';
 import 'package:innovise/dashboard/bar_chart.dart';
 import 'package:innovise/dashboard/pie_chart.dart';
 import 'package:innovise/dashboard/score_gauge_widget.dart';
@@ -13,6 +14,7 @@ import 'package:innovise/investor_matching/investor_matching.dart';
 import 'package:innovise/market_gap/market_gap.dart';
 import 'package:innovise/profile/profile.dart';
 import 'package:intl/intl.dart';
+import 'package:readmore/readmore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../common/colors.dart';
@@ -331,7 +333,9 @@ class _DashboardState extends State<Dashboard> {
                       children: [
                         Expanded(
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Get.to(() => const CompetitorAnalysis());
+                            },
                             child: Container(
                               padding: const EdgeInsets.fromLTRB(6, 10, 6, 10),
                               decoration: BoxDecoration(
@@ -427,140 +431,8 @@ class _DashboardState extends State<Dashboard> {
                         ),
                         Expanded(
                           child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                              margin: EdgeInsets.only(left: 8),
-                              padding: const EdgeInsets.fromLTRB(6, 10, 6, 10),
-                              decoration: BoxDecoration(
-                                  color: AppColors.primaryVariant,
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: Column(
-                                children: [
-                                  Icon(
-                                    Icons.chat_bubble_outline_rounded,
-                                    size: 30,
-                                  ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(5, 5, 5, 0),
-                                    child: Text(
-                                      "AI Chatbot",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 12),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                              padding: const EdgeInsets.fromLTRB(6, 10, 6, 10),
-                              decoration: BoxDecoration(
-                                  color: AppColors.primaryVariant,
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: Column(
-                                children: [
-                                  Icon(
-                                    Icons.task_outlined,
-                                    size: 30,
-                                  ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(5, 5, 5, 0),
-                                    child: Text(
-                                      "Business Plan",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 12),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                              margin: EdgeInsets.only(left: 8),
-                              padding: const EdgeInsets.fromLTRB(6, 10, 6, 10),
-                              decoration: BoxDecoration(
-                                  color: AppColors.primaryVariant,
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: Column(
-                                children: [
-                                  Icon(
-                                    Icons.mic_outlined,
-                                    size: 30,
-                                  ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(5, 5, 5, 0),
-                                    child: Text(
-                                      "Pitch Generator",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 12),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                              margin: EdgeInsets.only(left: 8),
-                              padding: const EdgeInsets.fromLTRB(6, 10, 6, 10),
-                              decoration: BoxDecoration(
-                                  color: AppColors.primaryVariant,
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: Column(
-                                children: [
-                                  Icon(
-                                    Icons.gavel_outlined,
-                                    size: 30,
-                                  ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(5, 5, 5, 0),
-                                    child: Text(
-                                      "Legal Compliance",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 12),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: InkWell(
                             onTap: () {
-                              Get.offAll(() => Home(
-                                    selectedIndex: 1,
-                                  ));
+                              Get.to(() => const MyProfile());
                             },
                             child: Container(
                               margin: EdgeInsets.only(left: 8),
@@ -592,6 +464,141 @@ class _DashboardState extends State<Dashboard> {
                         )
                       ],
                     ),
+                    // SizedBox(
+                    //   height: 8,
+                    // ),
+                    // Row(
+                    //   children: [
+                    //     Expanded(
+                    //       child: InkWell(
+                    //         onTap: () {},
+                    //         child: Container(
+                    //           padding: const EdgeInsets.fromLTRB(6, 10, 6, 10),
+                    //           decoration: BoxDecoration(
+                    //               color: AppColors.primaryVariant,
+                    //               borderRadius: BorderRadius.circular(15)),
+                    //           child: Column(
+                    //             children: [
+                    //               Icon(
+                    //                 Icons.task_outlined,
+                    //                 size: 30,
+                    //               ),
+                    //               Padding(
+                    //                 padding:
+                    //                     const EdgeInsets.fromLTRB(5, 5, 5, 0),
+                    //                 child: Text(
+                    //                   "Business Plan",
+                    //                   textAlign: TextAlign.center,
+                    //                   style: TextStyle(
+                    //                       fontWeight: FontWeight.w400,
+                    //                       fontSize: 12),
+                    //                 ),
+                    //               )
+                    //             ],
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Expanded(
+                    //       child: InkWell(
+                    //         onTap: () {},
+                    //         child: Container(
+                    //           margin: EdgeInsets.only(left: 8),
+                    //           padding: const EdgeInsets.fromLTRB(6, 10, 6, 10),
+                    //           decoration: BoxDecoration(
+                    //               color: AppColors.primaryVariant,
+                    //               borderRadius: BorderRadius.circular(15)),
+                    //           child: Column(
+                    //             children: [
+                    //               Icon(
+                    //                 Icons.mic_outlined,
+                    //                 size: 30,
+                    //               ),
+                    //               Padding(
+                    //                 padding:
+                    //                     const EdgeInsets.fromLTRB(5, 5, 5, 0),
+                    //                 child: Text(
+                    //                   "Pitch Generator",
+                    //                   textAlign: TextAlign.center,
+                    //                   style: TextStyle(
+                    //                       fontWeight: FontWeight.w400,
+                    //                       fontSize: 12),
+                    //                 ),
+                    //               )
+                    //             ],
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Expanded(
+                    //       child: InkWell(
+                    //         onTap: () {},
+                    //         child: Container(
+                    //           margin: EdgeInsets.only(left: 8),
+                    //           padding: const EdgeInsets.fromLTRB(6, 10, 6, 10),
+                    //           decoration: BoxDecoration(
+                    //               color: AppColors.primaryVariant,
+                    //               borderRadius: BorderRadius.circular(15)),
+                    //           child: Column(
+                    //             children: [
+                    //               Icon(
+                    //                 Icons.gavel_outlined,
+                    //                 size: 30,
+                    //               ),
+                    //               Padding(
+                    //                 padding:
+                    //                     const EdgeInsets.fromLTRB(5, 5, 5, 0),
+                    //                 child: Text(
+                    //                   "Legal Compliance",
+                    //                   textAlign: TextAlign.center,
+                    //                   style: TextStyle(
+                    //                       fontWeight: FontWeight.w400,
+                    //                       fontSize: 12),
+                    //                 ),
+                    //               )
+                    //             ],
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Expanded(
+                    //       child: InkWell(
+                    //         onTap: () {
+                    //           Get.offAll(() => Home(
+                    //                 selectedIndex: 1,
+                    //               ));
+                    //         },
+                    //         child: Container(
+                    //           margin: EdgeInsets.only(left: 8),
+                    //           padding: const EdgeInsets.fromLTRB(6, 10, 6, 10),
+                    //           decoration: BoxDecoration(
+                    //               color: AppColors.primaryVariant,
+                    //               borderRadius: BorderRadius.circular(15)),
+                    //           child: Column(
+                    //             children: [
+                    //               Icon(
+                    //                 Icons.person_outline,
+                    //                 size: 30,
+                    //               ),
+                    //               Padding(
+                    //                 padding:
+                    //                     const EdgeInsets.fromLTRB(5, 5, 5, 0),
+                    //                 child: Text(
+                    //                   "Manage Profile",
+                    //                   textAlign: TextAlign.center,
+                    //                   style: TextStyle(
+                    //                       fontWeight: FontWeight.w400,
+                    //                       fontSize: 12),
+                    //                 ),
+                    //               )
+                    //             ],
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     )
+                    //   ],
+                    // ),
+
                     SizedBox(
                       height: 30,
                     ),
@@ -811,7 +818,7 @@ class _DashboardState extends State<Dashboard> {
                           )
                         : SizedBox(),
                     SizedBox(
-                      height: 10,
+                      height: 30,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -965,9 +972,14 @@ class _DashboardState extends State<Dashboard> {
                 width: 10,
               ),
               Expanded(
-                child: Text(info,
-                    style:
-                        TextStyle(fontWeight: FontWeight.w400, fontSize: 12)),
+                child: ReadMoreText(
+                  info,
+                  style: TextStyle(fontWeight: FontWeight.w400, fontSize: 12),
+                  trimMode: TrimMode.Line,
+                  trimLines: 3,
+                  trimCollapsedText: ' Show more',
+                  trimExpandedText: ' Show less',
+                ),
               ),
             ],
           ),

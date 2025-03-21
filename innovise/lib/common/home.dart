@@ -41,22 +41,22 @@ class _HomeState extends State<Home> {
         padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         child: _widgetOptions.elementAt(widget.selectedIndex),
       ),
-      bottomNavigationBar: NavigationBar(
-        backgroundColor: AppColors.primaryVariant,
-        indicatorColor: AppColors.secondary,
-        selectedIndex: widget.selectedIndex,
-        onDestinationSelected: _onItemTapped,
-        destinations: const <NavigationDestination>[
-          NavigationDestination(
-            icon: Icon(Icons.dashboard_outlined),
-            label: 'Dashboard',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.person_outline),
-            label: 'Profile',
-          ),
-        ],
-      ),
+      // bottomNavigationBar: NavigationBar(
+      //   backgroundColor: AppColors.primaryVariant,
+      //   indicatorColor: AppColors.secondary,
+      //   selectedIndex: widget.selectedIndex,
+      //   onDestinationSelected: _onItemTapped,
+      //   destinations: const <NavigationDestination>[
+      //     NavigationDestination(
+      //       icon: Icon(Icons.dashboard_outlined),
+      //       label: 'Dashboard',
+      //     ),
+      //     NavigationDestination(
+      //       icon: Icon(Icons.person_outline),
+      //       label: 'Profile',
+      //     ),
+      //   ],
+      // ),
     );
   }
 

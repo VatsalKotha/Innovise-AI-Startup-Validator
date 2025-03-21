@@ -216,12 +216,19 @@ class _MarketGapState extends State<MarketGap> {
               ],
             ),
             InfoCard(
-                "Market gap analysis is the process of determining the difference between the potential market and the actual market for a product or service. It helps businesses identify opportunities for growth and expansion."),
+                "Identify market gaps to find growth opportunities. Understand the difference between potential and actual demand."),
             data == null
                 ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      InfoCard(
-                          "Choose an industry to view the market gap analysis"),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        "Choose an industry or sector you operate in",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
                       InlineChoice<String>.single(
                         clearable: true,
                         value: industry_operated,
@@ -311,7 +318,7 @@ class _MarketGapState extends State<MarketGap> {
   Widget InfoCard(String info) {
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.only(top: 10, bottom: 0),
+      margin: EdgeInsets.only(top: 20, bottom: 0),
       padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
       decoration: BoxDecoration(
           color: AppColors.primaryVariant,

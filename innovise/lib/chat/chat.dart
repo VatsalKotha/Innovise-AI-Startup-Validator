@@ -109,30 +109,64 @@ class _ChatState extends State<Chat> {
       backgroundColor: Colors.white,
       body: Column(
         children: [
-          Expanded(
-            child: ListView.builder(
-              itemCount: chatHistory.length,
-              itemBuilder: (context, index) {
-                bool isUser = chatHistory[index]["sender"] == "user";
-                return Align(
-                  alignment:
-                      isUser ? Alignment.centerRight : Alignment.centerLeft,
-                  child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                    padding: EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color:
-                          isUser ? AppColors.primary : AppColors.primaryVariant,
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: MarkdownBody(
-                      data: chatHistory[index]["message"],
+          chatHistory.isEmpty
+              ? Expanded(
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.chat_bubble_outline,
+                          size: 100,
+                          color: AppColors.primary,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        const Text(
+                          "Get started by\nasking a question",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.w600),
+                        ),
+                      ],
                     ),
                   ),
-                );
-              },
-            ),
-          ),
+                )
+              : Expanded(
+                  child: ListView.builder(
+                    itemCount: chatHistory.length,
+                    itemBuilder: (context, index) {
+                      bool isUser = chatHistory[index]["sender"] == "user";
+                      return Align(
+                        alignment: isUser
+                            ? Alignment.centerRight
+                            : Alignment.centerLeft,
+                        child: Container(
+                          margin:
+                              EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                          padding: EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: isUser
+                                ? AppColors.primary
+                                : AppColors.primaryVariant,
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: MarkdownBody(
+                            //color of text
+                            styleSheet: MarkdownStyleSheet(
+                              p: TextStyle(
+                                color: isUser ? Colors.white : Colors.black,
+                                fontSize: 14,
+                              ),
+                            ),
+                            data: chatHistory[index]["message"],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
           Container(
             padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
             decoration: BoxDecoration(
