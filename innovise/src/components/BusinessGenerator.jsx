@@ -11,7 +11,7 @@ import {
 import "@xyflow/react/dist/style.css";
 import { Send, CheckCircle, Calendar, FileText } from "lucide-react";
 
-const AI_SERVER_URL = "http://127.0.0.1:8000"
+const AI_SERVER_URL = "http://192.168.141.34:8000"
 
 const sampleBusinessInputs = [
   {
