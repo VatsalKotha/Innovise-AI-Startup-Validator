@@ -12,3 +12,4 @@ asyncio
 mapbox
 google.generativeai
 faiss-cpu
+sklearn
