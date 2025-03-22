@@ -1003,29 +1003,32 @@ class _DashboardState extends State<Dashboard> {
                         ),
                       ],
                     ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Row(
                       children: [
                         RotatedBox(
                           quarterTurns: 3,
                           child: Text(
-                            "H2C",
+                            "CS/G3",
                             style: TextStyle(
-                                fontSize: 34,
+                                fontSize: 14,
                                 height: 1,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey.shade300),
+                                fontWeight: FontWeight.w400,
+                                color: Colors.grey.shade400),
                           ),
                         ),
                         SizedBox(
                           width: 5,
                         ),
                         Text(
-                          "Future\nFounders",
+                          "Meet Chavan - 60004230269,\nVatsal Kotha - 60004230274,\nJeel Doshi - 60004230273,\nMit Shah - 60004230283.",
                           style: TextStyle(
-                              fontSize: 40,
+                              fontSize: 12,
                               height: 1,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey.shade300),
+                              fontWeight: FontWeight.w400,
+                              color: Colors.grey.shade400),
                         ),
                       ],
                     ),

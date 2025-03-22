@@ -110,7 +110,7 @@ class _SplashScreenState extends State<SplashScreen> {
                                 color: AppColors.black,
                                 fontWeight: FontWeight.bold,
                                 height: 0)),
-                        Text('Vatsal Kotha, Jeel Doshi, Meet Chavan',
+                        Text('Jeel Doshi, Meet Chavan, Vatsal Kotha, Mit Shah',
                             style: TextStyle(
                                 fontSize: 10,
                                 color: AppColors.primary,

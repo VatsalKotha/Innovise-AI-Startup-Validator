@@ -1,7 +1,7 @@
 class ConstantData {
-  static String server_url = 'http://192.168.0.128:1001';
-  static String market_gap_url = 'http://192.168.0.103:8008/analyze';
-  static String chat_url = 'http://192.168.0.103:8004/startup-advice';
+  static String server_url = 'https://innovise.onrender.com';
+  static String market_gap_url = 'https://innovise-ai.onrender.com/analyze';
+  static String chat_url = 'https://innovise-ai.onrender.com/startup-advice';
   static int total_pages = 10;
 
   static List<String> appbar_titles = [
