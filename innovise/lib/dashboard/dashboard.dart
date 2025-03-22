@@ -1,4 +1,3 @@
-//TODO: CHECK IF DATA FILLED
 import 'dart:io';
 
 import 'package:carousel_slider/carousel_slider.dart';
@@ -13,6 +12,7 @@ import 'package:innovise/dashboard/score_gauge_widget.dart';
 import 'package:innovise/formpage/form_main.dart';
 import 'package:innovise/investor_matching/investor_matching.dart';
 import 'package:innovise/market_gap/market_gap.dart';
+import 'package:innovise/pathway/pathway.dart';
 import 'package:innovise/profile/profile.dart';
 import 'package:innovise/reports.dart';
 import 'package:intl/intl.dart';
@@ -395,95 +395,142 @@ class _DashboardState extends State<Dashboard> {
                       ],
                     ),
                     InfoCard(data['final_verdict']),
+                    Row(children: [
+                      Expanded(
+                        child: InkWell(
+                          onTap: () {
+                            Get.to(() => const CompetitorAnalysis());
+                          },
+                          child: Container(
+                            height: 100,
+                            padding: const EdgeInsets.fromLTRB(6, 10, 6, 10),
+                            decoration: BoxDecoration(
+                                color: AppColors.primaryVariant,
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Icon(
+                                  Icons.business_center_outlined,
+                                  size: 30,
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(5, 5, 5, 0),
+                                  child: Text(
+                                    "Competitor Analysis",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: InkWell(
+                          onTap: () {
+                            Get.to(() => const MarketGap());
+                          },
+                          child: Container(
+                            height: 100,
+                            margin: EdgeInsets.only(left: 8),
+                            padding: const EdgeInsets.fromLTRB(6, 10, 6, 10),
+                            decoration: BoxDecoration(
+                                color: AppColors.primaryVariant,
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Icon(
+                                  Icons.store_outlined,
+                                  size: 30,
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(5, 5, 5, 0),
+                                  child: Text(
+                                    "Market Gap Analysis",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: InkWell(
+                          onTap: () {
+                            Get.to(() => const InvestorMatching());
+                          },
+                          child: Container(
+                            height: 100,
+                            margin: EdgeInsets.only(left: 8),
+                            padding: const EdgeInsets.fromLTRB(6, 10, 6, 10),
+                            decoration: BoxDecoration(
+                                color: AppColors.primaryVariant,
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Icon(
+                                  Icons.attach_money,
+                                  size: 30,
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(5, 5, 5, 0),
+                                  child: Text(
+                                    "Investor Matching",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ]),
+                    SizedBox(
+                      height: 8,
+                    ),
                     Row(
                       children: [
                         Expanded(
                           child: InkWell(
                             onTap: () {
-                              Get.to(() => const CompetitorAnalysis());
+                              Get.to(() => const Pathway());
                             },
                             child: Container(
+                              height: 100,
+                              margin: EdgeInsets.only(right: 0),
                               padding: const EdgeInsets.fromLTRB(6, 10, 6, 10),
                               decoration: BoxDecoration(
                                   color: AppColors.primaryVariant,
                                   borderRadius: BorderRadius.circular(15)),
                               child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Icon(
-                                    Icons.business_center_outlined,
+                                    Icons.auto_graph_sharp,
                                     size: 30,
                                   ),
                                   Padding(
                                     padding:
                                         const EdgeInsets.fromLTRB(5, 5, 5, 0),
                                     child: Text(
-                                      "Competitor Analysis",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 12),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: InkWell(
-                            onTap: () {
-                              Get.to(() => const MarketGap());
-                            },
-                            child: Container(
-                              margin: EdgeInsets.only(left: 8),
-                              padding: const EdgeInsets.fromLTRB(6, 10, 6, 10),
-                              decoration: BoxDecoration(
-                                  color: AppColors.primaryVariant,
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: Column(
-                                children: [
-                                  Icon(
-                                    Icons.store_outlined,
-                                    size: 30,
-                                  ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(5, 5, 5, 0),
-                                    child: Text(
-                                      "Market Gap",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 12),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: InkWell(
-                            onTap: () {
-                              Get.to(() => const InvestorMatching());
-                            },
-                            child: Container(
-                              margin: EdgeInsets.only(left: 8),
-                              padding: const EdgeInsets.fromLTRB(6, 10, 6, 10),
-                              decoration: BoxDecoration(
-                                  color: AppColors.primaryVariant,
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: Column(
-                                children: [
-                                  Icon(
-                                    Icons.attach_money,
-                                    size: 30,
-                                  ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(5, 5, 5, 0),
-                                    child: Text(
-                                      "Investor Matching",
+                                      "Generate Pathway",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontWeight: FontWeight.w400,
@@ -501,12 +548,51 @@ class _DashboardState extends State<Dashboard> {
                               Get.to(() => const MyProfile());
                             },
                             child: Container(
+                              height: 100,
                               margin: EdgeInsets.only(left: 8),
                               padding: const EdgeInsets.fromLTRB(6, 10, 6, 10),
                               decoration: BoxDecoration(
                                   color: AppColors.primaryVariant,
                                   borderRadius: BorderRadius.circular(15)),
                               child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Icon(
+                                    Icons.chat_bubble_outline_rounded,
+                                    size: 30,
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(5, 5, 5, 0),
+                                    child: Text(
+                                      "AI\nChatbot",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 12),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: InkWell(
+                            onTap: () {
+                              Get.to(() => const MyProfile());
+                            },
+                            child: Container(
+                              height: 100,
+                              margin: EdgeInsets.only(left: 8),
+                              padding: const EdgeInsets.fromLTRB(6, 10, 6, 10),
+                              decoration: BoxDecoration(
+                                  color: AppColors.primaryVariant,
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Icon(
                                     Icons.person_outline,
@@ -516,7 +602,7 @@ class _DashboardState extends State<Dashboard> {
                                     padding:
                                         const EdgeInsets.fromLTRB(5, 5, 5, 0),
                                     child: Text(
-                                      "Manage Profile",
+                                      "Manage\nProfile",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontWeight: FontWeight.w400,
@@ -529,7 +615,7 @@ class _DashboardState extends State<Dashboard> {
                           ),
                         )
                       ],
-                    ),
+                    )
                     // SizedBox(
                     //   height: 8,
                     // ),
@@ -664,7 +750,7 @@ class _DashboardState extends State<Dashboard> {
                     //     )
                     //   ],
                     // ),
-
+                    ,
                     SizedBox(
                       height: 30,
                     ),
@@ -815,7 +901,6 @@ class _DashboardState extends State<Dashboard> {
                             ),
                           )
                         : SizedBox(),
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

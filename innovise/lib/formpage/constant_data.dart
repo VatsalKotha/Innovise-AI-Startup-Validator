@@ -2,6 +2,8 @@ class ConstantData {
   static String server_url = 'https://innovise.onrender.com';
   static String market_gap_url = 'https://innovise-ai.onrender.com/analyze';
   static String chat_url = 'https://innovise-ai.onrender.com/startup-advice';
+  static String business_pathway_url =
+      'https://innovise-ai.onrender.com/generate-business-pathway';
   static int total_pages = 10;
 
   static List<String> appbar_titles = [
@@ -111,5 +113,92 @@ class ConstantData {
     'Advertising',
     'Transaction Fees',
     'Freemium',
+  ];
+
+  static List<String> sample_business_scenarios = [
+    'Tech Startup',
+    'E-commerce Business',
+    'Food & Beverage',
+    'Healthcare Startup',
+    "Manufacturing Business",
+  ];
+
+  static List<String> sample_business_scenarios_prompt = [
+    "I'm launching a SaaS product targeting small businesses. I need a business plan that includes financial projections, marketing strategies, and operational plans.",
+    "I want to start an online store selling eco-friendly products. Help me create a business plan with a focus on marketing and logistics.",
+    "I'm opening a café in a busy urban area. I need a business plan that covers financials, marketing, and operational workflows.",
+    "I'm developing a telemedicine platform. I need a business plan that includes financial projections, regulatory compliance, and marketing strategies.",
+    "I'm starting a small-scale manufacturing unit. Help me create a business plan with financials, supply chain management, and marketing."
+  ];
+
+  static List pathway_aspects = [
+    {
+      "title": "Financial Projections",
+      "description":
+          "Create detailed financial forecasts, including revenue, expenses, and cash flow.",
+      "benefits": [
+        "• Clear understanding of funding needs",
+        "• Helps in securing investments",
+        "• Identifies break-even points",
+        "• Supports budgeting and planning"
+      ],
+      "considerations": [
+        "• Requires accurate data inputs",
+        "• May need professional assistance",
+        "• Sensitive to market changes",
+        "• Time-consuming to prepare"
+      ]
+    },
+    {
+      "title": "Marketing Strategies",
+      "description":
+          "Develop a comprehensive marketing plan to reach your target audience.",
+      "benefits": [
+        "• Increases brand visibility",
+        "• Drives customer acquisition",
+        "• Supports product launches",
+        "• Builds long-term customer relationships"
+      ],
+      "considerations": [
+        "• Requires market research",
+        "• Can be costly depending on channels",
+        "• Needs continuous optimization",
+        "• Competitive landscape impacts results"
+      ]
+    },
+    {
+      "title": "Operational Plans",
+      "description":
+          "Outline the day-to-day operations, including workflows, resources, and logistics.",
+      "benefits": [
+        "• Improves efficiency and productivity",
+        "• Reduces operational risks",
+        "• Ensures resource allocation",
+        "• Supports scalability"
+      ],
+      "considerations": [
+        "• Requires detailed planning",
+        "• Needs regular updates",
+        "• Dependent on team coordination",
+        "• May require technology investments"
+      ]
+    },
+    {
+      "title": "Industry Insights",
+      "description":
+          "Provide industry-specific insights to tailor your business plan.",
+      "benefits": [
+        "• Aligns with market trends",
+        "• Identifies competitive advantages",
+        "• Supports regulatory compliance",
+        "• Enhances strategic decision-making"
+      ],
+      "considerations": [
+        "• Requires up-to-date research",
+        "• May need expert consultation",
+        "• Industry-specific risks",
+        "• Can be time-intensive"
+      ]
+    }
   ];
 }
