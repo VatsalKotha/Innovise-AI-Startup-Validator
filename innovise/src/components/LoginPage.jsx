@@ -145,7 +145,7 @@ import { Label } from '@/components/ui/label';
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
 import { useRouter } from "next/navigation";
 
-const SERVER_URL = "http://192.168.141.97:1001";
+const SERVER_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');

@@ -29,7 +29,7 @@ export default function CompetitorAnalysisDashboard() {
     // Fetch data from the provided API
     const fetchData = async () => {
       try {
-        const response = await fetch("http://192.168.141.97:1001/analyze_competitors", {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/analyze_competitors`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

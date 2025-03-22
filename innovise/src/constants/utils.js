@@ -1,1 +1,1 @@
-export const CHATBOT_ROUTE = `http://192.168.141.34:8004/startup-advice`;
+export const CHATBOT_ROUTE = `${process.env.NEXT_PUBLIC_AI_URL}/startup-advice`;

@@ -75,7 +75,7 @@ import { Progress } from '@/components/ui/progress';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import axios from 'axios'; // Import axios
 
-const SERVER_URL = "http://192.168.141.97:1001"; // Server URL
+const SERVER_URL = process.env.NEXT_PUBLIC_API_URL; // Server URL
 
 export default function StartupForm() {
   const router = useRouter();

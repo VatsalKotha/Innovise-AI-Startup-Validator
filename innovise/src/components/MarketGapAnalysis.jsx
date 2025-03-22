@@ -110,7 +110,7 @@ export default function MarketGapAnalysis() {
     setError("");
 
     try {
-      const response = await axios.post("http://192.168.141.251:8008/analyze", {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/analyze`, {
         industry: industry,
       });
       setInsights(response.data.insights);

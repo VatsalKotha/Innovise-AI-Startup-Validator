@@ -16,7 +16,7 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell, Radi
 import { Check, AlertTriangle, Lightbulb, Zap, Heart, Leaf } from "lucide-react"; // Import icons for SWOT
 import NewsCarousel from "./NewsCarousel";
 
-const SERVER_URL = "http://192.168.141.97:1001"; // Server URL
+const SERVER_URL = process.env.NEXT_PUBLIC_API_URL; // Server URL
 
 export default function Dashboard({ children }) {
   const [data, setData] = useState(null);
