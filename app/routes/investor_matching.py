@@ -1,4 +1,5 @@
 import os
+from dotenv import load_dotenv
 import requests
 from flask import Blueprint, request, jsonify
 from app.repositories.user_repo import UserRepository
@@ -10,6 +11,10 @@ DB_NAME = "innovise"
 repo = UserRepository(MONGO_URI, DB_NAME)
 
 AI_INVESTOR_API_URL = "https://innovise-ai.onrender.com/match-investors"
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
+ENV_PATH = os.path.join(ROOT_DIR, ".env")
+
+load_dotenv(ENV_PATH)
 GOOGLE_MAPS_API_KEY = os.getenv("GOOGLE_MAPS_API_KEY")
 
 
