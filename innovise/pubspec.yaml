@@ -29,6 +29,8 @@ dependencies:
   readmore: ^3.0.0
   icons_launcher: ^3.0.1
   carousel_slider: ^5.0.0
+  pdf: ^3.11.3
+  printing: ^5.14.2
 
 icons_launcher:
   image_path: "assets/images/logo.png"

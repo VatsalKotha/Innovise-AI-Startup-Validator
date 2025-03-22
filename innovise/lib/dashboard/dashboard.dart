@@ -14,7 +14,9 @@ import 'package:innovise/formpage/form_main.dart';
 import 'package:innovise/investor_matching/investor_matching.dart';
 import 'package:innovise/market_gap/market_gap.dart';
 import 'package:innovise/profile/profile.dart';
+import 'package:innovise/reports.dart';
 import 'package:intl/intl.dart';
+import 'package:printing/printing.dart';
 import 'package:readmore/readmore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -282,7 +284,11 @@ class _DashboardState extends State<Dashboard> {
                               width: 4,
                             ),
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Get.bottomSheet(PdfPreview(
+                                    build: (format) =>
+                                        Reports.generateDashboardPdf(data)));
+                              },
                               child: Container(
                                   padding:
                                       const EdgeInsets.fromLTRB(8, 5, 8, 5),
