@@ -6,7 +6,7 @@ MONGO_URI = "mongodb+srv://admin:admin@lit-coders.dcuhn.mongodb.net/?retryWrites
 DB_NAME = "innovise"
 repo = UserRepository(MONGO_URI, DB_NAME)
 
-AI_COMPETITOR_API_URL = "http://192.168.0.120:8025/analyze-competitors"
+AI_COMPETITOR_API_URL = "https://innovise-ai.onrender.com/analyze-competitors"
 
 class CompetitorAnalysisRepository:
     def __init__(self):

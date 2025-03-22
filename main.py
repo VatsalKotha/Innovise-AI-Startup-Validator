@@ -16,4 +16,4 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=1001, debug=True)
+    app.run(host="0.0.0.0", port=10000, debug=True)

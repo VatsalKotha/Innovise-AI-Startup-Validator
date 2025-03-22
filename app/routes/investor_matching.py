@@ -1,3 +1,4 @@
+import os
 import requests
 from flask import Blueprint, request, jsonify
 from app.repositories.user_repo import UserRepository
@@ -8,8 +9,9 @@ MONGO_URI = "mongodb+srv://admin:admin@lit-coders.dcuhn.mongodb.net/?retryWrites
 DB_NAME = "innovise"
 repo = UserRepository(MONGO_URI, DB_NAME)
 
-AI_INVESTOR_API_URL = "http://192.168.0.120:8011/match-investors"
-GOOGLE_MAPS_API_KEY = "AIzaSyCNZiu7OjK14Fold-XOPdzsLkZ_6_GrAuY"  # Replace with your actual API key
+AI_INVESTOR_API_URL = "https://innovise-ai.onrender.com/match-investors"
+GOOGLE_MAPS_API_KEY = os.getenv("GOOGLE_MAPS_API_KEY")
+
 
 gmaps = googlemaps.Client(key=GOOGLE_MAPS_API_KEY)  # Initialize Google Maps client
 

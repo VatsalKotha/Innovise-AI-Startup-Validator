@@ -10,7 +10,7 @@ DB_NAME = "innovise"
 
 repo = IdeaValidationRepository(MONGO_URI, DB_NAME)
 
-AI_MODEL_URL = "http://192.168.0.120:8021/predict"
+AI_MODEL_URL = "https://innovise-ai.onrender.com/predict"
 
 @idea_validation_bp.route("/create_idea_validation", methods=["POST"])
 def create_idea_validation():
