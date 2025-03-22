@@ -8,7 +8,6 @@ import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
-import 'package:widgets_to_png/widgets_to_png.dart' as wd;
 
 final class Reports {
   static const PdfColor primary = PdfColor.fromInt(0xFF9A9285);
