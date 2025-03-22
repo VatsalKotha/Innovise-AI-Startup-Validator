@@ -96,7 +96,7 @@ import { FileText, MessageCircle, AlertCircle, BarChart3, Lightbulb } from "luci
 //     </div>
 //   );
 // }
-
+const API_URL = process.env.NEXT_PUBLIC_AI_URL || "https://innovise-ai.onrender.com" ;
 
 export default function MarketGapAnalysis() {
   const [industry, setIndustry] = useState("");
@@ -110,7 +110,7 @@ export default function MarketGapAnalysis() {
     setError("");
 
     try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/analyze`, {
+      const response = await axios.post(`${API_URL}/analyze`, {
         industry: industry,
       });
       setInsights(response.data.insights);
