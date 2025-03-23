@@ -175,8 +175,6 @@ from typing import List
 from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 from fuzzywuzzy import process  # Import fuzzy matching for better company name detection
-from langdetect import detect  # Detect query language
-from googletrans import Translator  # Translate queries if needed
     
 
 # Initialize logging
@@ -201,8 +199,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-translator = Translator()  # Initialize translator
 
 # Pydantic models - Simplified to just take query
 class StartupQuery(BaseModel):
@@ -263,26 +259,12 @@ class StartupChatbot:
             logger.error(f"Failed to load funding data: {str(e)}")
             return {}
 
-    async def translate_query(self, query: str) -> str:
-        """Detect and translate non-English queries to English."""
-        try:
-            detected_lang = detect(query)
-            if detected_lang != "en":
-                translated_query = translator.translate(query, src=detected_lang, dest="en").text
-                logger.info(f"Translated query from {detected_lang} to English: {translated_query}")
-                return translated_query
-            return query
-        except Exception as e:
-            logger.error(f"Translation error: {str(e)}")
-            return query  # Return original query if translation fails
-
     async def process_query(self, query: str) -> StartupResponse:
         """Process startup-related query with dataset lookup for funding queries, otherwise use AI."""
         try:
             if not query.strip():
                 raise HTTPException(status_code=400, detail="Empty query")
 
-            query = await self.translate_query(query)  # Translate if needed
             query_lower = query.lower()
 
             # Define keywords that indicate a funding-related query
