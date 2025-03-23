@@ -107,7 +107,7 @@ export const TypingBox = ({
     <div className="z-10 w-[620px] flex space-y-6 flex-col bg-gradient-to-tr from-slate-300/30 via-gray-400/30 to-slate-600-400/30 p-4 backdrop-blur-md rounded-xl border-slate-100/30 border">
       <div>
         <Image src={Logo} alt="law4all" className="h-7 w-auto" />
-        <p className="text-blue-100 font-semibold">Starup Validation</p>
+        <p className="text-black font-semibold">Chat</p>
       </div>
 
       {loading ? (
@@ -161,7 +161,7 @@ export const TypingBox = ({
         </div>
       )}
 
-      <div className="mt-2 w-full flex gap-3">
+      {/* <div className="mt-2 w-full flex gap-3">
         {Object.values(AnimationTypes).map((anim) => (
           <div
             key={anim.name}
@@ -172,7 +172,7 @@ export const TypingBox = ({
             <span>{anim.name === "idle" ? "Idle Animation" : "Suite Animation"}</span>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };
