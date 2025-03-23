@@ -51,7 +51,7 @@ export default function Sidebar() {
 
 
   return (
-    <div className="w-72 bg-white text-gray-800 h-screen p-6 flex flex-col justify-between shadow-lg border-r border-gray-100">
+    <div className="w-80 bg-white text-gray-800 h-screen p-6 flex flex-col justify-between shadow-lg border-r border-gray-100">
       {/* Header with logo */}
       <div>
         <div className="flex items-center mb-10">

@@ -10,6 +10,14 @@ import {
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import { Send, CheckCircle, Calendar, FileText } from "lucide-react";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from "@/components/ui/card";
+import { Car } from "lucide-react";
 
 const AI_SERVER_URL = process.env.NEXT_PUBLIC_AI_URL;
 
@@ -171,7 +179,7 @@ const BusinessPathway = () => {
     {
       id: "financial",
       label: "Financial Projections",
-      color: "blue",
+      color: "gray",
       description:
         "Create detailed financial forecasts, including revenue, expenses, and cash flow.",
       benefits: [
@@ -190,7 +198,7 @@ const BusinessPathway = () => {
     {
       id: "marketing",
       label: "Marketing Strategies",
-      color: "green",
+     
       description:
         "Develop a comprehensive marketing plan to reach your target audience.",
       benefits: [
@@ -209,7 +217,7 @@ const BusinessPathway = () => {
     {
       id: "operations",
       label: "Operational Plans",
-      color: "cream",
+  
       description:
         "Outline the day-to-day operations, including workflows, resources, and logistics.",
       benefits: [
@@ -228,7 +236,7 @@ const BusinessPathway = () => {
     {
       id: "industry",
       label: "Industry Insights",
-      color: "purple",
+
       description:
         "Provide industry-specific insights to tailor your business plan.",
       benefits: [
@@ -298,57 +306,68 @@ const BusinessPathway = () => {
   };
 
   return (
-    <div className="mx-auto space-y-8 py-2 pr-2">
-      <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-2xl">
-        <div className="p-4 bg-gradient-to-br from-gray-50 to-gray-100 border-b border-gray-200">
-          <div className="flex items-center mb-2">
-            <span className="text-sm font-medium text-gray-700">
-              Sample Business Scenarios:
-            </span>
-            <span className="ml-2 text-xs text-gray-500">
-              (Click to populate)
-            </span>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {sampleBusinessInputs.map((sample, index) => (
-              <button
-                key={index}
-                onClick={() => handleSampleInput(sample.text)}
-                className="px-3 py-1.5 text-sm bg-white rounded-lg border border-gray-200 hover:border-blue-400 hover:bg-blue-50 transition-all duration-200 flex items-center group"
-              >
-                <span className="text-gray-600 group-hover:text-blue-600">
-                  {sample.title}
-                </span>
-              </button>
-            ))}
-          </div>
-        </div>
+    <div className="p-8 bg-gray-100 min-h-screen">
 
-        <div className="p-6 space-y-6">
-          <div className="relative">
+        {/* Header */}
+        <div className="text-left mb-5">
+        <h1 className="text-4xl font-bold">Business Pathway</h1>
+        <p className="text-gray-600">
+          Generate a strategic business pathway based on your input.
+        </p>
+      </div>
+
+      <Card className="mb-2 bg-white shadow-md border border-gray-200 rounded-xl">
+        <CardHeader>
+          <CardTitle className="text-gray-900">Business Idea Input</CardTitle>
+          <CardDescription>
+            Choose a business scenario or type your own.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-3">
+            {/* Sample Business Inputs */}
+            <div className="flex flex-wrap gap-2">
+              {sampleBusinessInputs.map((sample, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleSampleInput(sample.text)}
+                  className="px-3 py-1.5 text-sm bg-gray-100 rounded-lg border border-gray-300 hover:border-gray-300   hover:bg-white transition-all duration-200"
+                >
+                  {sample.title}
+                </button>
+              ))}
+            </div>
+
+            {/* User Input Textarea */}
             <textarea
               ref={textareaRef}
               value={userInput}
               onChange={handleTextareaInput}
               placeholder="Describe your business idea, including industry, target market, and goals..."
-              className="w-full min-h-[120px] p-5 text-gray-800 placeholder-gray-400 bg-gray-50 border border-gray-200 rounded-xl resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+              className="w-full min-h-[120px] p-4 text-gray-800 placeholder-gray-400 bg-gray-50 border border-gray-300 rounded-xl resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
               style={{ height: "auto" }}
             />
           </div>
+        </CardContent>
+      </Card>
+
+              
+      <div className="bg-white mb-3 rounded-2xl shadow-xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-2xl">
+  
+
+        <div className="p-6 space-y-6">
+       
 
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => handleStrategySelect(tab.id)}
-                className={`p-4 rounded-xl border-2 transition-all duration-300 transform hover:scale-102 ${
-                  activeTab === tab.id
-                    ? `border-${tab.color}-500 bg-gradient-to-br from-${tab.color}-50 to-${tab.color}-100 text-${tab.color}-700 shadow-md`
-                    : "border-gray-200 hover:border-gray-300 text-gray-600 hover:bg-gray-50"
-                }`}
-              >
-                <div className="font-semibold">{tab.label}</div>
-              </button>
+                 <button
+                  key={tab.id}
+                  onClick={() => handleStrategySelect(tab.id)}
+                  className="px-3 py-1.5 text-sm bg-gray-100 rounded-lg border border-gray-300 hover:border-gray-300   hover:bg-white transition-all duration-200"
+                >
+                  {tab.label}
+                </button>
+            
             ))}
           </div>
 
@@ -383,18 +402,17 @@ const BusinessPathway = () => {
             </div>
           )}
         </div>
-
         <div className="p-6 bg-gradient-to-br from-gray-50 to-gray-100 border-t border-gray-200">
           <button
             onClick={handleGenerate}
             disabled={!activeTab || isGenerating}
-            className={`w-full flex items-center justify-center space-x-3 px-8 py-4 rounded-xl text-lg font-medium transition-all duration-300 transform hover:scale-102 ${
+            className={`w-full flex items-center justify-center space-x-3 px-8 py-4 rounded-xl text-lg font-medium ${
               activeTab && !isGenerating
-                ? "bg-[#F3F0E7] from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-black shadow-lg hover:shadow-xl font-semibold text-[#9A9285]"
+                ? "bg-[#F3F0E7] from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-black shadow-lg hover:shadow-xl font-semibold "
                 : "bg-gray-100 text-gray-400 cursor-not-allowed"
             }`}
           >
-            <Send className="h-6 w-6" />
+            {/* <Send className="h-6 w-6" /> */}
             <span>
               {isGenerating
                 ? "Generating Business Pathway..."
@@ -402,11 +420,14 @@ const BusinessPathway = () => {
             </span>
           </button>
         </div>
+     
       </div>
 
       {isGenerating && (
-        <div className="bg-white rounded-2xl shadow-xl p-10 text-center max-w-2xl mx-auto">
-          <div className="animate-spin rounded-full h-16 w-16 border-4 border-blue-600 border-t-transparent mx-auto"></div>
+        <div className="bg-white mb-3 rounded-2xl shadow-xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-2xl p-6 text-center">
+          <div className="flex items-center justify-center">
+        <div className="w-12 h-12 border-4 border-gray-200 border-t-[#9A9285] rounded-full animate-spin"></div>
+      </div>
           <h3 className="mt-6 text-xl font-semibold text-gray-900">
             Creating Your Personalized Business Pathway
           </h3>
@@ -444,7 +465,7 @@ const BusinessPathway = () => {
           </div>
 
           {/* Business Timeline and Document Checklist Components */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <BusinessTimeline
               timeline={[
                 {
@@ -477,7 +498,7 @@ const BusinessPathway = () => {
                 { name: "Operational Workflow", status: "In Progress" },
               ]}
             />
-          </div>
+          </div> */}
         </div>
       )}
     </div>

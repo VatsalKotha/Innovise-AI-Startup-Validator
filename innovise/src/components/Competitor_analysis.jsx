@@ -104,7 +104,7 @@ export default function CompetitorAnalysisDashboard() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
             {Object.entries(startup_info)
               .filter(([key]) => key !== "startup_name") // Exclude "startup_name"
               .map(([key, value]) => (
@@ -117,7 +117,7 @@ export default function CompetitorAnalysisDashboard() {
                     :
                   </span>
                   {/* Value */}
-                  <span className="text-gray-900 px-3 py-2 w-2/3 sm:w-3/4">
+                  <span className="text-gray-900 px-3 py-2 w-2/3 font-medium sm:w-3/4">
                     {value}
                   </span>
                 </div>
