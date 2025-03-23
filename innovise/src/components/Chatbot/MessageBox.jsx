@@ -576,14 +576,14 @@ const MessageBox = ({ message, messageId }) => {
                 repeatType: "reverse",
               }}
             >
-              <Image src={Logo} alt="amigo.ai" className="h-56 w-auto" />
+              <Image src={Logo} alt="innovise" className="h-56 w-auto" />
             </motion.div>
           </div>
         ) : (
-          <ScrollArea className="h-full w-full p-6 rounded-lg">
+          <ScrollArea className="h-full w-full pl-6 pr-6 rounded-lg">
             <div>
               {formatMessage(message)}
-              {message && renderFeedbackUI()}
+    
             </div>
           </ScrollArea>
         )}

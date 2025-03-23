@@ -2,7 +2,7 @@ import { Mic} from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { toast } from "@/hooks/use-toast";
 import Image from "next/image";
-import { Logo } from "../../../public/images";
+import { LogoNoText } from "../../../public/images";
 import { CHATBOT_ROUTE } from "@/constants/utils";
 // import { useChatbot } from "@/context/ChatbotContext";
 
@@ -105,9 +105,9 @@ export const TypingBox = ({
 
   return (
     <div className="z-10 w-[620px] flex space-y-6 flex-col bg-gradient-to-tr from-slate-300/30 via-gray-400/30 to-slate-600-400/30 p-4 backdrop-blur-md rounded-xl border-slate-100/30 border">
-      <div>
-        <Image src={Logo} alt="law4all" className="h-7 w-auto" />
-        <p className="text-black font-semibold">Chat</p>
+      <div className="flex items-center gap-2"> 
+        <Image src={LogoNoText} alt="innovise" className="h-10 w-auto" />
+        <p className="text-black font-semibold">Innovise AI Chatbot</p>
       </div>
 
       {loading ? (
@@ -119,30 +119,10 @@ export const TypingBox = ({
         </div>
       ) : (
         <div className="gap-3 flex items-center">
-          <div className="flex gap-4">
-            {isRecording ? (
-              <button
-                className="h-10 w-10 bg-blue-400 p-2 rounded-full text-white flex items-center justify-center gap-x-0.5"
-                onClick={stopRecording}
-              >
-                <div className="line h-1/2 w-1.5 bg-white rounded-xl animate-bounce" />
-                <div className="line h-5/6 w-1.5 bg-white rounded-xl animate-bounce delay-100" />
-                <div className="line h-3/5 w-1.5 bg-white rounded-xl animate-bounce delay-200" />
-                <div className="line h-2/3 w-1.5 bg-white rounded-xl animate-bounce delay-300" />
-                <div className="line h-1/2 w-1.5 bg-white rounded-xl animate-bounce delay-400" />
-              </button>
-            ) : (
-              <button
-                className="bg-green-400 p-2 rounded-full text-white flex items-center justify-center"
-                onClick={startRecording}
-              >
-                <Mic />
-              </button>
-            )}
-          </div>
+        
           <input
-            className="focus:outline focus:outline-white/80 flex-grow bg-slate-800/60 p-2 px-4 rounded-full text-white placeholder:text-white/50 shadow-inner shadow-slate-900/60"
-            placeholder= "Ask your doubts to our personalized chatbot"
+            className="focus:outline focus:outline-white/80 flex-grow bg-gray-100 p-2 px-4 rounded-full text-black placeholder:text-black"
+            placeholder= "Ask your doubts or type here ..."
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
             onKeyDown={(e) => {
@@ -151,11 +131,32 @@ export const TypingBox = ({
               }
             }}
           />
+            <div className="flex gap-4">
+            {isRecording ? (
+              <button
+                className="h-10 w-10 bg-[#F3F0E7]   p-2 rounded-full text-black flex items-center justify-center gap-x-0.5"
+                onClick={stopRecording}
+              >
+                <div className="line h-1/2 w-1.5 bg-black rounded-xl animate-bounce" />
+                <div className="line h-5/6 w-1.5 bg-black rounded-xl animate-bounce delay-100" />
+                <div className="line h-3/5 w-1.5 bg-black rounded-xl animate-bounce delay-200" />
+                <div className="line h-2/3 w-1.5 bg-black rounded-xl animate-bounce delay-300" />
+                <div className="line h-1/2 w-1.5 bg-black rounded-xl animate-bounce delay-400" />
+              </button>
+            ) : (
+              <button
+                className="bg-[#F3F0E7] p-2 rounded-full text-black flex items-center justify-center"
+                onClick={startRecording}
+              >
+                <Mic />
+              </button>
+            )}
+          </div>
           <button
-            className="bg-slate-100/20 p-2 px-6 rounded-full text-white"
+            className="bg-[#F3F0E7] p-2 px-6 rounded-full text-black"
             onClick={handleAsk}
           >
-            Ask
+            Send
           </button>
           <audio ref={audioRef} />
         </div>
