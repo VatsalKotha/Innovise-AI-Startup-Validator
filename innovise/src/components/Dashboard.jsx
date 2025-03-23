@@ -68,7 +68,13 @@ export default function Dashboard({ children }) {
     fetchData();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="w-12 h-12 border-4 border-gray-200 border-t-[#9A9285] rounded-full animate-spin"></div>
+      </div>
+    );
+  
   if (error) return <div>Error: {error}</div>;
 
   const {
@@ -193,7 +199,7 @@ export default function Dashboard({ children }) {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {past_dates.map((date, index) => (
+                  {past_dates.slice(0, 5).map((date, index) => (
                     <TableRow key={index}>
                       <TableCell>{date}</TableCell>
                       <TableCell>{past_scores[index]}%</TableCell>
@@ -271,7 +277,7 @@ export default function Dashboard({ children }) {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
               {Object.entries(swot).map(([key, value]) => (
                 <Card key={key} className={"bg-gray-50"}>
                   <CardHeader>
