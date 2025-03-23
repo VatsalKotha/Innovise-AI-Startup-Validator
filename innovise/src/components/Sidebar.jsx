@@ -93,7 +93,7 @@ export default function Sidebar() {
         <div className="border-t border-gray-200 pt-4 "></div>
         {data && data.data ? (
         <div className="flex items-center bg-gray-50 p-3 mb-3 rounded-xl">
-          <div className="h-12 w-12 rounded-lg bg-[oklch(0.208_0.042_265.755)] flex items-center justify-center text-white font-medium text-lg">
+          <div className="h-12 w-12 rounded-lg bg-white flex items-center justify-center text-black shadow-2xl font-medium text-lg">
             {data.data.name.split(" ").map((name) => name[0]).join("")}
           </div>
           

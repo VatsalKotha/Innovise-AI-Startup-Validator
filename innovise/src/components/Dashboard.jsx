@@ -11,9 +11,36 @@ import {
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell, RadialBarChart, RadialBar, PolarAngleAxis } from "recharts"; // Import Recharts components
-import { Check, AlertTriangle, Lightbulb, Zap, Heart, Leaf } from "lucide-react"; // Import icons for SWOT
+import {
+  Table,
+  TableHeader,
+  TableRow,
+  TableHead,
+  TableBody,
+  TableCell,
+} from "@/components/ui/table";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  PieChart,
+  Pie,
+  Cell,
+  RadialBarChart,
+  RadialBar,
+  PolarAngleAxis,
+} from "recharts"; // Import Recharts components
+import {
+  Check,
+  AlertTriangle,
+  Lightbulb,
+  Zap,
+  Heart,
+  Leaf,
+} from "lucide-react"; // Import icons for SWOT
 import NewsCarousel from "./NewsCarousel";
 
 const SERVER_URL = process.env.NEXT_PUBLIC_API_URL; // Server URL
@@ -27,7 +54,9 @@ export default function Dashboard({ children }) {
     const fetchData = async () => {
       try {
         const uid = "67dbeefc8b478f6de251a0de"; // Replace with dynamic UID if needed
-        const response = await axios.get(`${SERVER_URL}/get_latest_idea_validation?uid=${uid}`);
+        const response = await axios.get(
+          `${SERVER_URL}/get_latest_idea_validation?uid=${uid}`
+        );
         setData(response.data);
       } catch (err) {
         setError(err.message);
@@ -42,7 +71,15 @@ export default function Dashboard({ children }) {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
-  const { metrics, swot, past_scores, past_dates, success_score, detailed_analysis, final_verdict } = data;
+  const {
+    metrics,
+    swot,
+    past_scores,
+    past_dates,
+    success_score,
+    detailed_analysis,
+    final_verdict,
+  } = data;
 
   // Data for Bar Chart (Metrics)
   const metricsData = Object.entries(metrics).map(([key, value]) => ({
@@ -57,23 +94,28 @@ export default function Dashboard({ children }) {
   }));
 
   // Colors for Pie Chart
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+  const COLORS = ["#F3F0E7", "#D6CBBE", "#C0B8A4", "#9A9285"];
 
   // Data for Gauge Chart (Success Score)
   const gaugeData = [
     {
       name: "Success Score",
       value: success_score,
-      fill: success_score < 33 ? "#FF6384" : success_score < 66 ? "#FFCD56" : "#4BC0C0", // Red, Yellow, Green
+      fill:
+        success_score < 33
+          ? "#FF6384"
+          : success_score < 66
+          ? "#FFCD56"
+          : "#4BC0C0", // Red, Yellow, Green
     },
   ];
 
   // Icons for SWOT Categories
   const swotIcons = {
-    strengths: <Check className="text-green-500" size={20} />,
-    weaknesses: <AlertTriangle className="text-red-500" size={20} />,
-    opportunities: <Lightbulb className="text-yellow-500" size={20} />,
-    threats: <Zap className="text-purple-500" size={20} />,
+    strengths: <Check className="text-black" size={20} />,
+    weaknesses: <AlertTriangle className="text-black" size={20} />,
+    opportunities: <Lightbulb className="text-black" size={20} />,
+    threats: <Zap className="text-black" size={20} />,
   };
 
   return (
@@ -81,56 +123,106 @@ export default function Dashboard({ children }) {
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
         <div className="text-left">
-          <h1 className="text-5xl font-bold">Idea Validation Dashboard</h1>
-          <p className="text-gray-600">Detailed analysis and metrics for your startup idea</p>
+          <h1 className="text-4xl font-bold">Idea Validation Dashboard</h1>
+          <p className="text-gray-600">
+            Detailed analysis and metrics for your startup idea
+          </p>
         </div>
 
-        {/* Success Score - Gauge Chart */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Success Score</CardTitle>
-            <CardDescription>Overall score based on feasibility, market demand, scalability, and sustainability.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="flex justify-center">
-              <RadialBarChart
-                width={300}
-                height={300}
-                innerRadius="70%"
-                outerRadius="100%"
-                data={gaugeData}
-                startAngle={180}
-                endAngle={0}
-              >
-                <PolarAngleAxis type="number" domain={[0, 100]} angleAxisId={0} tick={false} />
-                <RadialBar
-                  background
-                  dataKey="value"
-                  cornerRadius={10}
-                  fill="#8884d8" />
-                <text
-                  x="50%"
-                  y="50%"
-                  textAnchor="middle"
-                  dominantBaseline="middle"
-                  className="text-2xl font-bold"
+        <div className="grid grid-cols-2 gap-3">
+          {/* Success Score - Gauge Chart */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Success Score</CardTitle>
+              <CardDescription>
+                Overall score based on feasibility, market demand, scalability,
+                and sustainability.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex justify-center mb-[-5rem]">
+                <RadialBarChart
+                  width={300}
+                  height={300}
+                  innerRadius="70%"
+                  outerRadius="100%"
+                  data={gaugeData}
+                  startAngle={180}
+                  endAngle={0}
                 >
-                  {success_score}%
-                </text>
-              </RadialBarChart>
-            </div>
+                  <PolarAngleAxis
+                    type="number"
+                    domain={[0, 100]}
+                    angleAxisId={0}
+                    tick={false}
+                  />
+                  <RadialBar
+                    background
+                    dataKey="value"
+                    cornerRadius={10}
+                    fill="#8884d8"
+                  />
+                  <text
+                    x="50%"
+                    y="50%"
+                    textAnchor="middle"
+                    dominantBaseline="middle"
+                    className="text-2xl font-bold"
+                  >
+                    {success_score}%
+                  </text>
+                </RadialBarChart>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Past Scores */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Past Scores</CardTitle>
+              <CardDescription>
+                Historical success scores over time
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Date</TableHead>
+                    <TableHead>Score</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {past_dates.map((date, index) => (
+                    <TableRow key={index}>
+                      <TableCell>{date}</TableCell>
+                      <TableCell>{past_scores[index]}%</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Final Verdict */}
+        <Card>
+          <CardContent>
+            <p className="text-gray-700">{final_verdict}</p>
           </CardContent>
         </Card>
 
         {/* Metrics Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
           {Object.entries(metrics).map(([key, value]) => (
-            <Card key={key}>
-              <CardHeader>
-                <CardTitle className="capitalize">{key.replace("_", " ")}</CardTitle>
+            <Card key={key} className="flex flex-col h-full">
+              <CardHeader className="flex flex-col gap-1">
+                <CardTitle className="capitalize">
+                  {key.replace("_", " ")}
+                </CardTitle>
                 <CardDescription>{value.explanation}</CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="mt-auto">
                 <Progress value={value.score * 10} className="h-3" />
                 <span className="text-lg font-bold">{value.score}/10</span>
               </CardContent>
@@ -142,47 +234,30 @@ export default function Dashboard({ children }) {
         <Card>
           <CardHeader>
             <CardTitle>Metrics Scores</CardTitle>
-            <CardDescription>Visual representation of feasibility, market demand, scalability, and sustainability scores.</CardDescription>
+            <CardDescription>
+              Visual representation of feasibility, market demand, scalability,
+              and sustainability scores.
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex justify-center">
               <BarChart width={800} height={400} data={metricsData}>
                 <XAxis dataKey="name" />
                 <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="score" fill="#9A9285" />
-              </BarChart>
-            </div>
-          </CardContent>
-        </Card>
+                <Tooltip
+                  itemStyle={{ color: "#000000" }}
+                  labelStyle={{ color: "#000000" }}
+                />
 
-        {/* Pie Chart - SWOT Distribution */}
-        <Card>
-          <CardHeader>
-            <CardTitle>SWOT Distribution</CardTitle>
-            <CardDescription>Breakdown of strengths, weaknesses, opportunities, and threats.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="flex justify-center">
-              <PieChart width={600} height={400}>
-                <Pie
-                  data={swotData}
-                  cx="50%"
-                  cy="50%"
-                  labelLine={false}
-                  outerRadius={120}
-                  fill="#8884d8"
-                  dataKey="value"
-                  label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-                >
-                  {swotData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                <Bar dataKey="score">
+                  {metricsData.map((entry, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={COLORS[index % COLORS.length]}
+                    />
                   ))}
-                </Pie>
-                <Tooltip />
-                <Legend />
-              </PieChart>
+                </Bar>
+              </BarChart>
             </div>
           </CardContent>
         </Card>
@@ -191,12 +266,14 @@ export default function Dashboard({ children }) {
         <Card>
           <CardHeader>
             <CardTitle>SWOT Analysis</CardTitle>
-            <CardDescription>Strengths, Weaknesses, Opportunities, and Threats</CardDescription>
+            <CardDescription>
+              Strengths, Weaknesses, Opportunities, and Threats
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {Object.entries(swot).map(([key, value]) => (
-                <Card key={key}>
+                <Card key={key} className={"bg-gray-50"}>
                   <CardHeader>
                     <div className="flex items-center space-x-2">
                       {swotIcons[key]}
@@ -206,8 +283,11 @@ export default function Dashboard({ children }) {
                   <CardContent>
                     <ul className="space-y-2">
                       {value.map((item, index) => (
-                        <li key={index} className="flex items-center space-x-2">
-                          <Badge variant="outline" className="capitalize">
+                        <li key={index} className="flex items-start space-x-2">
+                          <Badge
+                            variant="outline"
+                            className="capitalize bg-white mt-0.5"
+                          >
                             {key}
                           </Badge>
                           <span>{item}</span>
@@ -221,29 +301,51 @@ export default function Dashboard({ children }) {
           </CardContent>
         </Card>
 
-        {/* Past Scores */}
+        {/* Pie Chart - SWOT Distribution */}
         <Card>
           <CardHeader>
-            <CardTitle>Past Scores</CardTitle>
-            <CardDescription>Historical success scores over time</CardDescription>
+            <CardTitle>SWOT Distribution</CardTitle>
+            <CardDescription>
+              Breakdown of strengths, weaknesses, opportunities, and threats.
+            </CardDescription>
           </CardHeader>
           <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Date</TableHead>
-                  <TableHead>Score</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {past_dates.map((date, index) => (
-                  <TableRow key={index}>
-                    <TableCell>{date}</TableCell>
-                    <TableCell>{past_scores[index]}%</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+            <div className="flex justify-center">
+              <PieChart width={600} height={400}>
+                <Pie
+                  data={swotData}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={true}
+                  outerRadius={120}
+                  dataKey="value"
+                  label={({ name, percent, x, y, cx }) => (
+                    <text
+                      x={x}
+                      y={y}
+                      fill="#000"
+                      textAnchor={x >= cx ? "start" : "end"}
+                      dominantBaseline="central"
+                    >
+                      {`${name}: ${(percent * 100).toFixed(0)}%`}
+                    </text>
+                  )}
+                >
+                  {swotData.map((entry, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={COLORS[index % COLORS.length]}
+                    />
+                  ))}
+                </Pie>
+                <Tooltip />
+                <Legend
+                  formatter={(value) => (
+                    <span style={{ color: "#000000" }}>{value}</span>
+                  )}
+                />
+              </PieChart>
+            </div>
           </CardContent>
         </Card>
 
@@ -251,20 +353,8 @@ export default function Dashboard({ children }) {
         <Card>
           <CardHeader>
             <CardTitle>Detailed Analysis</CardTitle>
+            <CardDescription>{detailed_analysis}</CardDescription>
           </CardHeader>
-          <CardContent>
-            <p className="text-gray-700">{detailed_analysis}</p>
-          </CardContent>
-        </Card>
-
-        {/* Final Verdict */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Final Verdict</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-gray-700">{final_verdict}</p>
-          </CardContent>
         </Card>
       </div>
     </div>
