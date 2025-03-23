@@ -102,7 +102,7 @@ const Experience = () => {
         <spotLight position={[10, 10, 10]} intensity={0.5} />
         <Suspense fallback={<Loader progress={progress} />}>
           <Gltf
-            src="/models/office.glb"
+            src="/models/meet-custom.glb"
             position={[-0.5, -0.5, -1]} // Centered, slightly above the ground
             rotation-y={degToRad(140)} // Rotated for a better view
             scale={0.7}
