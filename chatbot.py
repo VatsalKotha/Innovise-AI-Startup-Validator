@@ -8,8 +8,6 @@ from typing import List
 from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 from fuzzywuzzy import process
-from langdetect import detect
-from googletrans import Translator
 
 load_dotenv()
 router = APIRouter()
@@ -27,7 +25,6 @@ class StartupChatbot:
             raise ValueError("GROQ_API_TOKEN environment variable not set")
         self.model = ChatGroq(api_key=self.groq_api_key, model_name="llama3-8b-8192", temperature=0.2)
         self.funding_data = self.load_funding_data("crunchbase_last.csv")
-        self.translator = Translator()
 
     def load_funding_data(self, file_path: str):
         try:
@@ -36,16 +33,9 @@ class StartupChatbot:
         except Exception as e:
             return {}
 
-    async def translate_query(self, query: str) -> str:
-        detected_lang = detect(query)
-        if detected_lang != "en":
-            return self.translator.translate(query, src=detected_lang, dest="en").text
-        return query
-
     async def process_query(self, query: str) -> StartupResponse:
         if not query.strip():
             raise HTTPException(status_code=400, detail="Empty query")
-        query = await self.translate_query(query)
         response = self.model.invoke(query).content
         return StartupResponse(advice=response)
 
