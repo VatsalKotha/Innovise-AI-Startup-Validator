@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Image from "next/image";
-import Cookies from "js-cookie";
+import JsCookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { Splash } from "../../public/images";
 import { Button } from "@/components/ui/button";
@@ -21,7 +21,7 @@ export default function LoginForm({ className }) {
   const router = useRouter();
 
   useEffect(() => {
-    if (Cookies.get("uid")) {
+    if (JsCookies.get("uid")) {
       router.push("/dashboard");
     }
   }, []);
@@ -47,7 +47,7 @@ export default function LoginForm({ className }) {
         const { uid } = response.data;
 
         if (uid) {
-          Cookies.set("uid", uid, { expires: 7 }); // Store UID in cookies for 7 days
+          JsCookies.set("uid", uid, { expires: 7 }); // Store UID in JsCookies for 7 days
           router.push("/dashboard");
           window.location.reload();
         } else {

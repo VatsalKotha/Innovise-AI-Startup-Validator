@@ -4,7 +4,7 @@ import { Toaster } from "sonner";
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import Cookies from "js-cookie";
+import JsCookies from "js-cookie";
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -75,7 +75,7 @@ import {
 import { Progress } from '@/components/ui/progress';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import axios from 'axios'; // Import axios
-import Cookies from "js-cookie";
+import JsCookies from "js-cookie";
 
 const SERVER_URL = process.env.NEXT_PUBLIC_API_URL; // Server URL
 
@@ -130,7 +130,7 @@ export default function StartupForm() {
   };
 
   const submitForm = async () => {
-    const storedUid = Cookies.get("uid"); // Fetch UID directly inside submitForm
+    const storedUid = JsCookies.get("uid"); // Fetch UID directly inside submitForm
 
     if (!storedUid) {
       alert("User ID not found. Please log in again.");

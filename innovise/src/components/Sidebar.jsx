@@ -6,7 +6,7 @@ import Image from "next/image";
 import { LogoNoText } from "../../public/images";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Cookies from "js-cookie"; 
+import JsCookies from "js-cookie"; 
 
 
 export default function Sidebar() {
@@ -33,7 +33,7 @@ export default function Sidebar() {
   const handleNavigation = (item) => {
 
     if (item.label === "Logout") {
-     Cookies.remove("uid");
+     JsCookies.remove("uid");
      window.location.reload();
     }
     setActiveItem(item.label);
@@ -43,7 +43,7 @@ export default function Sidebar() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const uid = Cookies.get("uid"); // Replace with dynamic UID if needed
+        const uid = JsCookies.get("uid"); // Replace with dynamic UID if needed
         const response = await axios.get(`${SERVER_URL}/get_user/${uid}`);
         setData(response.data);
       } catch (err) {
