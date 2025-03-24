@@ -43,7 +43,7 @@ export default function Sidebar() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const uid = "67dbeefc8b478f6de251a0de"; // Replace with dynamic UID if needed
+        const uid = Cookies.get("uid"); // Replace with dynamic UID if needed
         const response = await axios.get(`${SERVER_URL}/get_user/${uid}`);
         setData(response.data);
       } catch (err) {

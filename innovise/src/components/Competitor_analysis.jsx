@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { Building, Users, Lightbulb } from "lucide-react";
+import Cookies from "js-cookie";
 import {
   BarChart,
   Bar,
@@ -38,7 +39,7 @@ export default function CompetitorAnalysisDashboard() {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              uid: "67dbeefc8b478f6de251a0de",
+              uid: Cookies.get("uid"),
             }),
           }
         );
