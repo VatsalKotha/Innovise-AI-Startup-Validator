@@ -42,7 +42,7 @@ import {
   Leaf,
 } from "lucide-react"; // Import icons for SWOT
 import NewsCarousel from "./NewsCarousel";
-import JsCookies from "js-cookie";
+import Cookies from "js-cookie";
 
 const SERVER_URL = process.env.NEXT_PUBLIC_API_URL; // Server URL
 
@@ -54,7 +54,7 @@ export default function Dashboard({ children }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const uid = JsCookies.get("uid"); // Replace with dynamic UID if needed
+        const uid = Cookies.get("uid"); // Replace with dynamic UID if needed
         const response = await axios.get(
           `${SERVER_URL}/get_latest_idea_validation?uid=${uid}`
         );

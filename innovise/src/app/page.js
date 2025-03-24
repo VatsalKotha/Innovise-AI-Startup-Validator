@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Image from "next/image";
-import JsCookies from "js-cookie";
+import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { Splash } from "../../public/images";
 import { Button } from "@/components/ui/button";
@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 
 const SERVER_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export default function LoginForm({ className }) {
+export default function Page({ className }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +21,7 @@ export default function LoginForm({ className }) {
   const router = useRouter();
 
   useEffect(() => {
-    if (JsCookies.get("uid")) {
+    if (Cookies.get("uid")) {
       router.push("/dashboard");
     }
   }, []);
@@ -47,7 +47,7 @@ export default function LoginForm({ className }) {
         const { uid } = response.data;
 
         if (uid) {
-          JsCookies.set("uid", uid, { expires: 7 }); // Store UID in JsCookies for 7 days
+          Cookies.set("uid", uid, { expires: 7 }); // Store UID in Cookies for 7 days
           router.push("/dashboard");
           window.location.reload();
         } else {

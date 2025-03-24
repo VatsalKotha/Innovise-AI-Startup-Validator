@@ -5,14 +5,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import axios from "axios";
-import JsCookies from "js-cookie";
+import Cookies from "js-cookie";
 
 export default function ProfilePage() {
   const [formData, setFormData] = useState(new FormData());
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
 
-  const uid = JsCookies.get("uid") // Replace with dynamic UID fetching
+  const uid = Cookies.get("uid") // Replace with dynamic UID fetching
   const apiURL = `${process.env.NEXT_PUBLIC_API_URL}/get_user/${uid}`;
 
   useEffect(() => {

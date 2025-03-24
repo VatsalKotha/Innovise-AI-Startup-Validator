@@ -74,7 +74,7 @@ import {
 import { Progress } from '@/components/ui/progress';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import axios from 'axios'; // Import axios
-import JsCookies from "js-cookie";
+import Cookies from "js-cookie";
 
 const SERVER_URL = process.env.NEXT_PUBLIC_API_URL; // Server URL
 
@@ -129,7 +129,7 @@ export default function StartupForm() {
   };
 
   const submitForm = async () => {
-    const storedUid = JsCookies.get("uid"); // Fetch UID directly inside submitForm
+    const storedUid = Cookies.get("uid"); // Fetch UID directly inside submitForm
 
     if (!storedUid) {
       alert("User ID not found. Please log in again.");

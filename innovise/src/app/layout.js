@@ -3,7 +3,7 @@
 import { Inter } from "next/font/google"; // Replace with a valid font
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
-import JsCookies from "js-cookie";
+import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 
 const inter = Inter({
@@ -16,7 +16,7 @@ const inter = Inter({
 export default function RootLayout({ children }) {
   const [hasUid, setHasUid] = useState(false);
   useEffect(() => {
-    const uid = JsCookies.get("uid"); 
+    const uid = Cookies.get("uid"); 
     setHasUid(!!uid); 
   }, []);
 

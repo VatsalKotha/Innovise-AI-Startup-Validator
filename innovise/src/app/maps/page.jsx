@@ -1,7 +1,7 @@
 
 
 "use client";
-import JsCookies from "js-cookie";
+import Cookies from "js-cookie";
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import { Filter, Loader2, MapPin, Search, X } from "lucide-react";
@@ -40,7 +40,7 @@ const Map = () => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              uid: JsCookies.get("uid"),
+              uid: Cookies.get("uid"),
             }),
           }
         );
