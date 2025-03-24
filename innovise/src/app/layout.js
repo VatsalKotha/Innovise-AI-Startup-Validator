@@ -5,6 +5,7 @@ import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
+import Head from "next/head";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -22,6 +23,11 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
+      <Head>
+        <title>Innovise</title>
+        <meta name="description" content="Empowering Startups, Validating Success" />
+        <link rel="icon" href="/images/logo.png" />
+      </Head>
       <body className="flex min-h-screen">
         {/* Sidebar */}
         {hasUid && (
