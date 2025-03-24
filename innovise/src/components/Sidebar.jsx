@@ -6,6 +6,7 @@ import Image from "next/image";
 import { LogoNoText } from "../../public/images";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Cookies from "js-cookie"; 
 
 
 export default function Sidebar() {
@@ -26,10 +27,15 @@ export default function Sidebar() {
     { label: "Investor Matching", icon: <Wallet size={22} />, path: "/maps" },
     // { label: "Profile", icon: <User2 size={22} />, path: "/profile" },
     { label: "Chatbot", icon: <MessageCircle size={22} />, path: "/chatbot" },
-    { label: "Logout", icon: <LogOut size={22} />, path: "/login" },
+    { label: "Logout", icon: <LogOut size={22} />, path: "/"  },
   ];
 
   const handleNavigation = (item) => {
+
+    if (item.label === "Logout") {
+     Cookies.remove("uid");
+     window.location.reload();
+    }
     setActiveItem(item.label);
     router.push(item.path);
   };
