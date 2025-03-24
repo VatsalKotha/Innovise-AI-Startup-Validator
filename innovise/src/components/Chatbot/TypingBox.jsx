@@ -111,12 +111,9 @@ export const TypingBox = ({
       </div>
 
       {loading ? (
-        <div className="flex justify-center items-center">
-          <span className="relative flex h-6 w-6">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-100 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-6 w-6 bg-blue-100"></span>
-          </span>
-        </div>
+         <div className="flex items-center justify-center">
+         <div className="w-12 h-12 border-4 border-gray-200 border-t-[#9A9285] rounded-full animate-spin"></div>
+       </div>
       ) : (
         <div className="gap-3 flex items-center">
         
