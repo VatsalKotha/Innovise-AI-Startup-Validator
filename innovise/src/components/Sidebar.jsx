@@ -1,9 +1,8 @@
 "use client"; // Required for client-side interactivity
 import { useRouter } from "next/navigation";
-import { Home, User, MessageCircle, Settings, LogOut, Globe, User2 } from "lucide-react";
+import { Home, Route, MessageCircle, Store, LogOut, FileChartPie, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { IconGraphFilled, IconReportAnalytics } from "@tabler/icons-react";
 import { LogoNoText } from "../../public/images";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -21,12 +20,12 @@ export default function Sidebar() {
   // Sidebar navigation items with enhanced icons
   const sidebarItems = [
     { label: "Dashboard", icon: <Home size={22} />, path: "/dashboard" },
-    { label: "Competitor Analysis", icon: <IconReportAnalytics size={22} />, path: "/competitor-analysis" },
-    { label: "Pathway", icon: <IconGraphFilled size={22} />, path: "/pathway" },
-    { label: "Chatbot", icon: <MessageCircle size={22} />, path: "/chatbot" },
-    { label: "Market Analysis", icon: <Settings size={22} />, path: "/market-gap-analysis" },
-    { label: "Maps", icon: <Globe size={22} />, path: "/maps" },
+    { label: "Competitor Analysis", icon: <FileChartPie size={22} />, path: "/competitor-analysis" },
+    { label: "Business  Pathway", icon: <Route size={22} />, path: "/pathway" },
+    { label: "Market Gap Analysis", icon: <Store size={22} />, path: "/market-gap-analysis" },
+    { label: "Investor Matching", icon: <Wallet size={22} />, path: "/maps" },
     // { label: "Profile", icon: <User2 size={22} />, path: "/profile" },
+    { label: "Chatbot", icon: <MessageCircle size={22} />, path: "/chatbot" },
     { label: "Logout", icon: <LogOut size={22} />, path: "/login" },
   ];
 
