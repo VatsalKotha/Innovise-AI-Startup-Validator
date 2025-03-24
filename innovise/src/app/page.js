@@ -138,7 +138,7 @@ export default function LoginForm({ className }) {
       <div className="text-muted-foreground text-center text-xs">
         © 2024-2025 Innovise, IPD CS-G3, B.Tech, Dwarkadas J. Sanghvi College of
         Engineering, Mumbai.<br></br>
-        Jeel Doshi, Vatsal Kotha, Meet Chavan and Mit Shah.
+        Jeel Doshi, Vatsal Kotha, Meet Chavan.
       </div>
     </div>
   );
