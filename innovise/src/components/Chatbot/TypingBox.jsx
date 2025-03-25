@@ -1,9 +1,11 @@
-import { Mic} from "lucide-react";
+import { Mic } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { toast } from "@/hooks/use-toast";
 import Image from "next/image";
 import { LogoNoText } from "../../../public/images";
 import { CHATBOT_ROUTE } from "@/constants/utils";
+import Cookies from "js-cookie";
+import axios from "axios";
 // import { useChatbot } from "@/context/ChatbotContext";
 
 export const TypingBox = ({
@@ -17,6 +19,7 @@ export const TypingBox = ({
   const [isRecording, setIsRecording] = useState(false);
   const recognition = useRef(null);
   const audioRef = useRef(null);
+  const SERVER_URL = process.env.NEXT_PUBLIC_API_URL;
   // const { dict } = useLanguage();
 
   const AnimationTypes = {
@@ -70,9 +73,22 @@ export const TypingBox = ({
     try {
       setLoading(true);
       seblueimationNumber(7);
+      var data;
+
+      try {
+        const uid = Cookies.get("uid"); // Replace with dynamic UID if needed
+        const response1 = await axios.get(`${SERVER_URL}/get_user/${uid}`);
+
+        data = response1.data;
+        console.log("data", data);
+      } catch (err) {}
 
       let formData = {};
-      formData["query"] = question.trim();
+      formData["query"] =
+        "(The actual message queried by the user follows after the given context. Use this context implicitly without notifying user such as thank you for providing data. Use this context if user asks any specific personalised response.:)" +
+        JSON.stringify(data) +
+        "query: " +
+        question.trim();
 
       const response = await fetch(CHATBOT_ROUTE, {
         method: "POST",
@@ -105,21 +121,20 @@ export const TypingBox = ({
 
   return (
     <div className="z-10 w-[620px] flex space-y-6 flex-col bg-gradient-to-tr from-slate-300/30 via-gray-400/30 to-slate-600-400/30 p-4 backdrop-blur-md rounded-xl border-slate-100/30 border">
-      <div className="flex items-center gap-2"> 
+      <div className="flex items-center gap-2">
         <Image src={LogoNoText} alt="innovise" className="h-10 w-auto" />
         <p className="text-black font-semibold">Innovise AI Chatbot</p>
       </div>
 
       {loading ? (
-         <div className="flex items-center justify-center">
-         <div className="w-12 h-12 border-4 border-gray-200 border-t-[#9A9285] rounded-full animate-spin"></div>
-       </div>
+        <div className="flex items-center justify-center">
+          <div className="w-12 h-12 border-4 border-gray-200 border-t-[#9A9285] rounded-full animate-spin"></div>
+        </div>
       ) : (
         <div className="gap-3 flex items-center">
-        
           <input
             className="focus:outline focus:outline-white/80 flex-grow bg-gray-100 p-2 px-4 rounded-full text-black placeholder:text-black"
-            placeholder= "Ask your doubts or type here ..."
+            placeholder="Ask your doubts or type here ..."
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
             onKeyDown={(e) => {
@@ -128,7 +143,7 @@ export const TypingBox = ({
               }
             }}
           />
-            <div className="flex gap-4">
+          <div className="flex gap-4">
             {isRecording ? (
               <button
                 className="h-10 w-10 bg-[#F3F0E7]   p-2 rounded-full text-black flex items-center justify-center gap-x-0.5"
