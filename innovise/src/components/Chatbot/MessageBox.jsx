@@ -433,18 +433,18 @@ const MessageBox = ({ message, messageId }) => {
                   return (
                     <motion.h3
                       key={idx}
-                      className="font-semibold text-xl text-gray-800 mt-6 mb-2"
+                      className="font-medium text-xl text-gray-800 mt-6 mb-2"
                     >
                       {title}
                     </motion.h3>
                   );
                 } else if (paragraph.match(/^\d+\./)) {
                   // Handle numbered lists
-                  return (
+                  return (  
                     <ol key={idx} className="list-decimal pl-5 space-y-2">
                       {paragraph.split("\n").map((item, i) => (
                         <li key={i} className="text-gray-700">
-                          {item.replace(/^\d+\.\s*/, "").trim()}
+                          {item.replace(/^\d+\.\s\**/, "").trim()}
                         </li>
                       ))}
                     </ol>
