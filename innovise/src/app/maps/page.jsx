@@ -206,7 +206,7 @@ const Map = () => {
   };
 
   return (
-    <div className="relative h-screen w-full overflow-hidden">
+    <div className="relative h-full w-full overflow-hidden rounded-2xl">
       {/* User Location Info */}
       {/* <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-lg rounded-lg p-4 shadow-lg">
         <div className="flex items-center gap-2 mb-3">
@@ -225,10 +225,10 @@ const Map = () => {
       </div> */}
 
       {/* Investor Search Filter */}
-      <div className="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur-lg rounded-lg p-4 shadow-lg max-w-sm w-full">
+      <div className="absolute top-4 right-12 z-10 bg-white/90 backdrop-blur-lg rounded-lg p-4 shadow-lg max-w-sm w-full">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <Search className="w-5 h-5 text-blue-500" />
+            <Search className="w-5 h-5 text-black" />
             <h3 className="text-lg font-semibold text-gray-800">
               Find Investors
             </h3>

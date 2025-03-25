@@ -4,7 +4,7 @@ import { ChatbotProvider } from "@/context/ChatbotContext";
 
 const ChatBot = () => {
   return (
-    <div className="h-full w-full border rounded-lg border-gray-300">
+    <div className="relative h-full w-full overflow-hidden rounded-2xl">
       <ChatbotProvider>
         <Experience />
       </ChatbotProvider>

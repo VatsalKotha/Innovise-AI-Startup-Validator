@@ -59,7 +59,7 @@ const Experience = () => {
   const { currentBot } = useChatbot();
 
   return (
-    <div className="rounded-xl bg-center h-full w-full relative overflow-hidden">
+    <div className="">
       <div
         className={`z-10 md:justify-center absolute bottom-4 left-4 right-4 flex gap-3 flex-wrap justify-stretch ${
           Math.round(progress) !== 100 ? "hidden" : ""
@@ -86,7 +86,7 @@ const Experience = () => {
         }`}
       >
         {loading && (
-          <Image src={Thinking} alt="thinking" className="h-20 w-auto" />
+          <Image src={Thinking} alt="thinking" className="h-10 w-auto" />
         )}
       </div>
       <Canvas
@@ -95,7 +95,7 @@ const Experience = () => {
           position: [0, 0, 3],
           fov: 50,
         }}
-        style={{ width: "80vw", height: "80vh" }}
+        style={{ width: "80vw", height: "95vh" }}
       >
         <Environment preset="sunset" />
         <ambientLight intensity={0.5} />

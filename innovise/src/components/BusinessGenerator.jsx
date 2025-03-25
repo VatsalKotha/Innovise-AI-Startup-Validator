@@ -360,13 +360,15 @@ const BusinessPathway = () => {
 
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             {tabs.map((tab) => (
-                 <button
-                  key={tab.id}
-                  onClick={() => handleStrategySelect(tab.id)}
-                  className="px-3 py-1.5 text-sm bg-gray-100 rounded-lg border border-gray-300 hover:border-gray-300   hover:bg-white transition-all duration-200"
-                >
-                  {tab.label}
-                </button>
+               <button
+               key={tab.id}
+               onClick={() => handleStrategySelect(tab.id)}
+               className={`px-3 py-1.5 text-sm rounded-lg border transition-all duration-200 
+                 ${activeTab === tab.id ? 'bg-white border-gray-400' : 'bg-gray-100 border-gray-300 hover:border-gray-300 hover:bg-white'}`}
+             >
+               {tab.label}
+             </button>
+             
             
             ))}
           </div>
