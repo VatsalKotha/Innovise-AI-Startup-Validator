@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:innovise/formpage/constant_data.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../common/colors.dart';
 
@@ -19,6 +20,39 @@ class _ChatState extends State<Chat> {
 
   static String apiUrl = "${ConstantData.chat_url}";
 
+  var data;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  Future fetchData() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? uid = prefs.getString('uid');
+
+      if (uid == null) {
+        throw Exception('User not logged in');
+      }
+
+      var response = await Dio().get(
+        '${ConstantData.server_url}/get_user/$uid',
+      );
+
+      if (response.statusCode == 200) {
+        print(response.data['data']);
+        data = response.data['data'];
+        setState(() {});
+      } else {
+        throw Exception('Failed to fetch user data');
+      }
+    } catch (e) {
+      return null;
+    }
+  }
+
   Future<void> sendMessage() async {
     if (chatMessage.text.isEmpty) return;
 
@@ -31,6 +65,13 @@ class _ChatState extends State<Chat> {
     });
 
     try {
+      userMessage =
+          "(The actual message queried by the user follows after the given context. Use this context implicitly without notifying user such as thank you for providing data. Use this context if user asks any specific personalised response.:)" +
+              data.toString() +
+              ", query: " +
+              userMessage;
+
+      print(userMessage);
       var response = await dio.post(
         apiUrl,
         data: {"query": userMessage},

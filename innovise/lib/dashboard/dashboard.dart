@@ -4,6 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:innovise/chat/chat.dart';
 import 'package:innovise/common/home.dart';
 import 'package:innovise/competitor_analysis/competitor_analysis.dart';
 import 'package:innovise/dashboard/bar_chart.dart';
@@ -545,7 +546,7 @@ class _DashboardState extends State<Dashboard> {
                         Expanded(
                           child: InkWell(
                             onTap: () {
-                              Get.to(() => const MyProfile());
+                              Get.to(() => const Chat());
                             },
                             child: Container(
                               height: 100,

@@ -103,7 +103,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         SizedBox(
                           height: 50,
                         ),
-                        Text('''FutureFounders - HackToCrack2.0''',
+                        Text('''2024-25. DJSCE BTECH/CS - IPD/G3''',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 12,

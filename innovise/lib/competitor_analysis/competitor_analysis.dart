@@ -134,7 +134,7 @@ class _CompetitorAnalysisState extends State<CompetitorAnalysis> {
                 ],
               ),
               InfoCard(
-                  "Analyze competitors' with similarity scores. Identify overlaps and gaps to refine your strategy and stand out in the market."),
+                  "Analyze competitors with similarity scores. Identify overlaps and gaps to refine your strategy and stand out in the market."),
               data == null
                   ? Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -158,6 +158,7 @@ class _CompetitorAnalysisState extends State<CompetitorAnalysis> {
                   : Column(
                       children: [
                         ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
                           scrollDirection: Axis.vertical,
                           itemCount: data['similar_startups'].length,
                           shrinkWrap: true,
