@@ -7,6 +7,7 @@ import { LogoNoText } from "../../public/images";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie"; 
+import { set } from "date-fns";
 
 
 export default function Sidebar() {
@@ -14,6 +15,7 @@ export default function Sidebar() {
   const router = useRouter();
   const [activeItem, setActiveItem] = useState("Dashboard");
   const [data, setData] = useState(null);
+  const [data_filled, setIsDataFilled] = useState(false);
   
   // Primary color for accents: oklch(0.208 0.042 265.755) - a deep blue-violet color
   const primaryColor = "oklch(0.208 0.042 265.755)";
@@ -45,7 +47,16 @@ export default function Sidebar() {
       try {
         const uid = Cookies.get("uid"); // Replace with dynamic UID if needed
         const response = await axios.get(`${SERVER_URL}/get_user/${uid}`);
-        setData(response.data);
+
+     
+
+        if(response.data['data']['is_data_filled']==false){
+            router.push("/startup-form");
+        }else{
+            setIsDataFilled(true);
+             setData(response.data);
+        }
+       
       } catch (err) {
       } finally {
       }
@@ -54,7 +65,7 @@ export default function Sidebar() {
     fetchData();
   }, []);
 
-
+  if(data_filled)
   return (
     <div className="w-80 bg-white text-gray-800 h-screen p-6 flex flex-col justify-between shadow-lg border-r border-gray-100">
       {/* Header with logo */}
@@ -110,9 +121,6 @@ export default function Sidebar() {
         ) : null}
          <div className="text-xs text-gray-500">2024-25, DJSCE IPD CS/G3</div>
       </div>
-
-
-
 
     </div>
   );

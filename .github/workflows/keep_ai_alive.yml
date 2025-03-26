@@ -2,7 +2,8 @@ name: Keep Render AI API Awake
 
 on:
   schedule:
-    - cron: "*/5 * * * *" # Runs every 5 minutes
+    - cron: "4,9,14,19,24,29,34,39,44,49,54,59 * * * *" # Runs every 5 minutes
+  workflow_dispatch: # Allows manual trigger from GitHub Actions UI
 
 jobs:
   keep_awake:

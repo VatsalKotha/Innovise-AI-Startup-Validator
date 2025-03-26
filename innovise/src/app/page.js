@@ -16,8 +16,10 @@ const SERVER_URL = process.env.NEXT_PUBLIC_API_URL;
 export default function Page({ className }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [isLogin, setIsLogin] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
@@ -38,6 +40,33 @@ export default function Page({ className }) {
     }
 
     try {
+
+      if (!isLogin) {
+
+        const response = await axios.post(`${SERVER_URL}/create_user`, {
+          email,
+          password,
+          "name":username,
+        });
+
+        if (response.status === 201) {
+          const { uid } = response.data;
+          console.log(response.data);
+
+          if (uid) {
+            Cookies.set("uid", uid, { expires: 7 }); // Store UID in Cookies for 7 days
+            router.push("/startup-form");
+            window.location.reload();
+          } else {
+            setError("User ID not found. Please try again.");
+          }
+        } else {
+          setError(response.data.message || "Registration failed");
+        }
+
+
+
+      } else {
       const response = await axios.post(`${SERVER_URL}/login`, {
         email,
         password,
@@ -56,6 +85,7 @@ export default function Page({ className }) {
       } else {
         setError(response.data.message || "Login failed");
       }
+    }
     } catch (err) {
       setError(err.response?.data?.message || "Invalid email or password");
     } finally {
@@ -65,21 +95,39 @@ export default function Page({ className }) {
 
   return (
     <div className="flex flex-col gap-6 max-w-3xl mx-auto h-screen items-center justify-center">
-      {" "}
-      {/* Center and limit width */}
-      <Card className="overflow-hidden p-0 w-full h-auto md:h-[500px]">
+      <Card className="overflow-hidden p-0 w-full h-auto">
         <CardContent className="grid p-0 md:grid-cols-2">
           <form
             onSubmit={handleSubmit}
-            className="p-6 md:p-8 w-full md:w-[450px]"
+            className="p-6 md:p-8 w-full"
           >
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-start text-left">
-                <h1 className="text-2xl font-bold">Welcome to Innovise</h1>
+                <h1 className="text-2xl font-bold">
+                  {isLogin ? 'Welcome to Innovise' : 'Create an Account'}
+                </h1>
                 <p className="text-muted-foreground text-balance">
-                  Login to manage your business
+                  {isLogin ? 'Login to manage your business' : 'Join us to get started'}
                 </p>
               </div>
+
+                {/* Additional fields for signup */}
+                {!isLogin && (
+                <>
+              
+                  <div className="grid gap-3">
+                    <Label htmlFor="username">Full Name</Label>
+                    <Input
+                      id="username"
+                      type="text"
+                      placeholder="John Doe"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      required
+                    />
+                  </div>
+                </>
+              )}
 
               {/* Email Input */}
               <div className="grid gap-3">
@@ -107,6 +155,8 @@ export default function Page({ className }) {
                 />
               </div>
 
+            
+
               {/* Error Message */}
               {error && (
                 <div className="px-4 py-2 text-sm text-red-600 bg-red-100 rounded-md">
@@ -120,8 +170,37 @@ export default function Page({ className }) {
                 className="w-full bg-[#F3F0E7] text-black hover:bg-accent"
                 disabled={isLoading}
               >
-                {isLoading ? "Signing in..." : "Login"}
+                {isLoading 
+                  ? (isLogin ? 'Signing in...' : 'Creating account...')
+                  : (isLogin ? 'Login' : 'Sign Up')}
               </Button>
+
+              {/* Toggle between login/signup */}
+              <div className="text-center text-sm">
+                {isLogin ? (
+                  <span>
+                    Don't have an account?{' '}
+                    <button
+                      type="button"
+                      className="text-primary underline hover:text-primary/80"
+                      onClick={() => setIsLogin(false)}
+                    >
+                      Sign Up
+                    </button>
+                  </span>
+                ) : (
+                  <span>
+                    Already have an account?{' '}
+                    <button
+                      type="button"
+                      className="text-primary underline hover:text-primary/80"
+                      onClick={() => setIsLogin(true)}
+                    >
+                      Login
+                    </button>
+                  </span>
+                )}
+              </div>
             </div>
           </form>
 
@@ -129,7 +208,7 @@ export default function Page({ className }) {
           <div className="bg-gray-100 hidden md:flex items-center justify-center">
             <Image
               src={Splash}
-              alt="Login"
+              alt={isLogin ? 'Login' : 'Sign Up'}
               className="w-full h-full object-contain rounded-md"
             />
           </div>
