@@ -1,6 +1,6 @@
 "use client"; // Add this if you're using Next.js App Router
 import { useRouter } from "next/navigation";
-import { Toaster } from "sonner"; 
+import { Toaster, toast } from "sonner";
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -132,7 +132,7 @@ export default function StartupForm() {
     const storedUid = Cookies.get("uid"); // Fetch UID directly inside submitForm
 
     if (!storedUid) {
-      alert("User ID not found. Please log in again.");
+      toast.error("User ID not found. Please log in again.");
       return;
     }
 
@@ -166,11 +166,11 @@ export default function StartupForm() {
         router.push("/dashboard"); // Redirect after submission
       } else {
         console.error("Error:", response.data);
-        alert(response.data.message || "Failed to submit form");
+        toast.success(response.data.message || "Failed to submit form");
       }
     } catch (error) {
       console.error("API Error:", error.response?.data || error.message);
-      alert(error.response?.data?.message || "An error occurred. Please try again.");
+      toast.success(error.response?.data?.message || "An error occurred. Please try again.");
     }
   };
 
