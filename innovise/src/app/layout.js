@@ -1,11 +1,6 @@
-"use client";
-
-import { Inter } from "next/font/google"; // Replace with a valid font
+import { Inter } from "next/font/google";
 import "./globals.css";
-import Sidebar from "@/components/Sidebar";
-import Cookies from "js-cookie";
-import { useEffect, useState } from "react";
-import Head from "next/head";
+import ClientWrapper from "@/components/ClientWrapper";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -13,33 +8,20 @@ const inter = Inter({
   display: "swap",
 });
 
+export const metadata = {
+  title: "Innovise",
+  description: "Empowering Startups, Validating Success",
+  icons: {
+    icon: "/favicon.ico",  
+    apple: "/favicon.ico",  
+  },
+};
 
 export default function RootLayout({ children }) {
-  const [hasUid, setHasUid] = useState(false);
-  useEffect(() => {
-    const uid = Cookies.get("uid"); 
-    setHasUid(!!uid); 
-  }, []);
-
   return (
     <html lang="en">
-      <Head>
-        <title>Innovise</title>
-        <meta name="description" content="Empowering Startups, Validating Success" />
-        <link rel="icon" href="/images/logo.png" />
-      </Head>
-      <body className="flex min-h-screen">
-        {/* Sidebar */}
-        {hasUid && (
-          <div className="h-screen sticky top-0">
-            <Sidebar />
-          </div>
-        )}
-
-        {/* Main Content */}
-        <div className="flex-1 p-6 bg-gray-100 overflow-y-auto">
-          {children}
-        </div>
+      <body className={`min-h-screen ${inter.variable}`}>
+        <ClientWrapper>{children}</ClientWrapper>
       </body>
     </html>
   );

@@ -98,7 +98,7 @@ const sampleBusinessInputs = [
 //     </div>
 //   );
 // }
-const API_URL = process.env.NEXT_PUBLIC_AI_URL || "https://innovise-ai.onrender.com" ;
+const API_URL = process.env.NEXT_PUBLIC_AI_URL ;
 
 export default function MarketGapAnalysis() {
   const [industry, setIndustry] = useState("");
