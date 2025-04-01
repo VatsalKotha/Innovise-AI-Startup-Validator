@@ -1,264 +1,218 @@
-// // "use client"; // Add this if you're using Next.js App Router
-// // import { useState } from 'react';
-// // import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-// // import { Input } from '@/components/ui/input';
-// // import { Button } from '@/components/ui/button';
-// // import { Label } from '@/components/ui/label';
-// // import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
-// // import { useRouter } from "next/navigation";
-
-// // export default function LoginPage() {
-// //   const [email, setEmail] = useState('');
-// //   const [password, setPassword] = useState('');
-// //   const [showPassword, setShowPassword] = useState(false);
-// //   const [isLoading, setIsLoading] = useState(false);
-// //   const [error, setError] = useState('');
-// //   const router = useRouter();
-
-// //   const handleSubmit = async (e) => {
-// //     e.preventDefault();
-// //     setIsLoading(true);
-// //     setError('');
-    
-// //     // Simple validation
-// //     if (!email || !password) {
-// //       setError('Please fill in all fields');
-// //       setIsLoading(false);
-// //       return;
-// //     }
-    
-// //     // Simulate authentication (replace with actual authentication logic)
-// //     try {
-// //       // Fake login - in a real app, this would be your authentication API call
-// //       await new Promise(resolve => setTimeout(resolve, 1000));
-      
-// //       // For demo purposes, successful login with any email/password
-// //       router.push('/startup-form');
-// //     } catch (err) {
-// //       setError('Invalid email or password');
-// //     } finally {
-// //       setIsLoading(false);
-// //     }
-// //   };
-
-// //   return (
-// //     <div className="min-h-screen flex items-center justify-center bg-[#F3F0E7] p-4">
-// //       <div className="w-full max-w-md">
-// //         <Card className="border-[#9A9285] shadow-lg">
-// //           <CardHeader className="bg-[#9A9285] text-white rounded-t-lg">
-// //             <CardTitle className="text-2xl font-bold text-center">Welcome Back</CardTitle>
-// //             <CardDescription className="text-white/80 text-center">
-// //               Sign in to continue to your account
-// //             </CardDescription>
-// //           </CardHeader>
-// //           <CardContent className="pt-6 pb-4 px-6">
-// //             <form onSubmit={handleSubmit} className="space-y-4">
-// //               <div className="space-y-2">
-// //                 <Label htmlFor="email" className="text-[#1E1E1E] font-medium">
-// //                   Email
-// //                 </Label>
-// //                 <div className="relative">
-// //                   <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-// //                     <Mail size={18} className="text-[#9A9285]" />
-// //                   </div>
-// //                   <Input
-// //                     id="email"
-// //                     type="email"
-// //                     placeholder="name@example.com"
-// //                     value={email}
-// //                     onChange={(e) => setEmail(e.target.value)}
-// //                     className="pl-10 border-[#D6CBBE] focus:border-[#9A9285] focus:ring-[#9A9285]"
-// //                   />
-// //                 </div>
-// //               </div>
-              
-// //               <div className="space-y-2">
-// //                 <Label htmlFor="password" className="text-[#1E1E1E] font-medium">
-// //                   Password
-// //                 </Label>
-// //                 <div className="relative">
-// //                   <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-// //                     <Lock size={18} className="text-[#9A9285]" />
-// //                   </div>
-// //                   <Input
-// //                     id="password"
-// //                     type={showPassword ? "text" : "password"}
-// //                     placeholder="••••••••"
-// //                     value={password}
-// //                     onChange={(e) => setPassword(e.target.value)}
-// //                     className="pl-10 pr-10 border-[#D6CBBE] focus:border-[#9A9285] focus:ring-[#9A9285]"
-// //                   />
-// //                   <div 
-// //                     className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
-// //                     onClick={() => setShowPassword(!showPassword)}
-// //                   >
-// //                     {showPassword ? (
-// //                       <EyeOff size={18} className="text-[#9A9285]" />
-// //                     ) : (
-// //                       <Eye size={18} className="text-[#9A9285]" />
-// //                     )}
-// //                   </div>
-// //                 </div>
-// //               </div>
-              
-// //               {error && (
-// //                 <div className="px-4 py-2 text-sm text-[#FF0606] bg-[#FFEDED] rounded-md">
-// //                   {error}
-// //                 </div>
-// //               )}
-              
-// //               <Button 
-// //                 type="submit" 
-// //                 className="w-full bg-[#9A9285] hover:bg-[#8a8376] text-white"
-// //                 disabled={isLoading}
-// //               >
-// //                 {isLoading ? 'Signing in...' : 'Sign In'}
-// //               </Button>
-// //             </form>
-// //           </CardContent>
-// //           {/* <CardFooter className="flex flex-col space-y-2 bg-[#F3F0E7] rounded-b-lg p-6 pt-0">
-// //             <div className="text-sm text-center text-[#1E1E1E]/70">
-// //               Don't have an account?{' '}
-// //               <a href="#" className="text-[#9A9285] hover:underline font-medium">
-// //                 Create an account
-// //               </a>
-// //             </div>
-// //             <div className="text-sm text-center text-[#1E1E1E]/70">
-// //               <a href="#" className="text-[#9A9285] hover:underline font-medium">
-// //                 Forgot your password?
-// //               </a>
-// //             </div>
-// //           </CardFooter> */}
-// //         </Card>
-// //       </div>
-// //     </div>
-// //   );
-// // }
-
 "use client";
-import { useState } from 'react';
-import axios from 'axios';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
+
+import { useState } from "react";
+import axios from "axios";
+import Image from "next/image";
+import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import { Splash } from "../../public/images";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const SERVER_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+export default function Page({ className }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
+  const [isLogin, setIsLogin] = useState(true);
   const router = useRouter();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setError('');
-    
+    setError("");
+
     if (!email || !password) {
-      setError('Please fill in all fields');
+      setError("Please fill in all fields");
       setIsLoading(false);
       return;
     }
 
     try {
+
+      if (!isLogin) {
+
+        const response = await axios.post(`${SERVER_URL}/create_user`, {
+          email,
+          password,
+          "name":username,
+        });
+
+        if (response.status === 201) {
+          const { uid } = response.data;
+          console.log(response.data);
+
+          if (uid) {
+            Cookies.set("uid", uid, { expires: 7 }); // Store UID in Cookies for 7 days
+            router.push("/startup-form");
+            window.location.reload();
+          } else {
+            setError("User ID not found. Please try again.");
+          }
+        } else {
+          setError(response.data.message || "Registration failed");
+        }
+
+
+
+      } else {
       const response = await axios.post(`${SERVER_URL}/login`, {
         email,
-        password
+        password,
       });
 
       if (response.status === 200) {
-        const { uid } = response.data; // Extract UID from response
+        const { uid } = response.data;
 
         if (uid) {
-          localStorage.setItem("uid", uid); // Store UID in localStorage
-          router.push('/startup-form'); // Navigate after storing UID
+          Cookies.set("uid", uid, { expires: 7 }); // Store UID in Cookies for 7 days
+          router.push("/dashboard");
+          window.location.reload();
         } else {
           setError("User ID not found. Please try again.");
         }
       } else {
-        setError(response.data.message || 'Login failed');
+        setError(response.data.message || "Login failed");
       }
+    }
     } catch (err) {
-      setError(err.response?.data?.message || 'Invalid email or password');
+      setError(err.response?.data?.message || "Invalid email or password");
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#F3F0E7] p-4">
-      <div className="w-full max-w-md">
-        <Card className="border-[#9A9285] shadow-lg">
-          <CardHeader className="bg-[#9A9285] text-white rounded-t-lg">
-            <CardTitle className="text-2xl font-bold text-center">Welcome Back</CardTitle>
-            <CardDescription className="text-white/80 text-center">
-              Sign in to continue to your account
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="pt-6 pb-4 px-6">
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="email" className="text-[#1E1E1E] font-medium">
-                  Email
-                </Label>
-                <div className="relative">
-                  <Mail size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#9A9285]" />
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="name@example.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="pl-10 border-[#D6CBBE] focus:border-[#9A9285] focus:ring-[#9A9285]"
-                  />
-                </div>
+    <div className="flex flex-col gap-6 max-w-3xl mx-auto h-screen items-center justify-center">
+      <Card className="overflow-hidden p-0 w-full h-auto">
+        <CardContent className="grid p-0 md:grid-cols-2">
+          <form
+            onSubmit={handleSubmit}
+            className="p-6 md:p-8 w-full"
+          >
+            <div className="flex flex-col gap-6">
+              <div className="flex flex-col items-start text-left">
+                <h1 className="text-2xl font-bold">
+                  {isLogin ? 'Welcome to Innovise' : 'Create an Account'}
+                </h1>
+                <p className="text-muted-foreground text-balance">
+                  {isLogin ? 'Login to manage your business' : 'Join us to get started'}
+                </p>
               </div>
+
+                {/* Additional fields for signup */}
+                {!isLogin && (
+                <>
               
-              <div className="space-y-2">
-                <Label htmlFor="password" className="text-[#1E1E1E] font-medium">
-                  Password
-                </Label>
-                <div className="relative">
-                  <Lock size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#9A9285]" />
-                  <Input
-                    id="password"
-                    type={showPassword ? "text" : "password"}
-                    placeholder="••••••••"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="pl-10 pr-10 border-[#D6CBBE] focus:border-[#9A9285] focus:ring-[#9A9285]"
-                  />
-                  <div 
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
-                    onClick={() => setShowPassword(!showPassword)}
-                  >
-                    {showPassword ? <EyeOff size={18} className="text-[#9A9285]" /> : <Eye size={18} className="text-[#9A9285]" />}
+                  <div className="grid gap-3">
+                    <Label htmlFor="username">Full Name</Label>
+                    <Input
+                      id="username"
+                      type="text"
+                      placeholder="John Doe"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      required
+                    />
                   </div>
-                </div>
+                </>
+              )}
+
+              {/* Email Input */}
+              <div className="grid gap-3">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="username@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
               </div>
-              
+
+              {/* Password Input */}
+              <div className="grid gap-3">
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="••••••••"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
+
+            
+
+              {/* Error Message */}
               {error && (
-                <div className="px-4 py-2 text-sm text-[#FF0606] bg-[#FFEDED] rounded-md">
+                <div className="px-4 py-2 text-sm text-red-600 bg-red-100 rounded-md">
                   {error}
                 </div>
               )}
-              
-              <Button 
-                type="submit" 
-                className="w-full bg-[#9A9285] hover:bg-[#8a8376] text-white"
+
+              {/* Submit Button */}
+              <Button
+                type="submit"
+                className="w-full bg-[#F3F0E7] text-black hover:bg-accent"
                 disabled={isLoading}
               >
-                {isLoading ? 'Signing in...' : 'Sign In'}
+                {isLoading 
+                  ? (isLogin ? 'Signing in...' : 'Creating account...')
+                  : (isLogin ? 'Login' : 'Sign Up')}
               </Button>
-            </form>
-          </CardContent>
-        </Card>
+
+              {/* Toggle between login/signup */}
+              <div className="text-center text-sm">
+                {isLogin ? (
+                  <span>
+                    Don't have an account?{' '}
+                    <button
+                      type="button"
+                      className="text-primary underline hover:text-primary/80"
+                      onClick={() => setIsLogin(false)}
+                    >
+                      Sign Up
+                    </button>
+                  </span>
+                ) : (
+                  <span>
+                    Already have an account?{' '}
+                    <button
+                      type="button"
+                      className="text-primary underline hover:text-primary/80"
+                      onClick={() => setIsLogin(true)}
+                    >
+                      Login
+                    </button>
+                  </span>
+                )}
+              </div>
+            </div>
+          </form>
+
+          {/* Right Image Section */}
+          <div className="bg-gray-100 hidden md:flex items-center justify-center">
+            <Image
+              src={Splash}
+              alt={isLogin ? 'Login' : 'Sign Up'}
+              className="w-full h-full object-contain rounded-md"
+            />
+          </div>
+        </CardContent>
+      </Card>
+      <div className="text-muted-foreground text-center text-xs">
+        © 2024-2025 Innovise, IPD CS-G3, B.Tech, Dwarkadas J. Sanghvi College of
+        Engineering, Mumbai.<br></br>
+        Jeel Doshi, Vatsal Kotha, Meet Chavan.
       </div>
     </div>
   );
