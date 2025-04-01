@@ -80,7 +80,7 @@ export const TypingBox = ({
         const response1 = await axios.get(`${SERVER_URL}/get_user/${uid}`);
 
         data = response1.data;
-        console.log("data", data);
+        // console.log("data", data);
       } catch (err) {}
 
       let formData = {};
@@ -97,11 +97,11 @@ export const TypingBox = ({
         },
         body: JSON.stringify(formData),
       });
-      console.log("formData", formData);
+      // console.log("formData", formData);
 
       if (response.ok) {
         const result = await response.json();
-        console.log("result", result);
+        // console.log("result", result);
 
         const assisbluetReply = result;
 

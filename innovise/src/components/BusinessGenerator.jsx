@@ -123,7 +123,7 @@ const BusinessPathway = () => {
       }
     
       const data = await response.json();
-      console.log("Response data:", data);
+      // console.log("Response data:", data);
       // Handle the response data (e.g., update state, display the pathway)
     if (data && data.nodes && data.edges) {
         setServerData(data);

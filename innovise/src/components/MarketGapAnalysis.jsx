@@ -115,7 +115,7 @@ export default function MarketGapAnalysis() {
       const response = await axios.post(`${API_URL}/analyze`, {
         industry: industry,
       });
-      console.log(response.data.insights);
+      // console.log(response.data.insights);
       setInsights(response.data.insights);
     } catch (err) {
       setError("Failed to fetch insights. Please try again.");

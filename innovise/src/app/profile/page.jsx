@@ -20,7 +20,7 @@ export default function ProfilePage() {
       try {
         const res = await axios.get(apiURL);
         if (res.data) {
-          console.log("Fetched Data:", res.data);
+          // console.log("Fetched Data:", res.data);
           const form = new FormData();
           Object.keys(res.data).forEach((key) => form.append(key, res.data[key]));
           setFormData(form);

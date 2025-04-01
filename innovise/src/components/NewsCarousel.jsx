@@ -25,7 +25,7 @@ const NewsCarousel = () => {
         `https://gnews.io/api/v4/top-headlines?category=technology&lang=en&country=us&max=10&apikey=${process.env.NEXT_PUBLIC_GNEWS_API_KEY}`
       );
       const API_KEY = process.env.NEXT_PUBLIC_GNEWS_API_KEY || "fallback-key";
-      console.log("API Key:", API_KEY);
+      // console.log("API Key:", API_KEY);
 
       const data = await response.json();
 

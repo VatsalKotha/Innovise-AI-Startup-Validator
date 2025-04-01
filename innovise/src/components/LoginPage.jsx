@@ -46,7 +46,7 @@ export default function Page({ className }) {
 
         if (response.status === 201) {
           const { uid } = response.data;
-          console.log(response.data);
+          // console.log(response.data);
 
           if (uid) {
             Cookies.set("uid", uid, { expires: 7 }); // Store UID in Cookies for 7 days
@@ -89,7 +89,7 @@ export default function Page({ className }) {
   };
 
   return (
-    <div className="flex flex-col gap-6 max-w-3xl mx-auto h-screen items-center justify-center">
+    <div className="flex flex-col gap-6  p-8 max-w-3xl mx-auto h-screen items-center justify-center">
       <Card className="overflow-hidden p-0 w-full h-auto">
         <CardContent className="grid p-0 md:grid-cols-2">
           <form
@@ -209,11 +209,7 @@ export default function Page({ className }) {
           </div>
         </CardContent>
       </Card>
-      <div className="text-muted-foreground text-center text-xs">
-        © 2024-2025 Innovise, IPD CS-G3, B.Tech, Dwarkadas J. Sanghvi College of
-        Engineering, Mumbai.<br></br>
-        Jeel Doshi, Vatsal Kotha, Meet Chavan.
-      </div>
+     
     </div>
   );
 }
