@@ -11,15 +11,19 @@ const inter = Inter({
 export const metadata = {
   title: "Innovise",
   description: "Empowering Startups, Validating Success",
+  favicon: "/icon.ico",
   icons: {
-    icon: "/favicon.ico",  
-    apple: "/favicon.ico",  
+    icon: "/icon.ico",  
+    apple: "/icon.ico",  
   },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/icon.ico" />
+</head>
       <body className={`min-h-screen ${inter.variable}`}>
         <ClientWrapper>{children}</ClientWrapper>
       </body>
