@@ -1,4 +1,4 @@
-# Innovise - IPD 2024-25
+# Innovise - IPD 2024-2025
 
 Web:
 https://innovise.live
