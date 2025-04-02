@@ -43,6 +43,7 @@ import {
 } from "lucide-react"; // Import icons for SWOT
 import NewsCarousel from "./NewsCarousel";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 const SERVER_URL = process.env.NEXT_PUBLIC_API_URL; // Server URL
 
@@ -50,6 +51,7 @@ export default function Dashboard({ children }) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,7 +60,16 @@ export default function Dashboard({ children }) {
         const response = await axios.get(
           `${SERVER_URL}/get_latest_idea_validation?uid=${uid}`
         );
+
+        if(response.data['error']=="No records found for the user")
+          {
+            setError("Data doesn't exists");
+            router.push("/startup-form");
+            
+          }
+        
         setData(response.data);
+          
       } catch (err) {
         setError(err.message);
       } finally {
