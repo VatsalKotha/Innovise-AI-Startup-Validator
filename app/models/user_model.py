@@ -1,3 +1,5 @@
+import bcrypt
+
 class User:
     def __init__(self, name: str, email: str, password: str, date_of_join: str, is_data_filled: bool, 
                  startup_name: str, problems_addressed: list, startup_unique_reasons: list,
@@ -6,7 +8,7 @@ class User:
      
         self.name = name
         self.email = email
-        self.password = password
+        self.password = self.hash_password(password)  # Hash the password before storing
         self.date_of_join = date_of_join
         self.is_data_filled = is_data_filled
         self.startup_name = startup_name
@@ -22,10 +24,9 @@ class User:
 
     def to_dict(self):
         return {
-           
             "name": self.name,
             "email": self.email,
-            "password": self.password,
+            # Excluding password for security reasons
             "date_of_join": self.date_of_join,
             "is_data_filled": self.is_data_filled,
             "startup_name": self.startup_name,
@@ -43,10 +44,9 @@ class User:
     @staticmethod
     def from_dict(data):
         return User(
-        
             name=data.get("name", ""),
             email=data.get("email", ""),
-            password=data.get("password", ""),
+            password=data.get("password", ""),  # Will be hashed in the constructor
             date_of_join=data.get("date_of_join", ""),
             is_data_filled=data.get("is_data_filled", False),
             startup_name=data.get("startup_name", ""),
@@ -60,3 +60,14 @@ class User:
             stage=data.get("stage", ""),
             revenue_model=data.get("revenue_model", [])
         )
+
+    @staticmethod
+    def hash_password(password: str) -> str:
+        """Hashes the password using bcrypt."""
+        salt = bcrypt.gensalt()
+        return bcrypt.hashpw(password.encode("utf-8"), salt).decode("utf-8")
+
+    @staticmethod
+    def verify_password(password: str, hashed_password: str) -> bool:
+        """Verifies a password against its hashed version."""
+        return bcrypt.checkpw(password.encode("utf-8"), hashed_password.encode("utf-8"))
