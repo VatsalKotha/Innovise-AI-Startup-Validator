@@ -1,6 +1,7 @@
 "use client"; // Required for client-side interactivity
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardHeader,
@@ -40,6 +41,7 @@ import {
   Zap,
   Heart,
   Leaf,
+  RefreshCcw,
 } from "lucide-react"; // Import icons for SWOT
 import NewsCarousel from "./NewsCarousel";
 import Cookies from "js-cookie";
@@ -88,6 +90,26 @@ export default function Dashboard({ children }) {
     );
   
   if (error) return <div>Error: {error}</div>;
+
+  const regenerateData = async () => {
+    const uid = Cookies.get("uid"); 
+   
+    const response = await axios.post(
+      `${SERVER_URL}/create_idea_validation`,
+      {'uid':uid},
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+
+    );
+
+    if(response.status == 200){
+      window.location.reload();
+     } 
+
+  }
 
   const {
     metrics,
@@ -140,11 +162,14 @@ export default function Dashboard({ children }) {
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
+
         <div className="text-left">
           <h1 className="text-4xl font-bold">Idea Validation Dashboard</h1>
           <p className="text-gray-600">
             Detailed analysis and metrics for your startup idea
           </p>
+      
+       
         </div>
 
         <div className="grid grid-cols-2 gap-3">
@@ -197,10 +222,25 @@ export default function Dashboard({ children }) {
           {/* Past Scores */}
           <Card>
             <CardHeader>
+              <div className="flex justify-between  space-x-2">
+              <div className="flex flex-col items-start space-x-2">
               <CardTitle>Past Scores</CardTitle>
               <CardDescription>
                 Historical success scores over time
               </CardDescription>
+              </div>
+              <Button
+                type="submit"
+                className=" bg-[#F3F0E7] text-black hover:bg-accent shadow rounded-2xl"
+              onClick={() => {
+                regenerateData();
+                }
+                }
+              >
+                <RefreshCcw/>
+              </Button>
+            </div>
+        
             </CardHeader>
             <CardContent>
               <Table>
