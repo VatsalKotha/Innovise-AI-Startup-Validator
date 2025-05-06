@@ -1,8 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:innovise/auth/login.dart';
 import 'package:innovise/auth/onboarding.dart';
 import 'package:innovise/common/home.dart';
+import 'package:innovise/formpage/constant_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'common/colors.dart';
@@ -42,10 +44,21 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    pingApi();
 
     Future.delayed(const Duration(seconds: 3), () {
       checkLogin();
     });
+  }
+
+  Future pingApi() async {
+    Dio dio = Dio();
+    try {
+      await dio.get(ConstantData.server_url);
+      await dio.get(ConstantData.ai_url);
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future checkLogin() async {

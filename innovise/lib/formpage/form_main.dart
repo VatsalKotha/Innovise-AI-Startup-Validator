@@ -86,6 +86,7 @@ class _FormMainState extends State<FormMain> {
                     borderRadius: const BorderRadius.all(Radius.circular(8)),
                   ),
                   child: TextField(
+                    onTapOutside: (event) => FocusScope.of(context).unfocus(),
                     controller: _controller,
                     textInputAction: TextInputAction.done,
                     style: const TextStyle(
@@ -370,6 +371,8 @@ class _FormMainState extends State<FormMain> {
                       child: SizedBox(
                         child: Center(
                           child: AutoSizeTextField(
+                            onTapOutside: (event) =>
+                                FocusScope.of(context).unfocus(),
                             textAlign: TextAlign.center,
                             fullwidth: true,
                             onSubmitted: (value) {},
@@ -727,6 +730,8 @@ class _FormMainState extends State<FormMain> {
                           child: SizedBox(
                             child: Center(
                               child: AutoSizeTextField(
+                                onTapOutside: (event) =>
+                                    FocusScope.of(context).unfocus(),
                                 textAlign: TextAlign.center,
                                 fullwidth: true,
                                 onSubmitted: (value) {},

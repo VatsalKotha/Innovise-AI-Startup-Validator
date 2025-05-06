@@ -225,6 +225,8 @@ class _PathwayState extends State<Pathway> {
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(15))),
                           child: TextFormField(
+                            onTapOutside: (event) =>
+                                FocusScope.of(context).unfocus(),
                             controller: pathwayController,
                             maxLines: 6,
                             style: const TextStyle(

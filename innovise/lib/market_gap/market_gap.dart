@@ -95,6 +95,7 @@ class _MarketGapState extends State<MarketGap> {
                     borderRadius: const BorderRadius.all(Radius.circular(8)),
                   ),
                   child: TextField(
+                    onTapOutside: (event) => FocusScope.of(context).unfocus(),
                     controller: _controller,
                     textInputAction: TextInputAction.done,
                     style: const TextStyle(

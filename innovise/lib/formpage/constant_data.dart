@@ -1,9 +1,9 @@
 class ConstantData {
+  static String ai_url = 'https://ai.innovise.in';
   static String server_url = 'https://backend.innovise.live';
-  static String market_gap_url = 'https://ai.innovise.live/analyze';
-  static String chat_url = 'https://ai.innovise.live/startup-advice';
-  static String business_pathway_url =
-      'https://ai.innovise.live/generate-business-pathway';
+  static String market_gap_url = '${ai_url}/analyze';
+  static String chat_url = '${ai_url}/startup-advice';
+  static String business_pathway_url = '${ai_url}/generate-business-pathway';
   static int total_pages = 10;
 
   static List<String> appbar_titles = [

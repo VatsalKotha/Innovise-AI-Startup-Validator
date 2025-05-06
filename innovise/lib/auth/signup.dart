@@ -110,6 +110,7 @@ class _LoginState extends State<SignUp> {
                   child: Center(
                     child: TextFormField(
                       textInputAction: TextInputAction.next,
+                      onTapOutside: (event) => FocusScope.of(context).unfocus(),
                       controller: username,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (input) {
@@ -158,6 +159,7 @@ class _LoginState extends State<SignUp> {
                   child: Center(
                     child: TextFormField(
                       textInputAction: TextInputAction.next,
+                      onTapOutside: (event) => FocusScope.of(context).unfocus(),
                       controller: email,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (input) {
@@ -204,6 +206,7 @@ class _LoginState extends State<SignUp> {
                       color: Colors.grey.shade100,
                       borderRadius: const BorderRadius.all(Radius.circular(8))),
                   child: TextFormField(
+                    onTapOutside: (event) => FocusScope.of(context).unfocus(),
                     textInputAction: TextInputAction.next,
                     controller: password,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
