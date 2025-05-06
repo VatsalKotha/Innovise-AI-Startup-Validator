@@ -1,5 +1,5 @@
 class ConstantData {
-  static String ai_url = 'https://ai.innovise.in';
+  static String ai_url = 'https://ai.innovise.live';
   static String server_url = 'https://backend.innovise.live';
   static String market_gap_url = '${ai_url}/analyze';
   static String chat_url = '${ai_url}/startup-advice';
