@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 const SERVER_URL = process.env.NEXT_PUBLIC_API_URL;
+console.log("API URL:", SERVER_URL);
 
 export default function Page({ className }) {
   const [email, setEmail] = useState("");
