@@ -27,7 +27,7 @@ Innovise is an intelligent, AI-driven platform designed to predict startup succe
 * **Vector Search & Ranking:** Pinecone, Reciprocal Rank Fusion (RRF), Cross-Encoder BGE
 
 ## 📄 Research & Publications
-The architecture and methodologies powering this repository are backed by peer-reviewed research. We have detailed our approach to utilizing LLMs, retrieval-augmented systems, and explainable validation metrics in our published paper in the **MMEP (Mathematical Modelling of Engineering Problems) journal by IIETA**. 
+The architecture and methodologies powering this repository are backed by peer-reviewed research. We have detailed our approach to utilizing LLMs, retrieval-augmented systems, and explainable validation metrics in our published paper in the **IRJET (Internation Research Journal of Engineering and Technology)**. 
 
 > **Read the Paper:** https://www.irjet.net/archives/V13/i3/IRJET-V13I03214.pdf
 
