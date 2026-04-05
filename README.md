@@ -27,9 +27,9 @@ Innovise is an intelligent, AI-driven platform designed to predict startup succe
 * **Vector Search & Ranking:** Pinecone, Reciprocal Rank Fusion (RRF), Cross-Encoder BGE
 
 ## 📄 Research & Publications
-The architecture and methodologies powering this repository are backed by peer-reviewed research. We have detailed our approach to utilizing LLMs, retrieval-augmented systems, and explainable validation metrics in our published paper in the **IRJET (Internation Research Journal of Engineering and Technology)**. 
+The architecture and methodologies powering this repository are backed by peer-reviewed research. We have detailed our approach to utilizing LLMs, retrieval-augmented systems, and explainable validation metrics in our published paper in the **IRJET (International Research Journal of Engineering and Technology)**. 
 
-> **Read the Paper:** https://www.irjet.net/archives/V13/i3/IRJET-V13I03214.pdf
+> **Read the Paper:** [Paper](https://www.irjet.net/archives/V13/i3/IRJET-V13I03214.pdf)
 
 ## 💻 Getting Started
 
@@ -60,7 +60,7 @@ The architecture and methodologies powering this repository are backed by peer-r
     ```
 
 ## 🤝 Contributing
-We welcome contributions! Whether it's integrating new XAI techniques, improving the ranking algorithms, or fixing UI bugs, please feel free to open a Pull Request.
+We welcome contributions! Whether it's integrating new XAI techniques, or fixing UI bugs, please feel free to open a Pull Request.
 
 ## 📜 License
 This project is licensed under the [MIT License](LICENSE).
