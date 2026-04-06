@@ -1,6 +1,6 @@
 
 Web:
-https://innovise.live
+https://innovise-ipd.vercel.app
 
 Backend:
 https://backend.innovise.live
